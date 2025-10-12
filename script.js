@@ -98,7 +98,50 @@
     // === END: ฟังก์ชันที่ปรับปรุงและเพิ่มเข้ามาใหม่ ===
 
     function closeSummaryModal() { const modal = document.getElementById('summaryModal'); modal.style.display = 'none'; }
-    function toggleSection(sectionId) { const section = document.getElementById(sectionId); const header = section.previousElementSibling; section.classList.toggle('active'); header.classList.toggle('active'); }
+// === ฟังก์ชันสำหรับเมนูใหญ่ (แสดงครั้งละ 1 เมนู) ===
+function toggleMainSection(sectionId) { 
+    // ซ่อนเฉพาะเมนูใหญ่ทั้งหมดก่อน
+    const allMainSections = document.querySelectorAll('.main-section-content');
+    const allMainHeaders = document.querySelectorAll('.main-section-header');
+    
+    allMainSections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    allMainHeaders.forEach(header => {
+        header.classList.remove('active');
+    });
+    
+    // เปิดเมนูใหญ่ที่เลือก
+    const section = document.getElementById(sectionId);
+    const header = section.previousElementSibling;
+    
+    section.classList.add('active');
+    header.classList.add('active');
+}
+
+// === ฟังก์ชันสำหรับเมนูย่อย (เปิดปิดได้อิสระ) ===
+function toggleSubSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const header = section.previousElementSibling;
+    
+    section.classList.toggle('active');
+    header.classList.toggle('active');
+}
+
+// === ฟังก์ชันปิดเมนูใหญ่ทั้งหมด ===
+function closeAllMainSections() {
+    const allMainSections = document.querySelectorAll('.main-section-content');
+    const allMainHeaders = document.querySelectorAll('.main-section-header');
+    
+    allMainSections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    allMainHeaders.forEach(header => {
+        header.classList.remove('active');
+    });
+}
     let accounts = [];
     let currentAccount = null;
     let records = [];

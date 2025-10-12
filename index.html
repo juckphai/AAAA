@@ -51,15 +51,17 @@
           <h1 style="text-align: center; color: blue; font-size: 16px;">
             ชื่อบัญชี - <span id="accountName"></span>
           </h1>
-          <div class="section-header header-account" onclick="toggleSection('account-section')">
+          
+          <!-- เมนูใหญ่ 1: จัดการบัญชี -->
+          <div class="section-header main-section-header header-account" onclick="toggleMainSection('account-section')">
             <span>เลือกและจัดการบัญชี</span>
             <span class="arrow">▶</span>
           </div>
-          <div id="account-section" class="section-content">
+          <div id="account-section" class="section-content main-section-content">
             <label for="accountSelect">เลือกบัญชี:</label>
             <select id="accountSelect" onchange="changeAccount()"></select>
             
-            <div class="section-header header-import" onclick="toggleSection('manage-account-submenu')">
+            <div class="sub-section-header" onclick="toggleSubSection('manage-account-submenu')">
               <span>จัดการบัญชี</span>
               <span class="arrow">▶</span>
             </div>
@@ -72,11 +74,12 @@
             </div>
           </div>
         
-          <div class="section-header header-add-data" onclick="toggleSection('add-data-section')">
+          <!-- เมนูใหญ่ 2: เพิ่มข้อมูล -->
+          <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-data-section')">
             <span>เพิ่มข้อมูล</span>
             <span class="arrow">▶</span>
           </div>
-          <div id="add-data-section" class="section-content">
+          <div id="add-data-section" class="section-content main-section-content">
             <div class="entry-form">
               <div class="entry-group">
                 <label for="entryDate">วันที่</label>
@@ -96,7 +99,7 @@
               <input list="typeList" id="type" required placeholder="เลือกหรือพิมพ์ประเภท" style="height: 40px;" onfocus="showAllTypes(this)" onblur="restoreType(this)">
               <datalist id="typeList"></datalist>
               
-              <div class="section-header header-import" onclick="toggleSection('manage-types-submenu')" style="margin-top:10px;">
+              <div class="sub-section-header" onclick="toggleSubSection('manage-types-submenu')" style="margin-top:10px;">
                 <span>จัดการประเภท</span>
                 <span class="arrow">▶</span>
               </div>
@@ -113,48 +116,47 @@
               <input type="text" id="description" required>
             </div>
             
-<!-- START: SECTION ที่ปรับปรุงแล้ว -->
-<div class="section-header header-import" onclick="toggleSection('import-data-main-submenu')">
-    <span>เติมข้อมูล</span>
-    <span class="arrow">▶</span>
-</div>
-<div id="import-data-main-submenu" class="section-content sub-section-content">
-    
-    <!-- เติมข้อมูลจากบัญชีอื่น -->
-    <div id="import-from-account-section">
-        <label class="summary-subsection-header" style="color: #673ab7; margin-bottom: 10px;">เติมข้อมูลจากบัญชีอื่น</label>
-        <div class="entry-form">
-            <div class="entry-group">
-                <label for="importAccountSelect">เลือกบัญชีต้นทาง</label>
-                <select id="importAccountSelect"></select>
+            <!-- START: SECTION ที่ปรับปรุงแล้ว -->
+            <div class="sub-section-header" onclick="toggleSubSection('import-data-main-submenu')">
+                <span>เติมข้อมูล</span>
+                <span class="arrow">▶</span>
             </div>
-            <div class="entry-group">
-                <label for="importDate">เลือกวันที่ของข้อมูล</label>
-                <input type="date" id="importDate">
+            <div id="import-data-main-submenu" class="section-content sub-section-content">
+                
+                <!-- เติมข้อมูลจากบัญชีอื่น -->
+                <div id="import-from-account-section">
+                    <label class="summary-subsection-header" style="color: #673ab7; margin-bottom: 10px;">เติมข้อมูลจากบัญชีอื่น</label>
+                    <div class="entry-form">
+                        <div class="entry-group">
+                            <label for="importAccountSelect">เลือกบัญชีต้นทาง</label>
+                            <select id="importAccountSelect"></select>
+                        </div>
+                        <div class="entry-group">
+                            <label for="importDate">เลือกวันที่ของข้อมูล</label>
+                            <input type="date" id="importDate">
+                        </div>
+                    </div>
+                    <div class="button-container" style="text-align: center; margin-top: 10px;">
+                        <button type="button" onclick="importEntriesFromAccount()" style="background-color: #673ab7;">ดึงข้อมูลมาเติม</button>
+                    </div>
+                </div>
+
+                <!-- เติมข้อมูลจากไฟล์ -->
+                <div id="import-from-file-section" style="border-top: 1px solid #ccc; margin-top: 15px; padding-top: 15px;">
+                    <label class="summary-subsection-header" style="color: #009688; margin-bottom: 10px;">เติมข้อมูลจากไฟล์ (รายวัน)</label>
+                    <p style="text-align:center; color:#333; margin-bottom:10px;">
+                        ใช้สำหรับนำเข้าไฟล์ที่ได้จากการ "บันทึกเฉพาะวันที่เลือก" เพื่อเติมข้อมูลลงในบัญชีปัจจุบัน
+                    </p>
+                    <input type="file" id="mergeFileInput" onchange="importFromFileForMerging(event)" style="display: none;" accept=".json,application/json,.csv,text/csv">
+                    <div class="button-container" style="text-align: center;">
+                        <button type="button" onclick="document.getElementById('mergeFileInput').click()" style="background-color: #009688;">เลือกไฟล์ข้อมูลรายวัน</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="button-container" style="text-align: center; margin-top: 10px;">
-            <button type="button" onclick="importEntriesFromAccount()" style="background-color: #673ab7;">ดึงข้อมูลมาเติม</button>
-        </div>
-    </div>
-
-    <!-- เติมข้อมูลจากไฟล์ -->
-    <div id="import-from-file-section" style="border-top: 1px solid #ccc; margin-top: 15px; padding-top: 15px;">
-        <label class="summary-subsection-header" style="color: #009688; margin-bottom: 10px;">เติมข้อมูลจากไฟล์ (รายวัน)</label>
-        <p style="text-align:center; color:#333; margin-bottom:10px;">
-            ใช้สำหรับนำเข้าไฟล์ที่ได้จากการ "บันทึกเฉพาะวันที่เลือก" เพื่อเติมข้อมูลลงในบัญชีปัจจุบัน
-        </p>
-        <input type="file" id="mergeFileInput" onchange="importFromFileForMerging(event)" style="display: none;" accept=".json,application/json,.csv,text/csv">
-        <div class="button-container" style="text-align: center;">
-            <button type="button" onclick="document.getElementById('mergeFileInput').click()" style="background-color: #009688;">เลือกไฟล์ข้อมูลรายวัน</button>
-        </div>
-    </div>
-</div>
-<!-- END: SECTION ที่ปรับปรุงแล้ว -->
-
+            <!-- END: SECTION ที่ปรับปรุงแล้ว -->
 
             <div class="entry-group" id="multiAccountSelector" style="display: none; margin-top: 10px;">
-                <div class="section-header header-import" onclick="toggleSection('multi-account-submenu')">
+                <div class="sub-section-header" onclick="toggleSubSection('multi-account-submenu')">
                     <span>เพิ่มรายการนี้ในบัญชีอื่นด้วย</span>
                     <span class="arrow">▶</span>
                 </div>
@@ -169,17 +171,17 @@
             </div>
           </div>
           
-          <!-- --- ส่วนจัดการข้อมูลที่อัปเดตแล้ว --- -->
-          <div class="section-header header-actions" onclick="toggleSection('other-actions-section')">
+          <!-- เมนูใหญ่ 3: จัดการข้อมูล -->
+          <div class="section-header main-section-header header-actions" onclick="toggleMainSection('other-actions-section')">
             <span>จัดการข้อมูล</span>
             <span class="arrow">▶</span>
           </div>
-          <div id="other-actions-section" class="section-content">
+          <div id="other-actions-section" class="section-content main-section-content">
             <div class="button-container" style="display: flex; gap: 10px; margin-top: 10px;">
               <button onclick="toggleRecordsVisibility()" style="flex: 1; background-color: #607d8b;">แสดง/ซ่อนรายการ</button>
             </div>
             
-            <div class="sub-section-header" onclick="toggleSection('backup-password-submenu')">
+            <div class="sub-section-header" onclick="toggleSubSection('backup-password-submenu')">
                 <span>ตั้งรหัสผ่านไฟล์สำรอง (JSON)</span>
                 <span class="arrow">▶</span>
             </div>
@@ -226,12 +228,12 @@
             
           </div>
         
-          <!-- --- ส่วนสรุปข้อมูลที่อัปเดตแล้ว --- -->
-          <div class="section-header header-summary" onclick="toggleSection('summary-main-section')">
+          <!-- เมนูใหญ่ 4: สรุปข้อมูล -->
+          <div class="section-header main-section-header header-summary" onclick="toggleMainSection('summary-main-section')">
             <span>สรุปข้อมูล</span>
             <span class="arrow">▶</span>
           </div>
-          <div id="summary-main-section" class="section-content">
+          <div id="summary-main-section" class="section-content main-section-content">
             <div class="summary-subsection">
               <div class="button-container" style="margin: 0;">
                 <button type="button" onclick="summarizeToday()" style="background-color: #ff9800; color: #FFFFFF;">สรุปวันนี้</button>
