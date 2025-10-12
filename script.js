@@ -95,12 +95,18 @@
         updateFontSize();
         updateLineHeight();
     }
-    // === END: ฟังก์ชันที่ปรับปรุงและเพิ่มเข้ามาใหม่ ===
+// === END: ฟังก์ชันที่ปรับปรุงและเพิ่มเข้ามาใหม่ ===
 
     function closeSummaryModal() { const modal = document.getElementById('summaryModal'); modal.style.display = 'none'; }
 // === ฟังก์ชันสำหรับเมนูใหญ่ (แสดงครั้งละ 1 เมนู) ===
 function toggleMainSection(sectionId) { 
-    // ซ่อนเฉพาะเมนูใหญ่ทั้งหมดก่อน
+    const section = document.getElementById(sectionId);
+    const header = section.previousElementSibling;
+    
+    // ตรวจสอบว่าเมนูนี้กำลังเปิดอยู่แล้วหรือไม่
+    const isCurrentlyActive = section.classList.contains('active');
+    
+    // ซ่อนเมนูใหญ่ทั้งหมดก่อน
     const allMainSections = document.querySelectorAll('.main-section-content');
     const allMainHeaders = document.querySelectorAll('.main-section-header');
     
@@ -112,12 +118,11 @@ function toggleMainSection(sectionId) {
         header.classList.remove('active');
     });
     
-    // เปิดเมนูใหญ่ที่เลือก
-    const section = document.getElementById(sectionId);
-    const header = section.previousElementSibling;
-    
-    section.classList.add('active');
-    header.classList.add('active');
+    // ถ้าเมนูนี้ยังไม่เปิดอยู่ ให้เปิดมัน (ถ้ากำลังเปิดอยู่แล้ว จะถูกปิดโดยโค้ดด้านบน)
+    if (!isCurrentlyActive) {
+        section.classList.add('active');
+        header.classList.add('active');
+    }
 }
 
 // === ฟังก์ชันสำหรับเมนูย่อย (เปิดปิดได้อิสระ) ===
