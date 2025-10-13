@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>บัญชีรายรับรายจ่าย</title>
 
-  <!-- ไฟล์ Manifest และข้อมูล meta อื่น ๆ คงเดิม -->
+  <!-- ไฟล์ Manifest และข้อมูล meta อื่น ๆ -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4CAF50"/>
+  <meta name="theme-color" content="#4a90e2"/>
+
+  <!-- [PWA] Apple-specific meta tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="บัญชีรายรับรายจ่าย">
+  <link rel="apple-touch-icon" href="./192.png">
 
   <!-- ลิงก์ไปยังไฟล์ CSS -->
   <link rel="stylesheet" href="style.css">
@@ -19,17 +25,22 @@
 </head>
 
 <body>
+<!-- ส่วนเนื้อหาหลักทั้งหมดยังคงเหมือนเดิมทุกประการ -->
 <div class="container" style="padding:0; border:none; background:none;">
-    <div id="install-guide" class="install-prompt">
-        <span class="close-prompt" onclick="this.parentElement.style.display='none'">&times;</span>
-        <h4>ติดตั้งแอปนี้ลงในเครื่องของคุณ!</h4>
-        <ul>
-            <li><b>สำหรับ Android:</b> เบราว์เซอร์ Chrome จะมีปุ่ม "ติดตั้งแอป" หรือ "เพิ่มไปยังหน้าจอหลัก" แสดงขึ้นมาให้กด</li>
-            <li><b>สำหรับ iPhone (iOS):</b> เปิดใน Safari แล้วกดที่ปุ่ม "แชร์" (Share) จากนั้นเลือก "เพิ่มไปยังหน้าจอโฮม" (Add to Home Screen)</li>
-        </ul>
-        <p style="color: red; font-weight: bold; margin-top: 10px; margin-bottom: 0;">
-            ข้อควรระวังสำหรับ iPhone: ระบบอาจลบข้อมูลที่บันทึกไว้หากไม่ได้ใช้งานนานๆ หรือพื้นที่เหลือน้อย! <br>แนะนำให้ "บันทึกถาวร" หรือ "บันทึกเป็น XLSX" เพื่อสำรองข้อมูลสม่ำเสมอ
-        </p>
+<div id="install-guide" class="install-prompt">
+    <span class="close-prompt" onclick="hideInstallPromptPermanently()">&times;</span>
+    <h4>ติดตั้งแอปนี้ลงในเครื่องของคุณ!</h4>
+    <ul>
+        <li><b>สำหรับ Android:</b> เบราว์เซอร์ Chrome จะมีปุ่ม "ติดตั้งแอป" หรือ "เพิ่มไปยังหน้าจอหลัก" แสดงขึ้นมาให้กด</li>
+        <li><b>สำหรับ iPhone (iOS):</b> เปิดใน Safari แล้วกดที่ปุ่ม "แชร์" (Share) จากนั้นเลือก "เพิ่มไปยังหน้าจอโฮม" (Add to Home Screen)</li>
+    </ul>
+    <p style="color: red; font-weight: bold; margin-top: 10px; margin-bottom: 0;">
+        ข้อควรระวังสำหรับ iPhone: ระบบอาจลบข้อมูลที่บันทึกไว้หากไม่ได้ใช้งานนานๆ หรือพื้นที่เหลือน้อย! <br>แนะนำให้ "บันทึกถาวร" หรือ "บันทึกเป็น XLSX" เพื่อสำรองข้อมูลสม่ำเสมอ
+    </p>
+    <div style="text-align: center; margin-top: 10px;">
+        <button onclick="hideInstallPromptPermanently()" style="background-color: #6c757d; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">
+            ไม่แสดงข้อความนี้อีก
+        </button>
     </div>
 </div>
 
@@ -80,37 +91,42 @@
             <span class="arrow">▶</span>
           </div>
           <div id="add-data-section" class="section-content main-section-content">
-            <div class="entry-form">
-              <div class="entry-group">
-                <label for="entryDate">วันที่</label>
-                <input type="date" id="entryDate">
-              </div>
-              <div class="entry-group">
-                <label for="entryTime">เวลา</label>
-                <input type="time" id="entryTime">
-              </div>
-            </div>
-            <div class="entry-group">
-              <label for="amount">จำนวนเงิน</label>
-              <input type="number" id="amount" required>
-            </div>
-            <div class="entry-group">
-              <label for="type">ประเภท</label>
-              <input list="typeList" id="type" required placeholder="เลือกหรือพิมพ์ประเภท" style="height: 40px;" onfocus="showAllTypes(this)" onblur="restoreType(this)">
-              <datalist id="typeList"></datalist>
-              
-              <div class="sub-section-header" onclick="toggleSubSection('manage-types-submenu')" style="margin-top:10px;">
-                <span>จัดการประเภท</span>
-                <span class="arrow">▶</span>
-              </div>
-              <div id="manage-types-submenu" class="section-content sub-section-content">
-                <div class="button-group">
-                  <button type="button" onclick="addNewType()" style="background-color: #2196F3;">เพิ่มประเภท</button>
-                  <button type="button" onclick="deleteType()" style="background-color: #F44336;">ลบประเภท</button>
-                  <button type="button" onclick="editType()" style="background-color: #FFC107;">แก้ไขประเภท</button>
-                </div>
-              </div>
-            </div>
+<div class="entry-form date-time-row">
+  <div class="entry-group">
+    <label for="entryDate">วันที่</label>
+    <input type="date" id="entryDate">
+  </div>
+  <div class="entry-group">
+    <label for="entryTime">เวลา</label>
+    <input type="time" id="entryTime">
+  </div>
+</div>
+<div class="entry-form">
+  <div class="entry-group">
+    <label for="amount">จำนวนเงิน</label>
+    <input type="number" id="amount" required>
+  </div>
+  <div class="entry-group">
+    <label for="type">ประเภท</label>
+    <input list="typeList" id="type" required placeholder="เลือกหรือพิมพ์ประเภท" style="height: 40px;" onfocus="showAllTypes(this)" onblur="restoreType(this)">
+    <datalist id="typeList"></datalist>
+  </div>
+</div>
+
+<!-- ส่วนจัดการประเภท (ย้ายออกมาจาก entry-form เดิม) -->
+<div class="entry-group">
+  <div class="sub-section-header" onclick="toggleSubSection('manage-types-submenu')" style="margin-top:10px;">
+    <span>จัดการประเภท</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div id="manage-types-submenu" class="section-content sub-section-content">
+    <div class="button-group">
+      <button type="button" onclick="addNewType()" style="background-color: #2196F3;">เพิ่มประเภท</button>
+      <button type="button" onclick="deleteType()" style="background-color: #F44336;">ลบประเภท</button>
+      <button type="button" onclick="editType()" style="background-color: #FFC107;">แก้ไขประเภท</button>
+    </div>
+  </div>
+</div>
             <div class="entry-group">
               <label for="description">รายละเอียด</label>
               <input type="text" id="description" required>

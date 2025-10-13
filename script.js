@@ -1114,7 +1114,22 @@ if (periodRecords.length > 0) {
             statusEl.style.color = '#f5a623';
         }
     }
+function hideInstallPromptPermanently() {
+    const installGuide = document.getElementById('install-guide');
+    if (installGuide) {
+        installGuide.style.display = 'none';
+        // บันทึกสถานะว่าซ่อนถาวร
+        localStorage.setItem('install_prompt_hidden', 'true');
+    }
+}
 
+// อัพเดทฟังก์ชันเดิม
+function hideInstallPrompt() {
+    const installGuide = document.getElementById('install-guide');
+    if (installGuide) {
+        installGuide.style.display = 'none';
+    }
+}
     function loadFromLocal() {
         const data = localStorage.getItem('accountData');
         if (data) {
@@ -1372,7 +1387,17 @@ function saveToFile() {
         reader.onerror = () => alert("เกิดข้อผิดพลาดในการอ่านไฟล์");
         event.target.value = '';
     }
+
+function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    section.classList.toggle('active');
     
+    // ปรับปรุงลูกศรในส่วนหัว
+    const header = section.previousElementSibling;
+    if (header) {
+        header.classList.toggle('active');
+    }
+}
 function loadFromCsv(csvText) {
     let csvImportData = { isFullBackup: false, isDailyExport: false, accountName: '', exportDate: '', types: { "รายรับ": [], "รายจ่าย": [] }, records: [] };
     let inTypesSection = false;
@@ -1614,33 +1639,68 @@ function loadFromCsv(csvText) {
     });
 }
 
-    function hideInstallPrompt() { const installGuide = document.getElementById('install-guide'); if (installGuide) { installGuide.style.display = 'none'; } }
+    function hideInstallPrompt() { 
+    const installGuide = document.getElementById('install-guide'); 
+    if (installGuide) { 
+        installGuide.style.display = 'none'; 
+        // บันทึกสถานะว่าซ่อนแล้ว
+        localStorage.setItem('install_prompt_hidden', 'true');
+    } 
+}
     window.addEventListener('appinstalled', () => { console.log('App was installed.'); hideInstallPrompt(); localStorage.setItem('pwa_installed', 'true'); });
     
-    window.onload = function () {
-        document.getElementById('detailsSection').style.display = 'none';
-        loadFromLocal();
-        toggleSection('account-section');
-        document.getElementById('backup-password-form').addEventListener('submit', saveBackupPassword);
-        document.getElementById('show-backup-password').addEventListener('change', (e) => {
-            document.getElementById('backup-password').type = e.target.checked ? 'text' : 'password';
-            document.getElementById('backup-password-confirm').type = e.target.checked ? 'text' : 'password';
+window.onload = function () {
+    document.getElementById('detailsSection').style.display = 'none';
+    loadFromLocal();
+    
+    // ซ่อนข้อความแนะนำการติดตั้งถ้าผู้ใช้เลือกซ่อนไว้แล้ว
+    if (localStorage.getItem('install_prompt_hidden') === 'true') {
+        hideInstallPrompt();
+    }
+    
+    // ตั้งค่า Event Listeners สำหรับฟอร์มรหัสผ่าน
+    const backupPasswordForm = document.getElementById('backup-password-form');
+    if (backupPasswordForm) {
+        backupPasswordForm.addEventListener('submit', saveBackupPassword);
+    }
+    
+    // ตั้งค่า Event Listener สำหรับแสดง/ซ่อนรหัสผ่าน
+    const showPasswordCheckbox = document.getElementById('show-backup-password');
+    if (showPasswordCheckbox) {
+        showPasswordCheckbox.addEventListener('change', (e) => {
+            const passwordField = document.getElementById('backup-password');
+            const confirmField = document.getElementById('backup-password-confirm');
+            
+            if (passwordField && confirmField) {
+                passwordField.type = e.target.checked ? 'text' : 'password';
+                confirmField.type = e.target.checked ? 'text' : 'password';
+            }
         });
+    }
+    
+    // ตั้งค่า Event Listener สำหรับปิด modal เมื่อคลิกนอกพื้นที่
+    const modal = document.getElementById('summaryModal');
+    if (modal) {
         window.addEventListener('click', (event) => {
-            const modal = document.getElementById('summaryModal');
-            if (event.target == modal) { closeSummaryModal(); }
+            if (event.target == modal) {
+                closeSummaryModal();
+            }
         });
-        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || localStorage.getItem('pwa_installed') === 'true') {
-            hideInstallPrompt();
-        }
-    };
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').then(registration => {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, err => {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
+    }
+    
+    // ตรวจสอบว่าเป็น PWA หรือไม่
+    if (window.matchMedia('(display-mode: standalone)').matches || 
+        window.navigator.standalone || 
+        localStorage.getItem('pwa_installed') === 'true') {
+        hideInstallPrompt();
+    }
+    
+    // ตั้งค่า Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+};
