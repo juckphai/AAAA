@@ -53,20 +53,22 @@
     type="button" 
     onclick="document.getElementById('restoreFile').click()" 
     style="
-      flex: 1 1 min(250px, 80%);
       background-color: #196B24;
       color: white;
       font-weight: bold;
-      padding: 12px 16px;
-      height: 56px;
+      padding: 12px 24px;
+      height: 45px;
       font-size: 1.1rem;
-      border: 3px solid #FFFFFF;
+      border: 3px solid #FF33CC;
       border-radius: 28px;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-width: min(160px, 45vw);
-      max-width: 280px;
+      white-space: nowrap;
+      min-width: auto;
+      max-width: none;
+      width: auto;
       touch-action: manipulation;
+      flex: none;
     "
     onmouseover="this.style.backgroundColor='#145a1d'"
     onmouseout="this.style.backgroundColor='#196B24'"

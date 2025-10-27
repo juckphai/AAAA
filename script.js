@@ -155,10 +155,9 @@ function initializeDefaultData() {
     // กำหนดค่าเริ่มต้นสำหรับผู้ทำกิจกรรม
     if (!getFromLocalStorage('persons') || getFromLocalStorage('persons').length === 0) {
         const defaultPersons = [
-            { name: 'พ่อ' },
-            { name: 'แม่' },
-            { name: 'ลูกชาย' },
-            { name: 'ลูกสาว' }
+            { name: 'อาจารย์' },
+            { name: 'ลูกศิษย์' },
+            { name: 'เด็กวัด' },
         ];
         saveToLocalStorage('persons', defaultPersons);
         console.log('✅ สร้างผู้ทำกิจกรรมเริ่มต้น');
@@ -865,10 +864,9 @@ function resetActivityType() {
     }
     
     const defaultActivityTypes = [
-        { name: 'ทำงาน' },
-        { name: 'เรียน' },
+        { name: 'สวดมนต์' },
+        { name: 'เดินจงกรม' },
         { name: 'นั่งสมาธิ' },
-        { name: 'อื่นๆ' }
     ];
     
     saveToLocalStorage('activityTypes', defaultActivityTypes);
