@@ -2727,3 +2727,12 @@ footer div {
   #save-activity-button:hover {
     transform: translateY(-1px);
   }
+/* เพิ่มในส่วนท้ายของ style.css */
+#add-data-section .entry-form {
+    margin-top: 0;
+}
+
+#add-data-section .date-time-group {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
