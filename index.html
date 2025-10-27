@@ -47,45 +47,43 @@
           </h1>
           
 <!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
-<div class="center">
-<div class="button-container" 
-     style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 20px 0; padding: 0 10px;">
-  <button 
-    type="button" 
-    onclick="document.getElementById('restoreFile').click()" 
-    style="
-      background-color: #196B24;
-      color: white;
-      font-weight: bold;
-      padding: 12px 24px;
-      height: 45px;
-      font-size: 1.1rem;
-      border: 3px solid #FF33CC;
-      border-radius: 28px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      min-width: auto;
-      max-width: none;
-      width: fit-content;
-      touch-action: manipulation;
-      flex: none;
-    "
-    onmouseover="this.style.backgroundColor='#145a1d'"
-    onmouseout="this.style.backgroundColor='#196B24'"
-    ontouchstart="this.style.backgroundColor='#145a1d'"
-    ontouchend="this.style.backgroundColor='#196B24'">
-    โหลดข้อมูลที่บันทึกไว้
-  </button>
+<div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+  <div class="button-container" 
+       style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 0 10px;">
+    
+    <button 
+      type="button" 
+      onclick="document.getElementById('restoreFile').click()" 
+      style="
+        background-color: #196B24;
+        color: white;
+        font-weight: bold;
+        padding: 12px 24px;
+        height: 45px;
+        font-size: 1.1rem;
+        border: 3px solid #FF33CC;
+        border-radius: 28px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        width: fit-content;
+        touch-action: manipulation;
+      "
+      onmouseover="this.style.backgroundColor='#145a1d'"
+      onmouseout="this.style.backgroundColor='#196B24'"
+      ontouchstart="this.style.backgroundColor='#145a1d'"
+      ontouchend="this.style.backgroundColor='#196B24'">
+      โหลดข้อมูลที่บันทึกไว้
+    </button>
 
-  <input 
-    type="file" 
-    id="restoreFile" 
-    accept=".json" 
-    style="display: none;" 
-    onchange="restoreData(this.files[0])">
+    <input 
+      type="file" 
+      id="restoreFile" 
+      accept=".json" 
+      style="display: none;" 
+      onchange="restoreData(this.files[0])">
+  </div>
 </div>
-
           
           <!-- เมนูใหญ่ 1: เพิ่มกิจกรรม -->
           <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
