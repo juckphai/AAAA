@@ -46,16 +46,43 @@
             บันทึกกิจกรรมประจำวัน
           </h1>
           
-          <!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
-          <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0;">
-            <button 
-              type="button" 
-              onclick="document.getElementById('restoreFile').click()" 
-              style="flex: 1; background-color: #ff69b4; color: white; font-weight: bold; padding: 10px; font-size: 1rem; border: none; border-radius: 50px; cursor: pointer;">
-              โหลดข้อมูลที่บันทึกไว้
-            </button>
-            <input type="file" id="restoreFile" accept=".json" style="display: none;" onchange="restoreData(this.files[0])">
-          </div>
+<!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
+<div class="button-container" 
+     style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 20px 0; padding: 0 10px;">
+  <button 
+    type="button" 
+    onclick="document.getElementById('restoreFile').click()" 
+    style="
+      flex: 1 1 min(250px, 80%);
+      background-color: #196B24;
+      color: white;
+      font-weight: bold;
+      padding: 12px 16px;
+      height: 56px;
+      font-size: 1.1rem;
+      border: 3px solid #FFFFFF;
+      border-radius: 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: min(160px, 45vw);
+      max-width: 280px;
+      touch-action: manipulation;
+    "
+    onmouseover="this.style.backgroundColor='#145a1d'"
+    onmouseout="this.style.backgroundColor='#196B24'"
+    ontouchstart="this.style.backgroundColor='#145a1d'"
+    ontouchend="this.style.backgroundColor='#196B24'">
+    โหลดข้อมูลที่บันทึกไว้
+  </button>
+
+  <input 
+    type="file" 
+    id="restoreFile" 
+    accept=".json" 
+    style="display: none;" 
+    onchange="restoreData(this.files[0])">
+</div>
+
           
           <!-- เมนูใหญ่ 1: เพิ่มกิจกรรม -->
           <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
