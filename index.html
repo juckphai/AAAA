@@ -184,7 +184,7 @@
                 <label for="activity-details">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
                 <textarea id="activity-details" placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"></textarea>
                 
-                <div class="center">
+<div class="center" style="margin: 2px 0;"> <!-- เดิมคือ margin: 5px 0; -->
   <button id="save-activity-button">บันทึกกิจกรรม</button>
 </div>
                 <button type="button" id="update-activity-button" class="hidden">อัปเดตกิจกรรม</button>
@@ -194,9 +194,13 @@
               </form>
               
               <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
-              <div class="button-container" style="display: flex; gap: 10px; margin-top: 10px;">
-                <button type="button" onclick="toggleActivitiesVisibility()" style="flex: 1; background-color: #607d8b;">แสดง/ซ่อนกิจกรรมทั้งหมด</button>
-              </div>
+<div class="button-container" style="display: flex; gap: 5px; margin-top: 0; justify-content: center;"> <!-- เดิมคือ margin-top: 2px; -->
+<button type="button" 
+    onclick="toggleActivitiesVisibility()" 
+    style="width: 100%; max-width: 300px; margin: 0 auto; background-color: #92D050; color: white; padding: 15px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 18px; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 3px solid #0070C0; border-left: 6px solid #ff4757;">
+    แสดง/ซ่อนกิจกรรมทั้งหมด
+</button>
+</div>
             </div>
           </div>
         
@@ -206,9 +210,12 @@
             <span class="menu-icon">▼</span>
           </div>
           <div id="manage-activities-section" class="section-content main-section-content">
+<div class="form-section no-border">
+<form id="manage-activities-form">
+              </div>
             
   <!-- ส่วนสำรองข้อมูลและกู้คืน -->
-<div class="summary-subsection">
+
   <!-- เพิ่มส่วนแสดงสถานะรหัสผ่าน -->
   <div style="text-align: center; margin: 10px 0;">
     <p id="password-status" style="font-size: 0.9rem; color: #f5a623;">
@@ -253,7 +260,6 @@
       </button>
     </div>
   </div>
-</div>
 
             <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
             <div class="summary-subsection">
@@ -269,14 +275,15 @@
           </div> <!-- ปิด div ของเมนูจัดการกิจกรรม -->
      
           <!-- เมนูใหญ่ 3: สรุปกิจกรรม -->
-          <div class="section-header main-section-header header-summary" onclick="toggleMainSection('summary-section')">
-            <span>📊 สรุปกิจกรรม</span>
-            <span class="menu-icon">▼</span>
-          </div>
-          <div id="summary-section" class="section-content main-section-content">
+<div class="section-header main-section-header header-summary" onclick="toggleMainSection('summary-section')">
+  <span>📊 สรุปกิจกรรม</span>
+  <span class="menu-icon">▼</span>
+</div>
+<div id="summary-section" class="section-content main-section-content">
+  <div class="form-section no-border">
+    <form id="summary-form">
             
             <!-- เมนูเลือกประเภทการสรุป -->
-            <div class="summary-subsection">
               <div class="entry-form" style="margin-bottom: 0;">
                 <div class="entry-group">
                   <label for="summary-type-select">ประเภทการสรุป:</label>
@@ -332,13 +339,35 @@
               </div>
             </div>
             
-            <!-- ปุ่มดูสรุป -->
-            <div class="summary-subsection">
-              <div class="button-container" style="text-align: center; margin-top: 10px;">
-                <button type="button" onclick="viewSummary()" style="background-color: #673ab7; color: #FFFFFF;">ดูสรุป</button>
-              </div>
-            </div>
-          </div> <!-- ปิด div ของเมนูสรุปกิจกรรม -->
+<!-- ปุ่มดูสรุป -->
+<div class="summary-subsection">
+  <div class="button-container" style="text-align: center; margin-top: 10px;">
+    <button 
+      type="button" 
+      onclick="viewSummary()" 
+      style="
+        background-color: #FF00FF;
+        color: #fff;
+        border: 2px solid #4527a0;
+        border-radius: 30px;
+        padding: 5px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        transition: all 0.25s ease;
+      "
+      onmouseover="this.style.background-color: #FF00FF; this.style.transform='scale(1.05)';"
+      onmouseout="this.style.background-color: #FF00FF; this.style.transform='scale(1)';"
+    >
+      ดูสรุป
+    </button>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+
           
           <!-- ตารางกิจกรรม - ปรับปรุงให้เป็น Responsive -->
           <div id="activitiesSection" style="display: none; margin-top: 20px; width: 100%;">

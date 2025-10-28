@@ -401,10 +401,63 @@ label {
 .reset-btn { background-color: #17a2b8; }
 .reset-btn:hover { background-color: #138496; }
 
-/* ===== MANAGEMENT CONTAINER STYLING ===== */
+/* ===== EXPANDED MANAGEMENT CONTAINER STYLING ===== */
 .management-container {
-  width: 100%;
-  margin-bottom: 15px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.management-row {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.select-wrapper {
+    width: 100%;
+    margin: 10px auto;
+}
+
+/* ทำให้กรอบการจัดการขยายเต็มความกว้าง */
+.form-section .section-content.active {
+    width: 100%;
+}
+
+/* ปรับปรุงการแสดงผลของส่วนจัดการกิจกรรม */
+#activity-form .management-container,
+#activity-form .management-row,
+#activity-form .select-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ปรับปรุงสำหรับส่วนจัดการกิจกรรมโดยเฉพาะ */
+.management-section .section-content {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* ปรับปรุงสำหรับมือถือ */
+@media (max-width: 768px) {
+    .management-container,
+    .management-row,
+    .select-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .form-section .section-content.active {
+        width: 100% !important;
+        padding: 5px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .management-container,
+    .management-row,
+    .select-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 }
 
 /* ===== COMPACT MANAGEMENT ROW ===== */
@@ -2736,6 +2789,7 @@ footer div {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
 /* ===== NO BORDER STYLING ===== */
 .form-section.no-border {
     background: none !important;
