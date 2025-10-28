@@ -716,10 +716,9 @@ function resetPerson() {
     }
     
     const defaultPersons = [
-        { name: 'พ่อ' },
-        { name: 'แม่' },
-        { name: 'ลูกชาย' },
-        { name: 'ลูกสาว' }
+        { name: 'ท่านอาจารย์' },
+        { name: 'ลูกศิษย์' },
+        { name: 'อาคันตุกะ' },
     ];
     
     saveToLocalStorage('persons', defaultPersons);
