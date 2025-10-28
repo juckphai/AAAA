@@ -2736,3 +2736,28 @@ footer div {
     margin-top: 0;
     margin-bottom: 10px;
 }
+/* ===== NO BORDER STYLING ===== */
+.form-section.no-border {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+    .form-section.no-border {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-section.no-border {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+}
