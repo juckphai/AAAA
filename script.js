@@ -2429,7 +2429,7 @@ function exportSummaryToPDF() {
             <style>
                 body { 
                     font-family: Arial, sans-serif; 
-                    margin: 5mm 3mm 3mm 3mm; 
+                    margin: 15mm 5mm 10mm 8mm;  
                     padding: 0;
                     color: #000;
                     line-height: 1.1;
@@ -3947,4 +3947,5 @@ document.getElementById('summary-end-date').value = thaiToday;
     initResponsiveDesign();
     
     console.log('✅ โหลดแอปพลิเคชันเสร็จสิ้น');
+
 });
