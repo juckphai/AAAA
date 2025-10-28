@@ -144,9 +144,9 @@ function initializeDefaultData() {
     // กำหนดค่าเริ่มต้นสำหรับประเภทกิจกรรม
     if (!getFromLocalStorage('activityTypes') || getFromLocalStorage('activityTypes').length === 0) {
         const defaultActivityTypes = [
-            { name: 'ทำงาน' },
-            { name: 'เรียน' },
-            { name: 'ประชุม' }
+            { name: 'นั่งสมาธิ' },
+            { name: 'เดินจงกรม' },
+            { name: 'สวดมนต์' }
         ];
         saveToLocalStorage('activityTypes', defaultActivityTypes);
         console.log('✅ สร้างประเภทกิจกรรมเริ่มต้น');

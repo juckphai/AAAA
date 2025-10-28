@@ -98,12 +98,26 @@
                 <div class="management-row compact-layout">
                   <!-- ส่วนจัดการผู้ทำกิจกรรม -->
                   <div class="management-container">
-                    <div class="select-wrapper">
-                      <button type="button" class="manage-btn-inline" onclick="toggleManagementActions('personActions')" title="จัดการผู้ทำกิจกรรม">⚙️</button>
-                      <select id="personSelect" onchange="checkCustomOption(this)" required style="flex: 1;">
-                        <option value="">-- เลือกผู้ทำกิจกรรม --</option>
-                      </select>
-                    </div>
+<div class="select-wrapper" style="display: flex; align-items: center; gap: 6px; width: 100%;">
+  <button 
+    type="button" 
+    class="manage-btn-inline" 
+    onclick="toggleManagementActions('personActions')" 
+    title="จัดการผู้ทำกิจกรรม"
+    style="font-size: clamp(11px, 3vw, 16px);"
+  >
+    ⚙️
+  </button>
+
+  <select 
+    id="personSelect" 
+    onchange="checkCustomOption(this)" 
+    required 
+    style="flex: 1; font-size: clamp(11px, 3vw, 16px); padding: 6px; border-radius: 6px;"
+  >
+    <option value="">เลือกผู้ทำกิจกรรม</option>
+  </select>
+</div>
 
                     <!-- ซ่อนเมนูย่อยการจัดการผู้ทำกิจกรรม -->
                     <div class="management-actions" id="personActions" style="display: none;">
@@ -118,12 +132,27 @@
                   
                   <!-- ส่วนจัดการประเภทกิจกรรม -->
                   <div class="management-container">
-                    <div class="select-wrapper">
-                      <button type="button" class="manage-btn-inline" onclick="toggleManagementActions('activityTypeActions')" title="จัดการประเภทกิจกรรม">⚙️</button>
-                      <select id="activityTypeSelect" onchange="checkCustomActivityTypeOption(this)" required style="flex: 1;">
-                        <option value="">-- เลือกประเภทกิจกรรม --</option>
-                      </select>
-                    </div>
+<div class="select-wrapper" style="display: flex; align-items: center; gap: 6px; width: 100%;">
+  <button 
+    type="button" 
+    class="manage-btn-inline" 
+    onclick="toggleManagementActions('activityTypeActions')" 
+    title="จัดการประเภทกิจกรรม"
+    style="font-size: clamp(13px, 3vw, 18px);"
+  >
+    ⚙️
+  </button>
+
+  <select 
+    id="activityTypeSelect" 
+    onchange="checkCustomActivityTypeOption(this)" 
+    required 
+    style="flex: 1; font-size: clamp(11px, 3vw, 16px); padding: 6px; border-radius: 6px;"
+  >
+    <option value="">เลือกประเภทกิจกรรม</option>
+  </select>
+</div>
+
 
                     <!-- ซ่อนเมนูย่อยการจัดการประเภทกิจกรรม -->
                     <div class="management-actions" id="activityTypeActions" style="display: none;">
@@ -192,13 +221,22 @@
       <button type="button" onclick="openExportOptionsModal()" style="flex: 1; background-color: #0d47a1;">บันทึกข้อมูล</button>
     </div>
     
-    <div class="entry-group">
-      <label for="backup-password">รหัสผ่านสำรองข้อมูล (ไม่บังคับ):</label>
-      <div style="position: relative;">
-        <input type="password" id="backup-password" placeholder="ถ้าไม่ต้องการใช้รหัสผ่าน ให้ปล่อยว่างไว้" style="width: 100%; padding-right: 40px;">
-        <span id="toggle-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none;">👁️</span>
-      </div>
-    </div>
+<div class="entry-group" style="font-size: clamp(0.7rem, 2.5vw, 1rem);">
+  <label for="backup-password">รหัสผ่านสำรองข้อมูล (ไม่บังคับ):</label>
+  <div style="position: relative;">
+    <input 
+      type="password" 
+      id="backup-password" 
+      placeholder="ถ้าไม่ต้องการใช้รหัสผ่าน ให้ปล่อยว่างไว้" 
+      style="width: 100%; padding-right: 40px; font-size: clamp(0.7rem, 2.5vw, 1rem);"
+    >
+    <span 
+      id="toggle-password" 
+      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: clamp(0.7rem, 2.5vw, 1rem);"
+    >👁️</span>
+  </div>
+</div>
+
     <div class="entry-group">
       <label for="backup-password-confirm">ยืนยันรหัสผ่าน:</label>
       <div style="position: relative;">
