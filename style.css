@@ -1043,6 +1043,30 @@ tr:hover {
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
+  /* ปรับปรุงการจัดวางปุ่มในส่วนจัดการกิจกรรมสำหรับมือถือ */
+  .entry-form .button-container {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .entry-form .button-container button {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  /* ปรับปรุงการจัดวางปุ่มตั้งรหัสผ่านและลบรหัสผ่าน */
+  .entry-form .button-container:last-child {
+    justify-content: center;
+  }
+  
+  .entry-form .button-container:last-child button {
+    flex: none;
+    width: auto;
+    min-width: 140px;
+  }
+}
+@media (max-width: 768px) {
     .container {
         padding: 5px;
     }
@@ -2789,7 +2813,86 @@ footer div {
     margin-top: 0;
     margin-bottom: 10px;
 }
+/* ===== ปรับขนาดปุ่มในส่วนจัดการกิจกรรม ===== */
 
+/* ปุ่มบันทึกชั่วคราวและบันทึกข้อมูล */
+#manage-activities-form .button-container:first-child {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+#manage-activities-form .button-container:first-child button {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 12px 10px;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ปุ่มตั้งรหัสผ่านและลบรหัสผ่าน */
+#manage-activities-form .button-container:last-child {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+#manage-activities-form .button-container:last-child button {
+  flex: 1;
+  min-width: 0;
+  max-width: 150px;
+  padding: 10px 5px;
+  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+  #manage-activities-form .button-container:first-child {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  #manage-activities-form .button-container:first-child button {
+    padding: 10px 8px;
+    font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  }
+  
+  #manage-activities-form .button-container:last-child {
+    flex-wrap: nowrap;
+  }
+  
+  #manage-activities-form .button-container:last-child button {
+    max-width: 140px;
+    padding: 8px 4px;
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+  }
+}
+
+@media (max-width: 480px) {
+  #manage-activities-form .button-container:first-child {
+    gap: 8px;
+  }
+  
+  #manage-activities-form .button-container:first-child button {
+    padding: 8px 6px;
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+  }
+  
+  #manage-activities-form .button-container:last-child {
+    gap: 8px;
+  }
+  
+  #manage-activities-form .button-container:last-child button {
+    max-width: 130px;
+    padding: 7px 3px;
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  }
+}
 /* ===== NO BORDER STYLING ===== */
 .form-section.no-border {
     background: none !important;

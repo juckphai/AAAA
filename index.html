@@ -209,71 +209,74 @@
             <span>⚙️ จัดการกิจกรรม</span>
             <span class="menu-icon">▼</span>
           </div>
-          <div id="manage-activities-section" class="section-content main-section-content">
-<div class="form-section no-border">
-<form id="manage-activities-form">
-              </div>
-            
-  <!-- ส่วนสำรองข้อมูลและกู้คืน -->
-
-  <!-- เพิ่มส่วนแสดงสถานะรหัสผ่าน -->
-  <div style="text-align: center; margin: 10px 0;">
-    <p id="password-status" style="font-size: 0.9rem; color: #f5a623;">
-      สถานะ: ยังไม่มีการตั้งรหัสผ่าน (ไฟล์สำรองจะไม่ถูกเข้ารหัส)
-    </p>
-  </div>
-  <div class="entry-form" style="margin-bottom: 0;">
-    <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-      <button type="button" onclick="saveToLocal()" style="flex: 1; background-color: #17a2b8;">บันทึกชั่วคราว</button>
-      <button type="button" onclick="openExportOptionsModal()" style="flex: 1; background-color: #0d47a1;">บันทึกข้อมูล</button>
-    </div>
-    
-<div class="entry-group" style="font-size: clamp(0.7rem, 2.5vw, 1rem);">
-  <label for="backup-password">รหัสผ่านสำรองข้อมูล (ไม่บังคับ):</label>
-  <div style="position: relative;">
-    <input 
-      type="password" 
-      id="backup-password" 
-      placeholder="ถ้าไม่ต้องการใช้รหัสผ่าน ให้ปล่อยว่างไว้" 
-      style="width: 100%; padding-right: 40px; font-size: clamp(0.7rem, 2.5vw, 1rem);"
-    >
-    <span 
-      id="toggle-password" 
-      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: clamp(0.7rem, 2.5vw, 1rem);"
-    >👁️</span>
-  </div>
-</div>
-
-    <div class="entry-group">
-      <label for="backup-password-confirm">ยืนยันรหัสผ่าน:</label>
-      <div style="position: relative;">
-        <input type="password" id="backup-password-confirm" placeholder="กรอกรหัสผ่านอีกครั้ง" style="width: 100%; padding-right: 40px;">
-        <span id="toggle-password-confirm" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none;">👁️</span>
+<div id="manage-activities-section" class="section-content main-section-content">
+  <div class="form-section no-border">
+    <form id="manage-activities-form">
+      <!-- ส่วนสำรองข้อมูลและกู้คืน -->
+      <!-- เพิ่มส่วนแสดงสถานะรหัสผ่าน -->
+      <div style="text-align: center; margin: 10px 0;">
+        <p id="password-status" style="font-size: 0.9rem; color: #f5a623;">
+          สถานะ: ยังไม่มีการตั้งรหัสผ่าน (ไฟล์สำรองจะไม่ถูกเข้ารหัส)
+        </p>
       </div>
-    </div>
-    <div class="button-container" style="text-align: center; margin-top: 10px;">
-      <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; margin-right: 10px;">
-        ตั้งรหัสผ่าน
-      </button>
-      <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545;">
-        ลบรหัสผ่าน
-      </button>
-    </div>
-  </div>
+      
+      <div class="entry-form" style="margin-bottom: 0;">
+        <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
+        <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+          <button type="button" onclick="saveToLocal()" style="flex: 1; background-color: #17a2b8;">บันทึกชั่วคราว</button>
+          <button type="button" onclick="openExportOptionsModal()" style="flex: 1; background-color: #0d47a1;">บันทึกข้อมูล</button>
+        </div>
+        
+        <!-- ส่วนรหัสผ่าน -->
+        <div class="entry-group" style="font-size: clamp(0.7rem, 2.5vw, 1rem);">
+          <label for="backup-password">รหัสผ่านสำรองข้อมูล (ไม่บังคับ):</label>
+          <div style="position: relative;">
+            <input 
+              type="password" 
+              id="backup-password" 
+              placeholder="ถ้าไม่ต้องการใช้รหัสผ่าน ให้ปล่อยว่างไว้" 
+              style="width: 100%; padding-right: 40px; font-size: clamp(0.7rem, 2.5vw, 1rem);"
+            >
+            <span 
+              id="toggle-password" 
+              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: clamp(0.7rem, 2.5vw, 1rem);"
+            >👁️</span>
+          </div>
+        </div>
 
-            <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
-            <div class="summary-subsection">
-              <div class="button-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
-                <button type="button" onclick="cleanAllData()" class="clean-data-btn" style="background-color: #ff5722; color: white;">
-                  🧹 ทำความสะอาดข้อมูลทั้งหมด
-                </button>
-              </div>
-              <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 5px;">
-                ตรวจสอบสุขภาพข้อมูล, ลบข้อมูลซ้ำ, กิจกรรมขยะ และไฟล์ที่ไม่จำเป็น
-              </p>
-            </div>
-          </div> <!-- ปิด div ของเมนูจัดการกิจกรรม -->
-     
+        <div class="entry-group">
+          <label for="backup-password-confirm">ยืนยันรหัสผ่าน:</label>
+          <div style="position: relative;">
+            <input type="password" id="backup-password-confirm" placeholder="กรอกรหัสผ่านอีกครั้ง" style="width: 100%; padding-right: 40px;">
+            <span id="toggle-password-confirm" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none;">👁️</span>
+          </div>
+        </div>
+        
+        <!-- ปุ่มตั้งรหัสผ่านและลบรหัสผ่านอยู่ในแถวเดียวกัน -->
+        <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+          <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; flex: 1; max-width: 150px;">
+            ตั้งรหัสผ่าน
+          </button>
+          <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545; flex: 1; max-width: 150px;">
+            ลบรหัสผ่าน
+          </button>
+        </div>
+      </div>
+
+      <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
+      <div class="summary-subsection">
+        <div class="button-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
+          <button type="button" onclick="cleanAllData()" class="clean-data-btn" style="background-color: #ff5722; color: white;">
+            🧹 ทำความสะอาดข้อมูลทั้งหมด
+          </button>
+        </div>
+        <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 5px;">
+          ตรวจสอบสุขภาพข้อมูล, ลบข้อมูลซ้ำ, กิจกรรมขยะ และไฟล์ที่ไม่จำเป็น
+        </p>
+      </div>
+    </form>
+  </div>
+</div> <!-- ปิด div ของเมนูจัดการกิจกรรม -->     
           <!-- เมนูใหญ่ 3: สรุปกิจกรรม -->
 <div class="section-header main-section-header header-summary" onclick="toggleMainSection('summary-section')">
   <span>📊 สรุปกิจกรรม</span>
