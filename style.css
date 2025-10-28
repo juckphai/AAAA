@@ -20,13 +20,13 @@ body {
 /* ===== LAYOUT & CONTAINER ===== */
 .container { 
     max-width: 800px; 
-    margin: 20px auto; 
+    margin: 5px auto; 
     background-color: #FAFAD2; 
     border: 2px solid #ED01ED; 
     padding: 10px; 
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    width: 95%; 
+    width: 100%; 
 }
 
 /* ===== SECTION STYLING ===== */
