@@ -170,13 +170,13 @@ body {
 
 .summary-subsection .entry-form {
     background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 30px;
     border-left: 3px solid #dee2e6;
 }
 
 .summary-subsection .entry-group {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .summary-subsection select {
@@ -2713,8 +2713,8 @@ footer div {
 .format-modal-content .entry-form {
     background-color: #f8f9fa;
     padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 .format-modal-content .entry-group {

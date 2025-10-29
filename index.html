@@ -222,9 +222,9 @@
       
       <div class="entry-form" style="margin-bottom: 0;">
         <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
-        <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-          <button type="button" onclick="saveToLocal()" style="flex: 1; background-color: #17a2b8;">บันทึกชั่วคราว</button>
-          <button type="button" onclick="openExportOptionsModal()" style="flex: 1; background-color: #0d47a1;">บันทึกข้อมูล</button>
+        <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
+          <button type="button" onclick="saveToLocal()" style="flex: 1; border-radius: 30px; background-color: #17a2b8;">บันทึกชั่วคราว</button>
+          <button type="button" onclick="openExportOptionsModal()" style="flex: 1; border-radius: 30px; background-color: #0d47a1;">บันทึกข้อมูล</button>
         </div>
         
         <!-- ส่วนรหัสผ่าน -->
@@ -253,11 +253,11 @@
         </div>
         
         <!-- ปุ่มตั้งรหัสผ่านและลบรหัสผ่านอยู่ในแถวเดียวกัน -->
-        <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-          <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; flex: 1; max-width: 150px;">
+        <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; flex: 1; border-radius: 30px; max-width: 150px;">
             ตั้งรหัสผ่าน
           </button>
-          <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545; flex: 1; max-width: 150px;">
+          <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545; flex: 1; border-radius: 30px; max-width: 150px;">
             ลบรหัสผ่าน
           </button>
         </div>
@@ -266,7 +266,7 @@
       <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
       <div class="summary-subsection">
         <div class="button-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
-          <button type="button" onclick="cleanAllData()" class="clean-data-btn" style="background-color: #ff5722; color: white;">
+          <button type="button" onclick="cleanAllData()" class="clean-data-btn" style="background-color: #ff5722; border-radius: 30px; color: white;">
             🧹 ทำความสะอาดข้อมูลทั้งหมด
           </button>
         </div>
@@ -303,7 +303,7 @@
             <!-- ส่วนกรองผู้ทำกิจกรรม -->
             <div class="summary-controls">
               <!-- ส่วนแสดงผู้ทำกิจกรรมอัตโนมัติ (แสดงเมื่อมีแค่คนเดียว) -->
-              <div class="auto-selected-person" id="autoSelectedPerson" style="display: none; background-color: #f8f9fa; padding: 8px 12px; border-radius: 4px; border: 1px solid #dee2e6; margin-bottom: 10px;">
+              <div class="auto-selected-person" id="autoSelectedPerson" style="display: none; background-color: #f8f9fa; padding: 8px 12px; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 10px;">
                 <label style="font-weight: bold; margin-right: 8px; color: #495057;">ผู้ทำกิจกรรม:</label>
                 <span id="selectedPersonName" style="color: #28a745; font-size: 1rem; font-weight: bold;"></span>
               </div>
@@ -344,24 +344,27 @@
             
 <!-- ปุ่มดูสรุป -->
 <div class="summary-subsection">
-  <div class="button-container" style="text-align: center; margin-top: 10px;">
+  <div class="button-container" style="text-align: center; margin-top: 5px;">
     <button 
       type="button" 
       onclick="viewSummary()" 
       style="
+        display: inline-block;
         background-color: #FF00FF;
         color: #fff;
         border: 2px solid #4527a0;
         border-radius: 30px;
-        padding: 5px 10px;
+        padding: 5px 15px;
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
         box-shadow: 0 3px 6px rgba(0,0,0,0.2);
         transition: all 0.25s ease;
+        width: auto;
+        min-width: fit-content;
       "
-      onmouseover="this.style.background-color: #FF00FF; this.style.transform='scale(1.05)';"
-      onmouseout="this.style.background-color: #FF00FF; this.style.transform='scale(1)';"
+      onmouseover="this.style.transform='scale(1.05)'"
+      onmouseout="this.style.transform='scale(1)'"
     >
       ดูสรุป
     </button>
@@ -369,11 +372,10 @@
 </div>
   </div>
 </div>
-</div>
-
-          
+</div>    
+</div>    
           <!-- ตารางกิจกรรม - ปรับปรุงให้เป็น Responsive -->
-          <div id="activitiesSection" style="display: none; margin-top: 20px; width: 100%;">
+          <div id="activitiesSection" style="display: none; margin-top: 5px; width: 100%;">
             <div class="table-container">
               <table id="activityTable">
                 <thead>
