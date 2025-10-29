@@ -40,10 +40,10 @@ body {
 
 .section-content {
     display: none;
-    padding: 10px;
+    padding: 5px 10px; /* เดิม 15px */
     border: 1px solid #eee;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* เดิม 15px */
     background-color: #fff;
 }
 
