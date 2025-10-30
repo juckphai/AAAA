@@ -131,79 +131,34 @@ function notifyDataManagement(action) {
     }
 }
 
-// === ฟังก์ชันเตรียมข้อมูลเริ่มต้น ===
-function initializeDefaultData() {
-    console.log('📂 กำลังเตรียมข้อมูลเริ่มต้น...');
+// === ฟังก์ชันคำนวณเวลาเริ่มต้นจากเวลาสิ้นสุดและระยะเวลา ===
+function calculateStartTime() {
+    const endTime = document.getElementById('end-time').value;
+    const durationHours = parseInt(document.getElementById('duration-hours').value) || 0;
+    const durationMinutes = parseInt(document.getElementById('duration-minutes').value) || 0;
     
-    // โหลดรหัสผ่านสำรองข้อมูล
-    backupPassword = getFromLocalStorage('backupPassword') || null;
-    
-    // เรียกแสดงสถานะรหัสผ่าน
-    renderBackupPasswordStatus();
-    
-    // กำหนดค่าเริ่มต้นสำหรับประเภทกิจกรรม
-    if (!getFromLocalStorage('activityTypes') || getFromLocalStorage('activityTypes').length === 0) {
-        const defaultActivityTypes = [
-            { name: 'นั่งสมาธิ' },
-            { name: 'เดินจงกรม' },
-            { name: 'สวดมนต์' }
-        ];
-        saveToLocalStorage('activityTypes', defaultActivityTypes);
-        console.log('✅ สร้างประเภทกิจกรรมเริ่มต้น');
+    if (!endTime) {
+        return;
     }
     
-    // กำหนดค่าเริ่มต้นสำหรับผู้ทำกิจกรรม
-    if (!getFromLocalStorage('persons') || getFromLocalStorage('persons').length === 0) {
-        const defaultPersons = [
-            { name: 'อาจารย์' },
-            { name: 'ลูกศิษย์' },
-            { name: 'เด็กวัด' },
-        ];
-        saveToLocalStorage('persons', defaultPersons);
-        console.log('✅ สร้างผู้ทำกิจกรรมเริ่มต้น');
-    }
+    // แปลงเวลาสิ้นสุดเป็น Date object
+    const [endHours, endMinutes] = endTime.split(':').map(Number);
+    const endDate = new Date();
+    endDate.setHours(endHours, endMinutes, 0, 0);
     
-    // โหลดข้อมูลลงใน dropdowns
-    populateActivityTypeDropdowns('activityTypeSelect');
-    populatePersonDropdown('personSelect');
-    populatePersonFilter();
+    // คำนวณเวลาเริ่มต้น (ลบระยะเวลาออกจากเวลาสิ้นสุด)
+    const startDate = new Date(endDate.getTime() - (durationHours * 60 * 60 * 1000) - (durationMinutes * 60 * 1000));
     
-    // ✅ ตั้งค่าวันที่และเวลาเริ่มต้นให้อัตโนมัติ
-    setDefaultDateTime();
+    // แปลงกลับเป็นรูปแบบเวลา
+    const startHours = startDate.getHours().toString().padStart(2, '0');
+    const startMinutes = startDate.getMinutes().toString().padStart(2, '0');
     
-    // ✅ เรียกใช้ฟังก์ชันเลือกอัตโนมัติหลังจากโหลดข้อมูลทั้งหมด
-    setTimeout(() => {
-        console.log('🔄 กำลังตรวจสอบการเลือกอัตโนมัติ...');
-        autoSelectIfSingle();
-        console.log('✅ การเลือกอัตโนมัติเสร็จสิ้น');
-    }, 300);
-}
-
-// === ฟังก์ชันตั้งค่าวันที่และเวลาเริ่มต้น ===
-function setDefaultDateTime() {
-    // ใช้เวลาปัจจุบันของประเทศไทย
-    const thaiTime = getThaiTime();
-    const today = getThaiDateString();
+    const startTime = `${startHours}:${startMinutes}`;
     
-    document.getElementById('activity-date').value = today;
-    
-    // ตั้งค่าเวลาเริ่มต้นเป็น 1 ชั่วโมงก่อนเวลาปัจจุบันของไทย
-    const oneHourAgo = new Date(thaiTime.getTime() - 60 * 60 * 1000);
-    
-    const startTime = formatThaiTime(oneHourAgo);
+    // อัพเดทฟิลด์เวลาเริ่มต้น
     document.getElementById('start-time').value = startTime;
     
-    // ตั้งค่าเวลาสิ้นสุดเป็นเวลาปัจจุบันของไทย
-    const endTime = formatThaiTime(thaiTime);
-    document.getElementById('end-time').value = endTime;
-    
-    console.log(`⏰ ตั้งค่าเวลาเริ่มต้น (ไทย): ${startTime} (1 ชั่วโมงที่แล้ว), เวลาสิ้นสุด: ${endTime} (ปัจจุบัน), วันที่: ${today}`);
-    console.log(`🌏 เวลาไทยปัจจุบัน: ${thaiTime.toLocaleString('th-TH')}`);
-    
-    // ✅ รีเซ็ตปุ่มแก้ไข
-    document.getElementById('save-activity-button').classList.remove('hidden');
-    document.getElementById('update-activity-button').classList.add('hidden');
-    document.getElementById('cancel-edit-activity-button').classList.add('hidden');
+    console.log(`⏰ คำนวณเวลา: สิ้นสุด ${endTime} - ${durationHours}ชม.${durationMinutes}น. = เริ่มต้น ${startTime}`);
 }
 
 // === ฟังก์ชันคำนวณระยะเวลา ===
@@ -238,6 +193,7 @@ function formatDuration(minutes) {
     if (parts.length === 0) return "0 นาที";
     return parts.join(' ');
 }
+
 // === ฟังก์ชันจัดการเวลาไทย ===
 function getThaiTime() {
     const now = new Date();
@@ -255,7 +211,36 @@ function formatThaiTime(date) {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
 }
-// === ฟังก์ชันจัดการฟอร์มกิจกรรม ===
+
+// === ฟังก์ชันตั้งค่าเวลาเริ่มต้นและระยะเวลาเริ่มต้น (ปรับปรุง) ===
+function setDefaultDateTime() {
+    // ใช้เวลาปัจจุบันของประเทศไทย
+    const thaiTime = getThaiTime();
+    const today = getThaiDateString();
+    
+    document.getElementById('activity-date').value = today;
+    
+    // ตั้งค่าเวลาสิ้นสุดเป็นเวลาปัจจุบันของไทย
+    const endTime = formatThaiTime(thaiTime);
+    document.getElementById('end-time').value = endTime;
+    
+    // ตั้งค่าระยะเวลาเริ่มต้นเป็น 1 ชั่วโมง
+    document.getElementById('duration-hours').value = 1;
+    document.getElementById('duration-minutes').value = 0;
+    
+    // คำนวณเวลาเริ่มต้น
+    calculateStartTime();
+    
+    console.log(`⏰ ตั้งค่าเวลาสิ้นสุด (ไทย): ${endTime}, ระยะเวลา: 1 ชั่วโมง, วันที่: ${today}`);
+    console.log(`🌏 เวลาไทยปัจจุบัน: ${thaiTime.toLocaleString('th-TH')}`);
+    
+    // ✅ รีเซ็ตปุ่มแก้ไข
+    document.getElementById('save-activity-button').classList.remove('hidden');
+    document.getElementById('update-activity-button').classList.add('hidden');
+    document.getElementById('cancel-edit-activity-button').classList.add('hidden');
+}
+
+// === ฟังก์ชันจัดการฟอร์มกิจกรรม (ปรับปรุง) ===
 function handleActivityFormSubmit(event) {
     event.preventDefault();
     
@@ -282,6 +267,8 @@ function handleActivityFormSubmit(event) {
     const date = document.getElementById('activity-date').value;
     const startTime = document.getElementById('start-time').value;
     const endTime = document.getElementById('end-time').value;
+    const durationHours = parseInt(document.getElementById('duration-hours').value) || 0;
+    const durationMinutes = parseInt(document.getElementById('duration-minutes').value) || 0;
     const details = document.getElementById('activity-details').value.trim();
 
     if (!date || !startTime || !endTime) {
@@ -290,9 +277,16 @@ function handleActivityFormSubmit(event) {
         return;
     }
 
+    // ตรวจสอบว่ากรอกระยะเวลาหรือไม่
+    if (durationHours === 0 && durationMinutes === 0) {
+        document.getElementById('activity-message').textContent = 'กรุณากรอกระยะเวลา';
+        document.getElementById('activity-message').style.color = 'red';
+        return;
+    }
+
     const duration = calculateDuration(startTime, endTime);
     if (duration <= 0) {
-        document.getElementById('activity-message').textContent = 'เวลาไม่ถูกต้อง กรุณาตรวจสอบเวลาเริ่มต้นและสิ้นสุด';
+        document.getElementById('activity-message').textContent = 'เวลาไม่ถูกต้อง กรุณาตรวจสอบเวลาสิ้นสุดและระยะเวลา';
         document.getElementById('activity-message').style.color = 'red';
         return;
     }
@@ -318,8 +312,7 @@ function handleActivityFormSubmit(event) {
         document.getElementById('activity-message').style.color = 'green';
         editingActivityId = null;
         
-        // ✅ เพิ่มการเรียกฟังก์ชันแจ้งเตือนที่นี่
-        notifyActivitySaved(true); // true = เป็นการอัปเดต
+        notifyActivitySaved(true);
         
     } else {
         // สร้างกิจกรรมใหม่
@@ -338,8 +331,7 @@ function handleActivityFormSubmit(event) {
         document.getElementById('activity-message').textContent = 'บันทึกกิจกรรมเรียบร้อยแล้ว';
         document.getElementById('activity-message').style.color = 'green';
         
-        // ✅ เรียกฟังก์ชันแจ้งเตือนสำหรับกิจกรรมใหม่
-        notifyActivitySaved(false); // false = เป็นกิจกรรมใหม่
+        notifyActivitySaved(false);
     }
 
     saveToLocalStorage('activities', allActivities);
@@ -356,7 +348,7 @@ function handleActivityFormSubmit(event) {
     }, 100);
 }
 
-// === ฟังก์ชันรีเซ็ตฟอร์มกิจกรรม ===
+// === ฟังก์ชันรีเซ็ตฟอร์มกิจกรรม (ปรับปรุง) ===
 function resetActivityForm() {
     // รีเซ็ตเฉพาะฟิลด์ที่จำเป็น
     document.getElementById('activity-details').value = '';
@@ -990,6 +982,7 @@ function formatDateForDisplay(dateString) {
     return `${day}/${month}/${year}`;
 }
 
+// === ฟังก์ชันแก้ไขกิจกรรม (ปรับปรุง) ===
 function editActivity(activityId) {
     const allActivities = getFromLocalStorage('activities') || [];
     const activity = allActivities.find(a => a.id === activityId);
@@ -1003,6 +996,14 @@ function editActivity(activityId) {
     document.getElementById('start-time').value = activity.startTime;
     document.getElementById('end-time').value = activity.endTime;
     document.getElementById('activity-details').value = activity.details || '';
+    
+    // คำนวณระยะเวลาจากเวลาเริ่มต้นและสิ้นสุด
+    const duration = calculateDuration(activity.startTime, activity.endTime);
+    const durationHours = Math.floor(duration / 60);
+    const durationMinutes = duration % 60;
+    
+    document.getElementById('duration-hours').value = durationHours;
+    document.getElementById('duration-minutes').value = durationMinutes;
     
     // สลับปุ่ม
     document.getElementById('save-activity-button').classList.add('hidden');
@@ -2527,25 +2528,6 @@ function exportSummaryToPDF() {
                     line-height: 1.0;
                 }
                 
-                /* ปรับความกว้างคอลัมน์ใหม่ให้กะทัดรัดมากขึ้น */
-                .col-act-name { width: 18%; }
-                .col-date { width: 10%; }
-                .col-time { width: 12%; }
-                .col-duration-small { width: 12%; }
-                .col-details { width: 48%; }
-                
-                .total-row {
-                    background-color: #f0f0f0;
-                    font-weight: bold;
-                }
-                
-                .page-info {
-                    text-align: center;
-                    margin-top: 5px;
-                    font-size: 7px;
-                    color: #666;
-                }
-                
                 /* ป้องกันการแบ่งหน้าในตาราง */
                 table, tr, td, th {
                     page-break-inside: avoid !important;
@@ -2674,13 +2656,6 @@ function exportSummaryToPDF() {
             <div class="summary-section compact-section">
                 <h3>รายการกิจกรรมทั้งหมด (${activities.length} รายการ)</h3>
                 <table>
-                    <colgroup>
-                        <col class="col-act-name">
-                        <col class="col-date">
-                        <col class="col-time">
-                        <col class="col-duration-small">
-                        <col class="col-details">
-                    </colgroup>
                     <thead>
                         <tr>
                             <th>กิจกรรม</th>
@@ -3935,6 +3910,24 @@ document.getElementById('summary-end-date').value = thaiToday;
         togglePasswordVisibility('backup-password-confirm', 'toggle-password-confirm');
     });
     
+    // Event listeners สำหรับการคำนวณเวลาเริ่มต้นอัตโนมัติ
+    document.getElementById('end-time').addEventListener('change', calculateStartTime);
+    document.getElementById('duration-hours').addEventListener('input', calculateStartTime);
+    document.getElementById('duration-minutes').addEventListener('input', calculateStartTime);
+    
+    // จำกัดค่าสูงสุดของนาทีเป็น 59
+    document.getElementById('duration-minutes').addEventListener('input', function() {
+        if (this.value > 59) this.value = 59;
+        if (this.value < 0) this.value = 0;
+        calculateStartTime();
+    });
+    
+    // จำกัดค่าสูงสุดของชั่วโมง
+    document.getElementById('duration-hours').addEventListener('input', function() {
+        if (this.value < 0) this.value = 0;
+        calculateStartTime();
+    });
+    
     // เรียกครั้งแรกเพื่อแสดงสถานะเริ่มต้น
     updateCurrentPersonDisplay();
     
@@ -3949,3 +3942,51 @@ document.getElementById('summary-end-date').value = thaiToday;
     console.log('✅ โหลดแอปพลิเคชันเสร็จสิ้น');
 
 });
+
+// === ฟังก์ชันเตรียมข้อมูลเริ่มต้น ===
+function initializeDefaultData() {
+    console.log('📂 กำลังเตรียมข้อมูลเริ่มต้น...');
+    
+    // โหลดรหัสผ่านสำรองข้อมูล
+    backupPassword = getFromLocalStorage('backupPassword') || null;
+    
+    // เรียกแสดงสถานะรหัสผ่าน
+    renderBackupPasswordStatus();
+    
+    // กำหนดค่าเริ่มต้นสำหรับประเภทกิจกรรม
+    if (!getFromLocalStorage('activityTypes') || getFromLocalStorage('activityTypes').length === 0) {
+        const defaultActivityTypes = [
+            { name: 'นั่งสมาธิ' },
+            { name: 'เดินจงกรม' },
+            { name: 'สวดมนต์' }
+        ];
+        saveToLocalStorage('activityTypes', defaultActivityTypes);
+        console.log('✅ สร้างประเภทกิจกรรมเริ่มต้น');
+    }
+    
+    // กำหนดค่าเริ่มต้นสำหรับผู้ทำกิจกรรม
+    if (!getFromLocalStorage('persons') || getFromLocalStorage('persons').length === 0) {
+        const defaultPersons = [
+            { name: 'อาจารย์' },
+            { name: 'ลูกศิษย์' },
+            { name: 'เด็กวัด' },
+        ];
+        saveToLocalStorage('persons', defaultPersons);
+        console.log('✅ สร้างผู้ทำกิจกรรมเริ่มต้น');
+    }
+    
+    // โหลดข้อมูลลงใน dropdowns
+    populateActivityTypeDropdowns('activityTypeSelect');
+    populatePersonDropdown('personSelect');
+    populatePersonFilter();
+    
+    // ✅ ตั้งค่าวันที่และเวลาเริ่มต้นให้อัตโนมัติ
+    setDefaultDateTime();
+    
+    // ✅ เรียกใช้ฟังก์ชันเลือกอัตโนมัติหลังจากโหลดข้อมูลทั้งหมด
+    setTimeout(() => {
+        console.log('🔄 กำลังตรวจสอบการเลือกอัตโนมัติ...');
+        autoSelectIfSingle();
+        console.log('✅ การเลือกอัตโนมัติเสร็จสิ้น');
+    }, 300);
+}

@@ -781,11 +781,13 @@ tr:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .popup-content {
@@ -793,7 +795,7 @@ tr:hover {
     padding: 20px;
     border-radius: 10px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: popupFadeIn 0.3s;
 }
@@ -2893,6 +2895,255 @@ footer div {
     font-size: clamp(0.65rem, 1.8vw, 0.8rem);
   }
 }
+/* สไตล์สำหรับฟิลด์ระยะเวลา */
+.duration-inputs-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.duration-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.duration-input-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.duration-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* สไตล์สำหรับฟิลด์เวลาเริ่มต้นที่อ่านอย่างเดียว */
+#start-time {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+/* ===== TIME INPUTS ROW (START-END TIME IN ONE LINE) ===== */
+.time-inputs-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.time-inputs-row .time-input-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.time-inputs-row .time-input-group input[type="time"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* สำหรับมือถือให้ซ้อนลงเป็น 2 แถวอย่างเหมาะสม */
+@media (max-width: 768px) {
+  .time-inputs-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .time-inputs-row .time-input-group {
+    width: 100%;
+  }
+}
+/* ===== TIME INPUTS (START / END ON SAME ROW) ===== */
+.time-inputs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* แถบเวลาเริ่มต้น-สิ้นสุด */
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ช่องแต่ละอันให้กว้างเท่ากัน */
+.time-row .time-input-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.time-row .time-input-group input[type="time"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* สำหรับมือถือให้ซ้อนลงเป็นแนวตั้ง */
+@media (max-width: 768px) {
+  .time-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .time-row .time-input-group {
+    width: 100%;
+  }
+}
+/* ===== FULL WIDTH MANAGEMENT CONTAINERS ===== */
+.management-row.compact-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.management-container.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.management-container.full-width .select-wrapper {
+  width: 100%;
+  margin: 0;
+}
+
+.management-container.full-width select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ทำให้แถบเลือกมีความกว้างเท่ากับแถบเวลา */
+.management-container.full-width .select-wrapper,
+.time-input-group {
+  width: 100%;
+}
+
+/* สำหรับเดสก์ท็อป */
+@media (min-width: 769px) {
+  .management-row.compact-layout {
+    flex-direction: column;
+  }
+  
+  .management-container.full-width {
+    width: 100%;
+  }
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+  .management-row.compact-layout {
+    flex-direction: column;
+  }
+  
+  .management-container.full-width {
+    width: 100%;
+  }
+  
+  .management-container.full-width .select-wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .management-container.full-width .manage-btn-inline {
+    margin-right: 8px;
+  }
+}
+
+  /* สไตล์สำหรับฟิลด์ระยะเวลา */
+  .duration-inputs-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px; /* เพิ่มระยะห่างจากข้อความด้านซ้าย */
+  }
+
+  .duration-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  .duration-input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  .duration-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* สไตล์สำหรับฟิลด์เวลาเริ่มต้นที่อ่านอย่างเดียว */
+  #start-time {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+  /* ปรับปรุงสไตล์ date-wrapper และ display-date สำหรับส่วนเวลา */
+  .time-inputs-section .date-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .time-inputs-section .display-date {
+    position: absolute;
+    left: 0;
+    width: 100px; /* ความกว้างคงที่สำหรับข้อความ */
+    text-align: left;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .time-inputs-section input[type="time"] {
+    width: 100%;
+    max-width: 150px;
+    padding: 8px 8px 8px 100px; /* เผื่อพื้นที่ซ้ายสำหรับข้อความ */
+    box-sizing: border-box;
+    margin-left: auto;
+  }
+
+  /* สไตล์สำหรับฟอร์มบนมือถือ */
+  @media (max-width: 768px) {
+    .duration-inputs-container {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: space-between;
+      margin-left: 90px; /* ปรับระยะห่างสำหรับมือถือ */
+    }
+    
+    .duration-input-group {
+      min-width: 80px;
+      flex: 1;
+    }
+    
+    .time-inputs-section .display-date {
+      width: 85px; /* ปรับความกว้างสำหรับมือถือ */
+      font-size: 13px;
+    }
+    
+    .time-inputs-section input[type="time"] {
+      padding: 8px 8px 8px 85px; /* ปรับ padding สำหรับมือถือ */
+    }
+  }
+
 /* ===== NO BORDER STYLING ===== */
 .form-section.no-border {
     background: none !important;
