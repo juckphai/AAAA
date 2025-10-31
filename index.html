@@ -94,198 +94,93 @@
             <div class="form-section no-border">
               <form id="activity-form">
                 
-<!-- ส่วนจัดการผู้ทำกิจกรรมและประเภทกิจกรรม -->
-<div class="management-row compact-layout">
-  <!-- ส่วนจัดการผู้ทำกิจกรรม -->
-  <div class="management-container full-width">
-    <div class="select-wrapper" 
-         style="display: flex; align-items: center; gap: 6px; width: 100%;">
+                <!-- ส่วนจัดการผู้ทำกิจกรรมและประเภทกิจกรรม -->
+                <div class="management-row compact-layout">
+                  <!-- ส่วนจัดการผู้ทำกิจกรรม -->
+                  <div class="management-container">
+                    <div class="select-wrapper" style="display: flex; align-items: center; gap: 6px; width: 100%;">
+                      <button 
+                        type="button" 
+                        class="manage-btn-inline" 
+                        onclick="toggleManagementActions('personActions')" 
+                        title="จัดการผู้ทำกิจกรรม"
+                        style="font-size: clamp(11px, 3vw, 16px);"
+                      >
+                        ⚙️
+                      </button>
 
-      <button 
-        type="button" 
-        class="manage-btn-inline" 
-        onclick="toggleManagementActions('personActions')" 
-        title="จัดการผู้ทำกิจกรรม"
-        style="
-          font-size: 14px;
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          background: #fff;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        "
-      >
-        ⚙️
-      </button>
+                      <select 
+                        id="personSelect" 
+                        onchange="checkCustomOption(this)" 
+                        required 
+                        style="flex: 1; font-size: clamp(11px, 3vw, 16px); padding: 6px; border-radius: 6px;"
+                      >
+                        <option value="">เลือกผู้ทำกิจกรรม</option>
+                      </select>
+                    </div>
 
-      <select 
-        id="personSelect" 
-        onchange="checkCustomOption(this)" 
-        required 
-        style="
-          flex: 1;
-          font-size: 14px;
-          padding: 6px 10px;
-          border-radius: 6px;
-          height: 34px;
-        "
-      >
-        <option value="">เลือกผู้ทำกิจกรรม</option>
-      </select>
-    </div>
+                    <!-- ซ่อนเมนูย่อยการจัดการผู้ทำกิจกรรม -->
+                    <div class="management-actions" id="personActions" style="display: none;">
+                      <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
+                      <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
+                      <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
+                      <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
+                    </div>
 
-    <!-- เมนูย่อย -->
-    <div class="management-actions" id="personActions" style="display: none;">
-      <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
-      <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
-      <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
-      <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
-    </div>
+                    <input type="text" id="customPersonInput" placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" style="display: none; width: 100%; margin: 5px 0; padding: 8px;" />
+                  </div>
+                  
+                  <!-- ส่วนจัดการประเภทกิจกรรม -->
+                  <div class="management-container">
+                    <div class="select-wrapper" style="display: flex; align-items: center; gap: 6px; width: 100%;">
+                      <button 
+                        type="button" 
+                        class="manage-btn-inline" 
+                        onclick="toggleManagementActions('activityTypeActions')" 
+                        title="จัดการประเภทกิจกรรม"
+                        style="font-size: clamp(13px, 3vw, 18px);"
+                      >
+                        ⚙️
+                      </button>
 
-    <input 
-      type="text" 
-      id="customPersonInput" 
-      placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" 
-      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-    />
-  </div>
+                      <select 
+                        id="activityTypeSelect" 
+                        onchange="checkCustomActivityTypeOption(this)" 
+                        required 
+                        style="flex: 1; font-size: clamp(11px, 3vw, 16px); padding: 6px; border-radius: 6px;"
+                      >
+                        <option value="">เลือกประเภทกิจกรรม</option>
+                      </select>
+                    </div>
 
-  <!-- ส่วนจัดการประเภทกิจกรรม -->
-  <div class="management-container full-width">
-    <div class="select-wrapper" 
-         style="display: flex; align-items: center; gap: 6px; width: 100%;">
+                    <!-- ซ่อนเมนูย่อยการจัดการประเภทกิจกรรม -->
+                    <div class="management-actions" id="activityTypeActions" style="display: none;">
+                      <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
+                      <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
+                      <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
+                      <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
+                    </div>
 
-      <button 
-        type="button" 
-        class="manage-btn-inline" 
-        onclick="toggleManagementActions('activityTypeActions')" 
-        title="จัดการประเภทกิจกรรม"
-        style="
-          font-size: 14px;
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          background: #fff;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        "
-      >
-        ⚙️
-      </button>
-
-      <select 
-        id="activityTypeSelect" 
-        onchange="checkCustomActivityTypeOption(this)" 
-        required 
-        style="
-          flex: 1;
-          font-size: 14px;
-          padding: 6px 10px;
-          border-radius: 6px;
-          height: 34px;
-        "
-      >
-        <option value="">เลือกประเภทกิจกรรม</option>
-      </select>
-    </div>
-
-    <!-- เมนูย่อย -->
-    <div class="management-actions" id="activityTypeActions" style="display: none;">
-      <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
-      <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
-      <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
-      <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
-    </div>
-
-    <input 
-      type="text" 
-      id="customActivityTypeInput" 
-      placeholder="กรุณากรอกประเภทกิจกรรมเอง" 
-      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-    />
-  </div>
-</div>
-            
-<style>
-  .date-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  input[type="date"] {
-    width: 100%;
-    max-width: 150px;
-    padding: 8px 8px 8px 80px; /* เผื่อพื้นที่ซ้ายสำหรับข้อความ */
-    box-sizing: border-box;
-    text-align: left; /* ให้วันที่ชิดซ้าย */
-  }
-
-  .display-date {
-    position: absolute;
-    top: 0;
-    left: 8px; /* ขอบซ้ายของ input */
-    height: 100%;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-    color: #999;
-    font-size: 14px;
-  }
-</style>
-
-<div class="date-wrapper">
-  <input type="date" id="activity-date">
-  <div class="display-date" id="display-date">(เลือกวันที่)</div>
-</div>
-
-<script>
-  const dateInput = document.getElementById('activity-date');
-  const display = document.getElementById('display-date');
-
-  function updateDisplay() {
-    if (dateInput.value) {
-      const date = new Date(dateInput.value);
-      const formatted = date.toLocaleDateString('th-TH'); // 30/10/2025
-      display.textContent = `(เลือกวันที่) ${formatted}`;
-      display.style.color = '#000'; // เปลี่ยนสีข้อความเมื่อมีวันที่
-    } else {
-      display.textContent = '(เลือกวันที่)';
-      display.style.color = '#999'; // สี placeholder
-    }
-  }
-
-  dateInput.addEventListener('input', updateDisplay);
-  updateDisplay();
-</script>
-
-
+                    <input type="text" id="customActivityTypeInput" placeholder="กรุณากรอกประเภทกิจกรรมเอง" style="display: none; width: 100%; margin: 5px 0; padding: 8px;" />
+                  </div>
+                </div>
+                
+                <label for="activity-date">วันที่:</label>
+                <input type="date" id="activity-date" required>
                 
 <!-- ส่วนเวลาใหม่ -->
 <div class="time-inputs-section">
   <!-- ระยะเวลา -->
   <div class="time-input-group duration-block">
-    <div class="date-wrapper">
-      <div class="display-date">ระยะเวลา</div>
-      <div class="duration-inputs-container">
-        <div class="duration-input-group">
-          <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
-          <span class="duration-label">ชั่วโมง</span>
-        </div>
-        <div class="duration-input-group">
-          <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
-          <span class="duration-label">นาที</span>
-        </div>
+    <label for="duration-hours">ระยะเวลา:</label>
+    <div class="duration-inputs-container">
+      <div class="duration-input-group">
+        <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
+        <span class="duration-label">ชั่วโมง</span>
+      </div>
+      <div class="duration-input-group">
+        <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
+        <span class="duration-label">นาที</span>
       </div>
     </div>
   </div>
@@ -293,28 +188,19 @@
   <!-- เวลาเริ่มต้นและเวลาสิ้นสุด -->
   <div class="time-row">
     <div class="time-input-group">
-      <div class="date-wrapper">
-        <div class="display-date">เวลาเริ่มต้น</div>
-        <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
-      </div>
+      <label for="start-time">เวลาเริ่มต้น:</label>
+      <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
     </div>
 
     <div class="time-input-group">
-      <div class="date-wrapper">
-        <div class="display-date">เวลาสิ้นสุด</div>
-        <input type="time" id="end-time" required>
-      </div>
+      <label for="end-time">เวลาสิ้นสุด:</label>
+      <input type="time" id="end-time" required>
     </div>
   </div>
-</div>                
-<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-  <label for="activity-details" style="text-align: center; width: 100%; margin-bottom: 5px;">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
-  <textarea 
-    id="activity-details" 
-    placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"
-    style="width: 100%; max-width: 500px; margin: 0 auto; display: block;"
-  ></textarea>
 </div>
+                
+                <label for="activity-details">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
+                <textarea id="activity-details" placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"></textarea>
                 
                 <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
                 <div class="button-container" style="display: flex; gap: 5px; margin-top: 0; justify-content: center;">
