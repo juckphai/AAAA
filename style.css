@@ -409,6 +409,7 @@ label {
 
 .management-row {
     width: 100%;
+    flex-direction: column !important;
     margin-bottom: 5px;
 }
 
