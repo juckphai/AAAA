@@ -214,23 +214,78 @@
     />
   </div>
 </div>
-                
-                <label for="activity-date">วันที่:</label>
-                <input type="date" id="activity-date" required>
+            
+<style>
+  .date-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    max-width: 150px;
+    padding: 8px 8px 8px 80px; /* เผื่อพื้นที่ซ้ายสำหรับข้อความ */
+    box-sizing: border-box;
+    text-align: left; /* ให้วันที่ชิดซ้าย */
+  }
+
+  .display-date {
+    position: absolute;
+    top: 0;
+    left: 8px; /* ขอบซ้ายของ input */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #999;
+    font-size: 14px;
+  }
+</style>
+
+<div class="date-wrapper">
+  <input type="date" id="activity-date">
+  <div class="display-date" id="display-date">(เลือกวันที่)</div>
+</div>
+
+<script>
+  const dateInput = document.getElementById('activity-date');
+  const display = document.getElementById('display-date');
+
+  function updateDisplay() {
+    if (dateInput.value) {
+      const date = new Date(dateInput.value);
+      const formatted = date.toLocaleDateString('th-TH'); // 30/10/2025
+      display.textContent = `(เลือกวันที่) ${formatted}`;
+      display.style.color = '#000'; // เปลี่ยนสีข้อความเมื่อมีวันที่
+    } else {
+      display.textContent = '(เลือกวันที่)';
+      display.style.color = '#999'; // สี placeholder
+    }
+  }
+
+  dateInput.addEventListener('input', updateDisplay);
+  updateDisplay();
+</script>
+
+
                 
 <!-- ส่วนเวลาใหม่ -->
 <div class="time-inputs-section">
   <!-- ระยะเวลา -->
   <div class="time-input-group duration-block">
-    <label for="duration-hours">ระยะเวลา:</label>
-    <div class="duration-inputs-container">
-      <div class="duration-input-group">
-        <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
-        <span class="duration-label">ชั่วโมง</span>
-      </div>
-      <div class="duration-input-group">
-        <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
-        <span class="duration-label">นาที</span>
+    <div class="date-wrapper">
+      <div class="display-date">ระยะเวลา</div>
+      <div class="duration-inputs-container">
+        <div class="duration-input-group">
+          <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
+          <span class="duration-label">ชั่วโมง</span>
+        </div>
+        <div class="duration-input-group">
+          <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
+          <span class="duration-label">นาที</span>
+        </div>
       </div>
     </div>
   </div>
@@ -238,19 +293,28 @@
   <!-- เวลาเริ่มต้นและเวลาสิ้นสุด -->
   <div class="time-row">
     <div class="time-input-group">
-      <label for="start-time">เวลาเริ่มต้น:</label>
-      <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
+      <div class="date-wrapper">
+        <div class="display-date">เวลาเริ่มต้น</div>
+        <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
+      </div>
     </div>
 
     <div class="time-input-group">
-      <label for="end-time">เวลาสิ้นสุด:</label>
-      <input type="time" id="end-time" required>
+      <div class="date-wrapper">
+        <div class="display-date">เวลาสิ้นสุด</div>
+        <input type="time" id="end-time" required>
+      </div>
     </div>
   </div>
+</div>                
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+  <label for="activity-details" style="text-align: center; width: 100%; margin-bottom: 5px;">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
+  <textarea 
+    id="activity-details" 
+    placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"
+    style="width: 100%; max-width: 500px; margin: 0 auto; display: block;"
+  ></textarea>
 </div>
-                
-                <label for="activity-details">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
-                <textarea id="activity-details" placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"></textarea>
                 
                 <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
                 <div class="button-container" style="display: flex; gap: 5px; margin-top: 0; justify-content: center;">
@@ -386,29 +450,25 @@
                 </div>
                 
                 <!-- ฟิลด์วันที่ (จะแสดง/ซ่อนตามประเภทที่เลือก) -->
-                <div id="summary-date-picker" class="summary-subsection hidden">
-                  <label class="summary-subsection-header">เลือกวันที่</label>
-                  <div class="entry-form" style="margin-bottom: 0;">
-                    <div class="entry-group">
-                      <label for="summary-date">เลือกวันที่:</label>
-                      <input type="date" id="summary-date">
-                    </div>
-                  </div>
-                </div>
-                
-                <div id="summary-date-range" class="summary-subsection hidden">
-                  <label class="summary-subsection-header">เลือกช่วงวันที่</label>
-                  <div class="entry-form" style="margin-bottom: 0;">
-                    <div class="entry-group">
-                      <label for="summary-start-date">จากวันที่:</label>
-                      <input type="date" id="summary-start-date">
-                    </div>
-                    <div class="entry-group">
-                      <label for="summary-end-date">ถึงวันที่:</label>
-                      <input type="date" id="summary-end-date">
-                    </div>
-                  </div>
-                </div>
+<div id="summary-date-picker" class="summary-subsection hidden">
+  <label class="summary-subsection-header">เลือกวันที่</label>
+  <div class="summary-date-display">
+    <div class="date-label">เลือกวันที่:</div>
+    <input type="date" id="summary-date" style="width: 100%; max-width: 200px; padding: 8px; font-size: 14px;">
+  </div>
+</div>
+
+<div id="summary-date-range" class="summary-subsection hidden">
+  <label class="summary-subsection-header">เลือกช่วงวันที่</label>
+  <div class="summary-date-display">
+    <div class="date-label">จากวันที่:</div>
+    <input type="date" id="summary-start-date" style="width: 100%; max-width: 200px; padding: 8px; font-size: 14px;">
+  </div>
+  <div class="summary-date-display">
+    <div class="date-label">ถึงวันที่:</div>
+    <input type="date" id="summary-end-date" style="width: 100%; max-width: 200px; padding: 8px; font-size: 14px;">
+  </div>
+</div>
                 
                 <!-- ปุ่มดูสรุป -->
                 <div class="summary-subsection">
