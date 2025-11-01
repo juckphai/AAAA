@@ -3173,19 +3173,33 @@ footer div {
 /* สำหรับมือถือ */
 @media (max-width: 768px) {
   .summary-date-display {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row; /* เปลี่ยนจาก column เป็น row */
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
   }
   
   .summary-date-display .date-label {
-    width: 100%;
-    margin-bottom: 5px;
-    margin-right: 0;
+    width: 90px; /* ลดความกว้างลงเล็กน้อยสำหรับมือถือ */
+    margin-bottom: 0; /* ลบ margin-bottom */
+    margin-right: 10px; /* เก็บ margin-right */
+    font-size: 13px; /* ปรับขนาดฟอนต์ให้เล็กกว่า */
   }
   
   .summary-date-display input[type="date"] {
-    max-width: 100%;
-    width: 100%;
+    max-width: 150px; /* ลดความกว้างสูงสุด */
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-date-display .date-label {
+    width: 85px; /* ลดความกว้างลงอีกสำหรับหน้าจอเล็ก */
+    font-size: 12px; /* ปรับขนาดฟอนต์ให้เล็กกว่า */
+  }
+  
+  .summary-date-display input[type="date"] {
+    max-width: 130px; /* ลดความกว้างลงอีก */
+    padding: 6px; /* ลด padding */
+    font-size: 13px; /* ปรับขนาดฟอนต์ */
   }
 }
 /* ===== NO BORDER STYLING ===== */
