@@ -41,285 +41,300 @@
     <!-- ส่วนหัวแอปพลิเคชัน -->
     <div style="text-align: center; margin-top: 5px;">
       <div class="container">
-        <div style="width: 100%; max-width: 800px; margin: 5px auto;">
+        <div style="width: 100%; max-width: 600px; margin: 10px auto;">
           <h1 style="text-align: center; color: blue; font-size: clamp(1.2rem, 4vw, 1.8rem);">
             บันทึกกิจกรรมประจำวัน
           </h1>
           
-<!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
-<div style="display: flex; justify-content: center; align-items: center; margin: 15px 0;">
-  <div class="button-container" 
-       style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
-    
-    <button 
-      type="button" 
-      onclick="document.getElementById('restoreFile').click()" 
-      style="
-        background-color: #1B8A2F;
-        color: white;
-        font-weight: 600;
-        padding: 8px 18px;
-        font-size: 15px;
-        border: 2px solid #FF33CC;
-        border-left: 5px solid #FF33CC;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-        width: auto;
-        box-shadow: 0 3px 5px rgba(0,0,0,0.15);
-        touch-action: manipulation;
-      "
-      onmouseover="this.style.backgroundColor='#157226'"
-      onmouseout="this.style.backgroundColor='#1B8A2F'"
-      ontouchstart="this.style.backgroundColor='#157226'"
-      ontouchend="this.style.backgroundColor='#1B8A2F'">
-      📂 โหลดข้อมูลที่บันทึกไว้
-    </button>
+          <!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
+          <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+            <div class="button-container" 
+                 style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 0 10px;">
+              
+              <button 
+                type="button" 
+                onclick="document.getElementById('restoreFile').click()" 
+                style="
+                  background-color: #196B24;
+                  color: white;
+                  font-weight: bold;
+                  padding: 12px 24px;
+                  height: 45px;
+                  font-size: 1.1rem;
+                  border: 3px solid #FF33CC;
+                  border-radius: 28px;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+                  white-space: nowrap;
+                  width: fit-content;
+                  touch-action: manipulation;
+                "
+                onmouseover="this.style.backgroundColor='#145a1d'"
+                onmouseout="this.style.backgroundColor='#196B24'"
+                ontouchstart="this.style.backgroundColor='#145a1d'"
+                ontouchend="this.style.backgroundColor='#196B24'">
+                โหลดข้อมูลที่บันทึกไว้
+              </button>
 
-    <input 
-      type="file" 
-      id="restoreFile" 
-      accept=".json" 
-      style="display: none;" 
-      onchange="restoreData(this.files[0])">
-  </div>
-</div>
-
-          
-<!-- เมนูใหญ่ 1: เพิ่มกิจกรรม -->
-<div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
-  <span>➕ เพิ่มกิจกรรม</span>
-  <span class="menu-icon">▼</span>
-</div>
-<div id="add-activity-section" class="section-content main-section-content">
-  <div class="form-section no-border">
-    <form id="activity-form">
-      
-      <!-- ส่วนจัดการผู้ทำกิจกรรมและประเภทกิจกรรม -->
-      <div class="management-row compact-layout">
-        <!-- ส่วนจัดการผู้ทำกิจกรรม -->
-<div class="management-container full-width">
-  <div class="select-wrapper">
-    <button 
-      type="button" 
-      class="gear-icon" 
-      onclick="toggleManagementActions('personActions')" 
-      title="จัดการผู้ทำกิจกรรม">
-     ⚙️
-    </button>
-    <select 
-      id="personSelect" 
-      onchange="checkCustomOption(this)" 
-      required>
-      <option value="">เลือกผู้ทำกิจกรรม</option>
-    </select>
-  </div>
-
-          <!-- เมนูย่อย -->
-          <div class="management-actions" id="personActions" style="display: none;">
-            <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
-            <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
-            <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
-            <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
-          </div>
-
-          <input 
-            type="text" 
-            id="customPersonInput" 
-            placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" 
-            style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-          />
-        </div>
-
-        <!-- ส่วนจัดการประเภทกิจกรรม -->
-<div class="management-container full-width">
-  <div class="select-wrapper">
-    <button 
-      type="button" 
-      class="gear-icon" 
-      onclick="toggleManagementActions('activityTypeActions')" 
-      title="จัดการประเภทกิจกรรม">
-      ⚙️
-    </button>
-    <select 
-      id="activityTypeSelect" 
-      onchange="checkCustomActivityTypeOption(this)" 
-      required>
-      <option value="">เลือกประเภทกิจกรรม</option>
-    </select>
-  </div>
-
-          <!-- เมนูย่อย -->
-          <div class="management-actions" id="activityTypeActions" style="display: none;">
-            <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
-            <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
-            <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
-            <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
-          </div>
-
-          <input 
-            type="text" 
-            id="customActivityTypeInput" 
-            placeholder="กรุณากรอกประเภทกิจกรรมเอง" 
-            style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-          />
-        </div>
-      </div>
-      
-      <!-- ส่วนเลือกวันที่ -->
-      <style>
-        .date-wrapper {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          width: 100%;
-        }
-
-        input[type="date"] {
-          width: 100%;
-          max-width: 150px;
-          padding: 8px 8px 8px 80px;
-          box-sizing: border-box;
-          text-align: left;
-        }
-
-        .display-date {
-          position: absolute;
-          top: 0;
-          left: 8px;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          pointer-events: none;
-          color: #999;
-          font-size: 14px;
-        }
-      </style>
-
-      <div class="date-wrapper">
-        <input type="date" id="activity-date">
-        <div class="display-date" id="display-date">(เลือกวันที่)</div>
-      </div>
-
-      <script>
-        const dateInput = document.getElementById('activity-date');
-        const display = document.getElementById('display-date');
-
-        function updateDisplay() {
-          if (dateInput.value) {
-            const date = new Date(dateInput.value);
-            const formatted = date.toLocaleDateString('th-TH');
-            display.textContent = `(เลือกวันที่) ${formatted}`;
-            display.style.color = '#000';
-          } else {
-            display.textContent = '(เลือกวันที่)';
-            display.style.color = '#999';
-          }
-        }
-
-        dateInput.addEventListener('input', updateDisplay);
-        updateDisplay();
-      </script>
-
-      <!-- ส่วนเวลาใหม่ -->
-      <div class="time-inputs-section">
-        <!-- ระยะเวลา -->
-        <div class="time-input-group duration-block">
-          <div class="date-wrapper">
-            <div class="display-date">ระยะเวลา</div>
-            <div class="duration-inputs-container">
-              <div class="duration-input-group">
-                <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
-                <span class="duration-label">ชั่วโมง</span>
-              </div>
-              <div class="duration-input-group">
-                <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
-                <span class="duration-label">นาที</span>
-              </div>
+              <input 
+                type="file" 
+                id="restoreFile" 
+                accept=".json" 
+                style="display: none;" 
+                onchange="restoreData(this.files[0])">
             </div>
           </div>
-        </div>
-
-        <!-- เวลาเริ่มต้นและเวลาสิ้นสุด -->
-        <div class="time-row">
-          <div class="time-input-group">
-            <label for="start-time" class="time-input-label">เวลาเริ่มต้น</label> <!-- เพิ่ม class "time-input-label" -->
-            <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
+          
+          <!-- เมนูใหญ่ 1: เพิ่มกิจกรรม -->
+          <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
+            <span>➕ เพิ่มกิจกรรม</span>
+            <span class="menu-icon">▼</span>
           </div>
+          <div id="add-activity-section" class="section-content main-section-content">
+            <div class="form-section no-border">
+              <form id="activity-form">
+                
+<!-- ส่วนจัดการผู้ทำกิจกรรมและประเภทกิจกรรม -->
+<div class="management-row compact-layout">
+  <!-- ส่วนจัดการผู้ทำกิจกรรม -->
+  <div class="management-container full-width">
+    <div class="select-wrapper" 
+         style="display: flex; align-items: center; gap: 6px; width: 100%;">
 
-          <div class="time-input-group">
-            <label for="end-time" class="time-input-label">เวลาสิ้นสุด</label> <!-- เพิ่ม class "time-input-label" -->
-            <input type="time" id="end-time" required>
-          </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- รายละเอียดกิจกรรม -->
-      <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-        <label for="activity-details" style="text-align: center; width: 100%; margin-bottom: 5px;">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
-        <textarea 
-          id="activity-details" 
-          placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"
-          style="width: 100%; max-width: 500px; margin: 0 auto; display: block;"
-        ></textarea>
-      </div>
-      
-      <!-- ปุ่มแสดง/ซ่อนกิจกรรมทั้งหมด -->
-<div class="button-container" style="display: flex; justify-content: center; margin-top: 0;">
-  <button type="button"
-    onclick="toggleActivitiesVisibility()"
-    style="
-      background-color: #92D050;
-      color: white;
-      padding: 8px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.15);
-      border: 2px solid #0070C0;
-      border-left: 5px solid #ff4757;
-      white-space: nowrap;
-      width: auto;
-    ">
-    แสดง/ซ่อนกิจกรรมทั้งหมด
-  </button>
-</div>
+      <button 
+        type="button" 
+        class="manage-btn-inline" 
+        onclick="toggleManagementActions('personActions')" 
+        title="จัดการผู้ทำกิจกรรม"
+        style="
+          font-size: 14px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        "
+      >
+        ⚙️
+      </button>
 
-      
-      <!-- ปุ่มบันทึกและจัดการ -->
-      <div class="center" style="margin: 2px 0;">
-          <button 
-    id="save-activity-button" 
-    style="
-      background-color: #007bff;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 6px 18px;
-      border: none;
-      border-radius: 18px;
-      border: 3px solid #FF0000;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-      white-space: nowrap;
-    "
-    onmouseover="this.style.backgroundColor='#0069d9'"
-    onmouseout="this.style.backgroundColor='#007bff'">
-    📝 บันทึกกิจกรรม
-  </button>
-      </div>
-      <button type="button" id="update-activity-button" class="hidden">อัปเดตกิจกรรม</button>
-      <button type="button" id="cancel-edit-activity-button" class="hidden">ยกเลิก</button>
-      
-      <p id="activity-message" class="error-message"></p>
-    </form>
+      <select 
+        id="personSelect" 
+        onchange="checkCustomOption(this)" 
+        required 
+        style="
+          flex: 1;
+          font-size: 14px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          height: 34px;
+        "
+      >
+        <option value="">เลือกผู้ทำกิจกรรม</option>
+      </select>
+    </div>
+
+    <!-- เมนูย่อย -->
+    <div class="management-actions" id="personActions" style="display: none;">
+      <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
+      <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
+      <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
+      <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
+    </div>
+
+    <input 
+      type="text" 
+      id="customPersonInput" 
+      placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" 
+      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
+    />
+  </div>
+
+  <!-- ส่วนจัดการประเภทกิจกรรม -->
+  <div class="management-container full-width">
+    <div class="select-wrapper" 
+         style="display: flex; align-items: center; gap: 6px; width: 100%;">
+
+      <button 
+        type="button" 
+        class="manage-btn-inline" 
+        onclick="toggleManagementActions('activityTypeActions')" 
+        title="จัดการประเภทกิจกรรม"
+        style="
+          font-size: 14px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        "
+      >
+        ⚙️
+      </button>
+
+      <select 
+        id="activityTypeSelect" 
+        onchange="checkCustomActivityTypeOption(this)" 
+        required 
+        style="
+          flex: 1;
+          font-size: 14px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          height: 34px;
+        "
+      >
+        <option value="">เลือกประเภทกิจกรรม</option>
+      </select>
+    </div>
+
+    <!-- เมนูย่อย -->
+    <div class="management-actions" id="activityTypeActions" style="display: none;">
+      <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
+      <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
+      <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
+      <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
+    </div>
+
+    <input 
+      type="text" 
+      id="customActivityTypeInput" 
+      placeholder="กรุณากรอกประเภทกิจกรรมเอง" 
+      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
+    />
   </div>
 </div>
+            
+<style>
+  .date-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    max-width: 150px;
+    padding: 8px 8px 8px 80px; /* เผื่อพื้นที่ซ้ายสำหรับข้อความ */
+    box-sizing: border-box;
+    text-align: left; /* ให้วันที่ชิดซ้าย */
+  }
+
+  .display-date {
+    position: absolute;
+    top: 0;
+    left: 8px; /* ขอบซ้ายของ input */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #999;
+    font-size: 14px;
+  }
+</style>
+
+<div class="date-wrapper">
+  <input type="date" id="activity-date">
+  <div class="display-date" id="display-date">(เลือกวันที่)</div>
+</div>
+
+<script>
+  const dateInput = document.getElementById('activity-date');
+  const display = document.getElementById('display-date');
+
+  function updateDisplay() {
+    if (dateInput.value) {
+      const date = new Date(dateInput.value);
+      const formatted = date.toLocaleDateString('th-TH'); // 30/10/2025
+      display.textContent = `(เลือกวันที่) ${formatted}`;
+      display.style.color = '#000'; // เปลี่ยนสีข้อความเมื่อมีวันที่
+    } else {
+      display.textContent = '(เลือกวันที่)';
+      display.style.color = '#999'; // สี placeholder
+    }
+  }
+
+  dateInput.addEventListener('input', updateDisplay);
+  updateDisplay();
+</script>
+
+
+                
+<!-- ส่วนเวลาใหม่ -->
+<div class="time-inputs-section">
+  <!-- ระยะเวลา -->
+  <div class="time-input-group duration-block">
+    <div class="date-wrapper">
+      <div class="display-date">ระยะเวลา</div>
+      <div class="duration-inputs-container">
+        <div class="duration-input-group">
+          <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
+          <span class="duration-label">ชั่วโมง</span>
+        </div>
+        <div class="duration-input-group">
+          <input type="number" id="duration-minutes" min="0" max="59" value="0" placeholder="น." required>
+          <span class="duration-label">นาที</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- เวลาเริ่มต้นและเวลาสิ้นสุด -->
+  <div class="time-row">
+    <div class="time-input-group">
+      <div class="date-wrapper">
+        <div class="display-date">เวลาเริ่มต้น</div>
+        <input type="time" id="start-time" readonly style="background-color: #f0f0f0;">
+      </div>
+    </div>
+
+    <div class="time-input-group">
+      <div class="date-wrapper">
+        <div class="display-date">เวลาสิ้นสุด</div>
+        <input type="time" id="end-time" required>
+      </div>
+    </div>
+  </div>
+</div>                
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+  <label for="activity-details" style="text-align: center; width: 100%; margin-bottom: 5px;">รายละเอียดกิจกรรม (ไม่บังคับ):</label>
+  <textarea 
+    id="activity-details" 
+    placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"
+    style="width: 100%; max-width: 500px; margin: 0 auto; display: block;"
+  ></textarea>
+</div>
+                
+                <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
+                <div class="button-container" style="display: flex; gap: 5px; margin-top: 0; justify-content: center;">
+                  <button type="button" 
+                    onclick="toggleActivitiesVisibility()" 
+                    style="width: 100%; max-width: 300px; margin: 0 auto; background-color: #92D050; color: white; padding: 15px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 18px; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 3px solid #0070C0; border-left: 6px solid #ff4757;">
+                    แสดง/ซ่อนกิจกรรมทั้งหมด
+                  </button>
+                </div>
+                
+                <div class="center" style="margin: 2px 0;">
+                  <button id="save-activity-button">บันทึกกิจกรรม</button>
+                </div>
+                <button type="button" id="update-activity-button" class="hidden">อัปเดตกิจกรรม</button>
+                <button type="button" id="cancel-edit-activity-button" class="hidden">ยกเลิก</button>
+                
+                <p id="activity-message" class="error-message"></p>
+              </form>
+            </div>
+          </div>
         
           <!-- เมนูใหญ่ 2: จัดการกิจกรรม -->
           <div class="section-header main-section-header header-actions" onclick="toggleMainSection('manage-activities-section')">
@@ -338,53 +353,12 @@
                   </p>
                 </div>
                 
-<div class="entry-form" style="margin-bottom: 0;">
-  <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
-  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; justify-content: center;">
-    
-    <button 
-      type="button" 
-      onclick="saveToLocal()" 
-      style="
-        background-color: #17a2b8;
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 6px 14px;
-        border: none;
-        border-radius: 18px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      "
-      onmouseover="this.style.backgroundColor='#138a9d'"
-      onmouseout="this.style.backgroundColor='#17a2b8'">
-      💾 บันทึกชั่วคราว
-    </button>
-
-    <button 
-      type="button" 
-      onclick="openExportOptionsModal()" 
-      style="
-        background-color: #0d47a1;
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 6px 14px;
-        border: none;
-        border-radius: 18px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      "
-      onmouseover="this.style.backgroundColor='#0b3b8a'"
-      onmouseout="this.style.backgroundColor='#0d47a1'">
-      📘 บันทึกข้อมูล
-    </button>
-
-  </div>
+                <div class="entry-form" style="margin-bottom: 0;">
+                  <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
+                  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
+                    <button type="button" onclick="saveToLocal()" style="flex: 1; border-radius: 30px; background-color: #17a2b8;">บันทึกชั่วคราว</button>
+                    <button type="button" onclick="openExportOptionsModal()" style="flex: 1; border-radius: 30px; background-color: #0d47a1;">บันทึกข้อมูล</button>
+                  </div>
                   
                   <!-- ส่วนรหัสผ่าน -->
                   <div class="entry-group" style="font-size: clamp(0.8rem, 2.5vw, 1rem);">
@@ -413,83 +387,25 @@
                   
                   <!-- ปุ่มตั้งรหัสผ่านและลบรหัสผ่านอยู่ในแถวเดียวกัน -->
                   <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 5px;">
- <button 
-    type="button" 
-    onclick="saveBackupPassword(event)" 
-    style="
-      background-color: #28a745;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border: none;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      white-space: nowrap;
-      width: auto;
-      min-width: 110px;
-    "
-    onmouseover="this.style.backgroundColor='#218838'"
-    onmouseout="this.style.backgroundColor='#28a745'">
-    🔒 ตั้งรหัสผ่าน
-  </button>
-
-  <button 
-    type="button" 
-    onclick="clearBackupPassword()" 
-    style="
-      background-color: #dc3545;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border: none;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      white-space: nowrap;
-      width: auto;
-      min-width: 110px;
-    "
-    onmouseover="this.style.backgroundColor='#c82333'"
-    onmouseout="this.style.backgroundColor='#dc3545'">
-    ❌ ลบรหัสผ่าน
-  </button>
+                    <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; flex: 1; border-radius: 30px; max-width: 150px;">
+                      ตั้งรหัสผ่าน
+                    </button>
+                    <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545; flex: 1; border-radius: 30px; max-width: 150px;">
+                      ลบรหัสผ่าน
+                    </button>
                   </div>
                 </div>
 
                 <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
                 <div class="summary-subsection">
                   <div class="button-container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
-        <button 
-      type="button" 
-      onclick="cleanAllData()" 
-      class="clean-data-btn"
-      style="
-        background-color: #ff5722;
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 6px 16px;
-        border: none;
-        border-radius: 18px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        white-space: nowrap;
-        width: auto;
-      "
-      onmouseover="this.style.backgroundColor='#e64a19'"
-      onmouseout="this.style.backgroundColor='#ff5722'">
-      🧹 ทำความสะอาดข้อมูลทั้งหมด
-    </button>
-  </div>
-  <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 4px;">
-    ตรวจสอบสุขภาพข้อมูล, ลบข้อมูลซ้ำ, กิจกรรมขยะ และไฟล์ที่ไม่จำเป็น
-  </p>
+                    <button type="button" onclick="cleanAllData()" class="clean-data-btn" style="background-color: #ff5722; border-radius: 30px; color: white;">
+                      🧹 ทำความสะอาดข้อมูลทั้งหมด
+                    </button>
+                  </div>
+                  <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 5px;">
+                    ตรวจสอบสุขภาพข้อมูล, ลบข้อมูลซ้ำ, กิจกรรมขยะ และไฟล์ที่ไม่จำเป็น
+                  </p>
                 </div>
               </form>
             </div>
