@@ -73,8 +73,8 @@
                 onmouseout="this.style.backgroundColor='#196B24'"
                 ontouchstart="this.style.backgroundColor='#145a1d'"
                 ontouchend="this.style.backgroundColor='#196B24'">
-                โหลดข้อมูลที่บันทึกไว้
-              </button>
+      📂 โหลดข้อมูลที่บันทึกไว้
+    </button>
 
               <input 
                 type="file" 
@@ -325,16 +325,35 @@
                   </button>
                 </div>
                 
-                <div class="center" style="margin: 2px 0;">
-                  <button id="save-activity-button">บันทึกกิจกรรม</button>
-                </div>
-                <button type="button" id="update-activity-button" class="hidden">อัปเดตกิจกรรม</button>
-                <button type="button" id="cancel-edit-activity-button" class="hidden">ยกเลิก</button>
-                
-                <p id="activity-message" class="error-message"></p>
-              </form>
-            </div>
-          </div>
+      <div class="center" style="margin: 2px 0;">
+          <button 
+    id="save-activity-button" 
+    style="
+      background-color: #007bff;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border: none;
+      border-radius: 18px;
+      border: 3px solid #FF0000;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      white-space: nowrap;
+    "
+    onmouseover="this.style.backgroundColor='#0069d9'"
+    onmouseout="this.style.backgroundColor='#007bff'">
+    📝 บันทึกกิจกรรม
+  </button>
+      </div>
+      <button type="button" id="update-activity-button" class="hidden">อัปเดตกิจกรรม</button>
+      <button type="button" id="cancel-edit-activity-button" class="hidden">ยกเลิก</button>
+      
+      <p id="activity-message" class="error-message"></p>
+    </form>
+  </div>
+</div>
         
           <!-- เมนูใหญ่ 2: จัดการกิจกรรม -->
           <div class="section-header main-section-header header-actions" onclick="toggleMainSection('manage-activities-section')">
@@ -355,10 +374,51 @@
                 
                 <div class="entry-form" style="margin-bottom: 0;">
                   <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
-                  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
-                    <button type="button" onclick="saveToLocal()" style="flex: 1; border-radius: 30px; background-color: #17a2b8;">บันทึกชั่วคราว</button>
-                    <button type="button" onclick="openExportOptionsModal()" style="flex: 1; border-radius: 30px; background-color: #0d47a1;">บันทึกข้อมูล</button>
-                  </div>
+  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; justify-content: center;">
+    
+    <button 
+      type="button" 
+      onclick="saveToLocal()" 
+      style="
+        background-color: #17a2b8;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border: none;
+        border-radius: 18px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      "
+      onmouseover="this.style.backgroundColor='#138a9d'"
+      onmouseout="this.style.backgroundColor='#17a2b8'">
+      💾 บันทึกชั่วคราว
+    </button>
+
+    <button 
+      type="button" 
+      onclick="openExportOptionsModal()" 
+      style="
+        background-color: #0d47a1;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border: none;
+        border-radius: 18px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      "
+      onmouseover="this.style.backgroundColor='#0b3b8a'"
+      onmouseout="this.style.backgroundColor='#0d47a1'">
+      📘 บันทึกข้อมูล
+    </button>
+
+  </div>
                   
                   <!-- ส่วนรหัสผ่าน -->
                   <div class="entry-group" style="font-size: clamp(0.8rem, 2.5vw, 1rem);">
@@ -386,15 +446,56 @@
                   </div>
                   
                   <!-- ปุ่มตั้งรหัสผ่านและลบรหัสผ่านอยู่ในแถวเดียวกัน -->
+                 <!-- ปุ่มตั้งรหัสผ่านและลบรหัสผ่านอยู่ในแถวเดียวกัน -->
                   <div class="button-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 5px;">
-                    <button type="button" onclick="saveBackupPassword(event)" style="background-color: #28a745; flex: 1; border-radius: 30px; max-width: 150px;">
-                      ตั้งรหัสผ่าน
-                    </button>
-                    <button type="button" onclick="clearBackupPassword()" style="background-color: #dc3545; flex: 1; border-radius: 30px; max-width: 150px;">
-                      ลบรหัสผ่าน
-                    </button>
+ <button 
+    type="button" 
+    onclick="saveBackupPassword(event)" 
+    style="
+      background-color: #28a745;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      white-space: nowrap;
+      width: auto;
+      min-width: 110px;
+    "
+    onmouseover="this.style.backgroundColor='#218838'"
+    onmouseout="this.style.backgroundColor='#28a745'">
+    🔒 ตั้งรหัสผ่าน
+  </button>
+
+  <button 
+    type="button" 
+    onclick="clearBackupPassword()" 
+    style="
+      background-color: #dc3545;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      white-space: nowrap;
+      width: auto;
+      min-width: 110px;
+    "
+    onmouseover="this.style.backgroundColor='#c82333'"
+    onmouseout="this.style.backgroundColor='#dc3545'">
+    ❌ ลบรหัสผ่าน
+  </button>
                   </div>
                 </div>
+
 
                 <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
                 <div class="summary-subsection">
