@@ -2214,7 +2214,7 @@ function displaySummary() {
     if (type === 'brief-summary') {
         summaryHTML += `
             <h4 style="color: #0056b3; margin: 5px 0; font-size: 0.9rem;">
-                กิจกรรมล่าสุด (9 รายการ)
+                กิจกรรมล่าสุด (15 รายการ)
             </h4>
             <table style="width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 0.8rem;">
                 <thead>
@@ -2235,7 +2235,7 @@ function displaySummary() {
                 if (dateCompare !== 0) return dateCompare;
                 return b.startTime.localeCompare(a.startTime);
             })
-            .slice(0, 9);
+            .slice(0, 15);
 
         latestActivities.forEach(activity => {
             const duration = calculateDuration(activity.startTime, activity.endTime);
