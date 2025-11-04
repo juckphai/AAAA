@@ -635,12 +635,14 @@ function deletePerson() {
     resetAutoSelectionDisplay('person');
 }
 
-function savePerson() {
+function savePerson(e) {
+    if (e) e.preventDefault(); // ✅ ป้องกันการส่งฟอร์ม
+    
     const personName = document.getElementById('modalPersonName').value.trim();
     const editValue = document.getElementById('personEditValue').value;
     
     if (!personName) {
-        alert('กรุณากรอกชื่อผู้ทำกิจกรรม');
+        showToast('กรุณากรอกชื่อผู้ทำกิจกรรม', 'error'); // ✅ ใช้ showToast แทน alert
         return;
     }
     
@@ -662,9 +664,9 @@ function savePerson() {
             const activitiesUpdated = updateAllActivitiesForPerson(oldName, personName);
             
             if (activitiesUpdated) {
-                notifyDataUpdated('person', 'edit');
+                showToast('แก้ไขผู้ทำกิจกรรมเรียบร้อยแล้ว', 'success');
             } else {
-                notifyDataUpdated('person', 'edit');
+                showToast('แก้ไขผู้ทำกิจกรรมเรียบร้อยแล้ว', 'success');
             }
             
             // โหลดกิจกรรมใหม่เพื่อแสดงข้อมูลที่อัปเดต
@@ -676,12 +678,12 @@ function savePerson() {
     } else {
         // โหมดเพิ่ม
         if (allPersons.some(p => p.name === personName)) {
-            alert('มีผู้ทำกิจกรรมนี้อยู่แล้ว');
+            showToast('มีผู้ทำกิจกรรมนี้อยู่แล้ว', 'error'); // ✅ ใช้ showToast
             return;
         }
         
         allPersons.push({ name: personName });
-        notifyDataUpdated('person', 'add');
+        showToast('เพิ่มผู้ทำกิจกรรมเรียบร้อยแล้ว', 'success'); // ✅ ใช้ showToast
     }
     
     saveToLocalStorage('persons', allPersons);
@@ -785,12 +787,14 @@ function deleteActivityType() {
     resetAutoSelectionDisplay('activityType');
 }
 
-function saveActivityType() {
+function saveActivityType(e) {
+    if (e) e.preventDefault(); // ✅ ป้องกันการส่งฟอร์ม
+    
     const activityTypeName = document.getElementById('modalActivityTypeName').value.trim();
     const editValue = document.getElementById('activityTypeEditValue').value;
     
     if (!activityTypeName) {
-        alert('กรุณากรอกชื่อประเภทกิจกรรม');
+        showToast('กรุณากรอกชื่อประเภทกิจกรรม', 'error'); // ✅ ใช้ showToast
         return;
     }
     
@@ -812,9 +816,9 @@ function saveActivityType() {
             const activitiesUpdated = updateAllActivitiesForActivityType(oldName, activityTypeName);
             
             if (activitiesUpdated) {
-                notifyDataUpdated('activityType', 'edit');
+                showToast('แก้ไขประเภทกิจกรรมเรียบร้อยแล้ว', 'success');
             } else {
-                notifyDataUpdated('activityType', 'edit');
+                showToast('แก้ไขประเภทกิจกรรมเรียบร้อยแล้ว', 'success');
             }
             
             // โหลดกิจกรรมใหม่เพื่อแสดงข้อมูลที่อัปเดต
@@ -826,12 +830,12 @@ function saveActivityType() {
     } else {
         // โหมดเพิ่ม
         if (allActivityTypes.some(t => t.name === activityTypeName)) {
-            alert('มีประเภทกิจกรรมนี้อยู่แล้ว');
+            showToast('มีประเภทกิจกรรมนี้อยู่แล้ว', 'error'); // ✅ ใช้ showToast
             return;
         }
         
         allActivityTypes.push({ name: activityTypeName });
-        notifyDataUpdated('activityType', 'add');
+        showToast('เพิ่มประเภทกิจกรรมเรียบร้อยแล้ว', 'success'); // ✅ ใช้ showToast
     }
     
     saveToLocalStorage('activityTypes', allActivityTypes);
