@@ -3368,6 +3368,82 @@ footer div {
     margin: 5px auto;
   }
 }
+/* ===== FIX FOR OPERA MOBILE ALIGNMENT ===== */
+@media (max-width: 768px) {
+  .select-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .select-wrapper select {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .manage-btn-inline {
+    flex: 0 0 auto !important;
+    width: 36px !important;
+    height: 36px !important;
+    margin: 0 !important;
+  }
+  
+  .management-actions {
+    display: none;
+    width: 100% !important;
+    margin: 8px 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  
+  .management-actions.active {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .management-actions button {
+    flex: 1 1 calc(50% - 6px) !important;
+    min-width: 70px !important;
+    max-width: 100px !important;
+    height: 36px !important;
+    margin: 0 !important;
+  }
+}
+
+/* สำหรับหน้าจอขนาดเล็กมาก */
+@media (max-width: 480px) {
+  .select-wrapper {
+    gap: 6px !important;
+  }
+  
+  .select-wrapper select {
+    font-size: 14px !important;
+  }
+  
+  .manage-btn-inline {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 16px !important;
+  }
+  
+  .management-actions button {
+    flex: 1 1 calc(50% - 3px) !important;
+    min-width: 65px !important;
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+  }
+}
+
+/* ป้องกันการบีบอัดมากเกินไป */
+.select-wrapper {
+  min-height: 44px; /* ขนาดขั้นต่ำสำหรับการแตะบนมือถือ */
+}
 /* ===== NO BORDER STYLING ===== */
 .form-section.no-border {
     background: none !important;
