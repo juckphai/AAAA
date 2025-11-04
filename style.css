@@ -3444,7 +3444,70 @@ footer div {
 .select-wrapper {
   min-height: 44px; 
 }
+/* ปรับปรุงโครงสร้างการจัดการ */
+.management-row.compact-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  width: 100%;
+}
 
+.management-container.full-width {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.management-container.full-width .select-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.management-container.full-width .manage-btn-inline {
+  flex-shrink: 0;
+  margin: 0;
+  order: 2; /* ให้ปุ่มอยู่ด้านขวาของ dropdown */
+}
+
+.management-container.full-width .management-actions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  margin-top: 5px;
+}
+
+/* ปรับปรุงสำหรับมือถือ */
+@media (max-width: 768px) {
+  .management-row.compact-layout {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .management-container.full-width {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .management-container.full-width .select-wrapper {
+    width: 100%;
+    flex: 1;
+  }
+  
+  .management-container.full-width .manage-btn-inline {
+    margin-left: 8px;
+  }
+}
 .form-section.no-border {
     background: none !important;
     border: none !important;
