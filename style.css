@@ -1,4 +1,4 @@
-/* ===== RESET & BASE STYLES ===== */
+
 * {
     box-sizing: border-box;
 }
@@ -14,10 +14,10 @@ body {
     display: none !important;
 }
 
-/* ===== TYPOGRAPHY ===== */
+
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-/* ===== LAYOUT & CONTAINER ===== */
+
 .container { 
     max-width: 800px; 
     margin: 5px auto; 
@@ -29,7 +29,7 @@ body {
     width: 98%; 
 }
 
-/* ===== SECTION STYLING ===== */
+
 .form-section, .data-section {
     background-color: #f9f9f9;
     padding: 15px;
@@ -40,10 +40,10 @@ body {
 
 .section-content {
     display: none;
-    padding: 5px 10px; /* เดิม 15px */
+    padding: 5px 10px; 
     border: 1px solid #eee;
     border-radius: 5px;
-    margin-bottom: 5px; /* เดิม 15px */
+    margin-bottom: 5px; 
     background-color: #fff;
 }
 
@@ -51,7 +51,7 @@ body {
     display: block;
 }
 
-/* ===== IMPROVED MAIN SECTION HEADERS ===== */
+
 .main-section-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -78,7 +78,7 @@ body {
     transform: translateY(0);
 }
 
-/* สีเฉพาะสำหรับแต่ละเมนูหลัก */
+
 .header-add-data {
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
     border-left: 6px solid #ff4757;
@@ -94,7 +94,7 @@ body {
     border-left: 6px solid #ff9f43;
 }
 
-/* ===== IMPROVED SUBSECTION HEADERS ===== */
+
 .summary-subsection-header {
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
     color: #333;
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* สีเฉพาะสำหรับแต่ละเมนูย่อย */
+
 .summary-subsection-header.summary-date {
     background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
 }
@@ -195,7 +195,7 @@ body {
     color: #333;
 }
 
-/* ===== IMPROVED ARROW ICONS ===== */
+
 .arrow, .menu-icon {
     transition: transform 0.3s ease;
     font-size: 1rem;
@@ -211,7 +211,7 @@ body {
     transform: rotate(180deg);
 }
 
-/* ===== FORM STYLING ===== */
+
 form {
     display: flex;
     flex-direction: column;
@@ -242,7 +242,7 @@ label {
     display: none;
 }
 
-/* ===== COMPACT FORM STYLING ===== */
+
 #activity-form {
     padding: 8px !important;
     margin: 0 !important;
@@ -275,7 +275,7 @@ label {
     margin-bottom: 4px !important;
 }
 
-/* ===== TIME INPUTS STYLING - IMPROVED FOR MOBILE ===== */
+
 .time-inputs-container {
     display: flex;
     align-items: center;
@@ -317,7 +317,7 @@ label {
     white-space: nowrap;
 }
 
-/* ===== SELECT WRAPPER STYLING ===== */
+
 .select-wrapper { 
     display: flex; 
     align-items: center; 
@@ -401,7 +401,7 @@ label {
 .reset-btn { background-color: #17a2b8; }
 .reset-btn:hover { background-color: #138496; }
 
-/* ===== EXPANDED MANAGEMENT CONTAINER STYLING ===== */
+
 .management-container {
     width: 100%;
     margin-bottom: 5px;
@@ -417,12 +417,12 @@ label {
     margin: 10px auto;
 }
 
-/* ทำให้กรอบการจัดการขยายเต็มความกว้าง */
+
 .form-section .section-content.active {
     width: 100%;
 }
 
-/* ปรับปรุงการแสดงผลของส่วนจัดการกิจกรรม */
+
 #activity-form .management-container,
 #activity-form .management-row,
 #activity-form .select-wrapper {
@@ -430,13 +430,13 @@ label {
     max-width: 100%;
 }
 
-/* ปรับปรุงสำหรับส่วนจัดการกิจกรรมโดยเฉพาะ */
+
 .management-section .section-content {
     width: 100% !important;
     max-width: 100% !important;
 }
 
-/* ปรับปรุงสำหรับมือถือ */
+
 @media (max-width: 768px) {
     .management-container,
     .management-row,
@@ -460,7 +460,7 @@ label {
     }
 }
 
-/* ===== COMPACT MANAGEMENT ROW ===== */
+
 .management-row {
     margin-bottom: 8px !important;
     gap: 6px !important;
@@ -487,7 +487,7 @@ label {
     margin: 0 !important;
 }
 
-/* ===== COMPACT TIME INPUTS ===== */
+
 .time-inputs-container {
     margin-bottom: 8px !important;
     gap: 4px !important;
@@ -508,7 +508,7 @@ label {
     font-size: 0.75rem !important;
 }
 
-/* ===== COMPACT BUTTON CONTAINER ===== */
+
 .button-container {
     margin-top: 8px !important;
     gap: 6px !important;
@@ -520,13 +520,13 @@ label {
     font-size: 0.9rem !important;
 }
 
-/* ===== COMPACT MAIN HEADER ===== */
+
 .header-add-data {
     margin: 5px 0 8px !important;
     padding: 12px 15px !important;
 }
 
-/* สำหรับเดสก์ท็อป */
+
 @media (min-width: 769px) {
   .management-actions {
     display: flex;
@@ -535,7 +535,7 @@ label {
   }
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-actions {
     display: flex;
@@ -552,7 +552,7 @@ label {
   }
 }
 
-/* ===== IMPROVED MANAGEMENT ACTIONS FOR MOBILE ===== */
+
 @media (max-width: 768px) {
   .management-actions {
     display: none;
@@ -601,7 +601,7 @@ label {
   }
 }
 
-/* ===== BUTTON STYLING ===== */
+
 button {
     padding: 12px 20px;
     background-color: #4CAF50;
@@ -630,7 +630,7 @@ button:hover {
     min-width: 120px;
 }
 
-/* ===== TABLE STYLING ===== */
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -665,7 +665,7 @@ button:hover {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    max-width: 80px !important; /* ปรับตามความเหมาะสม */
+    max-width: 80px !important; 
     line-height: 1.2;
     border: 1px solid #ddd;
     text-align: center;
@@ -713,7 +713,7 @@ tr:hover {
     background-color: #f5f5f5;
 }
 
-/* ===== MODAL STYLING ===== */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -721,7 +721,7 @@ tr:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 1); /* ✅ เปลี่ยนจาก rgba(0,0,0,0.5) เป็นสีขาวทึบ */
+    background-color: rgba(255, 255, 255, 1); 
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -739,7 +739,7 @@ tr:hover {
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: modalFadeIn 0.3s;
-    border: 1px solid #ddd; /* ✅ เพิ่มขอบเพื่อแยกจากพื้นหลัง */
+    border: 1px solid #ddd; 
 }
 
 @keyframes modalFadeIn {
@@ -773,7 +773,7 @@ tr:hover {
     background-color: #5a6268;
 }
 
-/* ===== POPUP STYLING ===== */
+
 .popup-overlay {
     display: none;
     position: fixed;
@@ -821,7 +821,7 @@ tr:hover {
     background-color: #5a6268;
 }
 
-/* ===== FORMAT MODAL STYLING ===== */
+
 .format-modal-content {
     background-color: white;
     padding: 25px;
@@ -898,7 +898,7 @@ tr:hover {
     background-color: #5a6268;
 }
 
-/* ===== INSTALL PROMPT STYLING ===== */
+
 .install-prompt {
     background-color: #e7f3ff;
     border: 1px solid #b3d9ff;
@@ -936,7 +936,7 @@ tr:hover {
     margin-bottom: 5px;
 }
 
-/* ===== TOAST NOTIFICATION ===== */
+
 .toast-notification {
     position: fixed;
     top: 20px;
@@ -981,7 +981,7 @@ tr:hover {
     border-left: 4px solid #138496;
 }
 
-/* Responsive design for toast */
+
 @media (max-width: 768px) {
     .toast-notification {
         top: 10px;
@@ -1005,13 +1005,13 @@ tr:hover {
     }
 }
 
-/* ===== SUMMARY RESULT STYLING ===== */
+
 .summaryResult {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 10px;
-    /* เอา max-height และ overflow-y ออก */
+    
     width: 100%;
     box-sizing: border-box;
 }
@@ -1043,9 +1043,9 @@ tr:hover {
     margin-bottom: 5px;
 }
 
-/* ===== RESPONSIVE STYLES ===== */
+
 @media (max-width: 768px) {
-  /* ปรับปรุงการจัดวางปุ่มในส่วนจัดการกิจกรรมสำหรับมือถือ */
+  
   .entry-form .button-container {
     flex-direction: row !important;
     flex-wrap: wrap;
@@ -1057,7 +1057,7 @@ tr:hover {
     min-width: 120px;
   }
   
-  /* ปรับปรุงการจัดวางปุ่มตั้งรหัสผ่านและลบรหัสผ่าน */
+  
   .entry-form .button-container:last-child {
     justify-content: center;
   }
@@ -1200,7 +1200,7 @@ tr:hover {
         min-width: 500px;
     }
 
-    /* สำหรับมือถือ - COMPACT FORM */
+    
     #activity-form .form-section {
         padding: 8px 6px !important;
         margin-bottom: 10px !important;
@@ -1299,7 +1299,7 @@ tr:hover {
         margin-top: 5px;
     }
 
-    /* สำหรับมือถือขนาดเล็ก - COMPACT FORM */
+    
     #activity-form {
         padding: 5px !important;
     }
@@ -1334,7 +1334,7 @@ tr:hover {
     }
 }
 
-/* ===== PRINT STYLES ===== */
+
 @media print {
     body * {
         visibility: hidden;
@@ -1356,7 +1356,7 @@ tr:hover {
     }
 }
 
-/* ===== ACCESSIBILITY ===== */
+
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -1376,7 +1376,7 @@ tr:hover {
     }
 }
 
-/* ===== DARK MODE SUPPORT ===== */
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
@@ -1439,7 +1439,7 @@ tr:hover {
         color: #bbdefb;
     }
     
-    /* Dark mode for improved headers */
+    
     .header-add-data {
         background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
         border-left: 6px solid #e74c3c;
@@ -1473,7 +1473,7 @@ tr:hover {
     }
 }
 
-/* ===== TIME INPUTS STYLING - IMPROVED FOR MOBILE ===== */
+
 .time-inputs-container {
     display: flex;
     align-items: center;
@@ -1515,7 +1515,7 @@ tr:hover {
     white-space: nowrap;
 }
 
-/* ปรับปรุงสำหรับมือถือ */
+
 @media (max-width: 768px) {
     .time-inputs-container {
         flex-wrap: wrap;
@@ -1546,7 +1546,7 @@ tr:hover {
         margin: 5px 0;
     }
 }
-/* ===== TABLE STYLING ===== */
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -1610,7 +1610,7 @@ th {
     border: 1px solid #2c3e50;
 }
 
-/* สีพื้นหลังสลับกันสำหรับแต่ละแถว */
+
 tr:nth-child(even) {
     background-color: #f8f9fa;
 }
@@ -1619,14 +1619,14 @@ tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-/* สีตัวหนังสือที่ชัดเจน */
+
 td {
     color: #2c3e50;
     font-weight: 500;
     border: 1px solid #e9ecef;
 }
 
-/* Hover effect */
+
 tr:hover {
     background-color: #e3f2fd;
     transform: translateY(-1px);
@@ -1639,7 +1639,7 @@ tr:hover td {
     font-weight: 600;
 }
 
-/* สำหรับตารางใน summary */
+
 .summaryResult table {
     background-color: #ffffff;
     border-radius: 8px;
@@ -1676,7 +1676,7 @@ tr:hover td {
     color: #e17055;
 }
 
-/* สำหรับตารางกิจกรรม */
+
 #activityTable th {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: white;
@@ -1690,7 +1690,7 @@ tr:hover td {
     color: #1565c0;
 }
 
-/* สำหรับตารางผู้ใช้ */
+
 #user-list-table th {
     background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
     color: white;
@@ -1704,7 +1704,7 @@ tr:hover td {
     color: #006064;
 }
 
-/* สำหรับตารางประเภทกิจกรรม */
+
 #activity-types-table th {
     background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
     color: white;
@@ -1718,7 +1718,7 @@ tr:hover td {
     color: #e65100;
 }
 
-/* สำหรับตารางทั้งหมด */
+
 #all-activities-table th {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -1732,7 +1732,7 @@ tr:hover td {
     color: #7b1fa2;
 }
 
-/* ปรับปรุงสำหรับมือถือ */
+
 @media (max-width: 768px) {
     th, td {
         padding: 10px 12px;
@@ -1797,7 +1797,7 @@ tr:hover td {
     }
 }
 
-/* Dark mode support */
+
 @media (prefers-color-scheme: dark) {
     table {
         background-color: #1e1e1e;
@@ -1831,7 +1831,7 @@ tr:hover td {
         color: #ffffff;
     }
     
-    /* Summary table in dark mode */
+    
     .summaryResult table {
         background-color: #1e1e1e;
     }
@@ -1858,7 +1858,7 @@ tr:hover td {
     }
 }
 
-/* ===== MODAL STYLING ===== */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -1880,8 +1880,8 @@ tr:hover td {
     border-radius: 10px;
     width: 100%;
     max-width: 800px;
-    max-height: 90vh;  /* ← เปลี่ยนเป็น 90vh */
-    overflow-y: auto;  /* ← ให้เลื่อนทั้ง modal */
+    max-height: 90vh;  
+    overflow-y: auto;  
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: modalFadeIn 0.3s;
     border: 1px solid #ddd;
@@ -1895,7 +1895,7 @@ tr:hover td {
     }
     
     .modal-content-container {
-        max-height: 95vh; /* บนมือถือให้สูงเกือบเต็มจอ */
+        max-height: 95vh; 
         margin: 10px;
         width: calc(100% - 20px);
     }
@@ -1931,7 +1931,7 @@ tr:hover td {
     background-color: #5a6268;
 }
 
-/* ===== POPUP STYLING ===== */
+
 .popup-overlay {
     display: none;
     position: fixed;
@@ -1977,7 +1977,7 @@ tr:hover td {
     background-color: #5a6268;
 }
 
-/* ===== FORMAT MODAL STYLING ===== */
+
 .format-modal-content {
     background-color: white;
     padding: 10px;
@@ -2068,7 +2068,7 @@ tr:hover td {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    max-width: 80px !important; /* ปรับตามความเหมาะสม */
+    max-width: 80px !important; 
 }
 @media (max-width: 768px) {
     .summaryResult table.recent-activities {
@@ -2103,20 +2103,20 @@ tr:hover td {
 }
 .summaryResult table {
     min-width: 450px;
-    font-size: clamp(0.6rem, 2.2vw, 0.7rem); /* ← ตรงนี้ */
+    font-size: clamp(0.6rem, 2.2vw, 0.7rem); 
     text-align: left;
 }
 
 .summaryResult th,
 .summaryResult td {
     padding: 3px 2px;
-    font-size: clamp(0.6rem, 2.2vw, 0.7rem); /* ← และตรงนี้ */
+    font-size: clamp(0.6rem, 2.2vw, 0.7rem); 
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-/* ===== RESPONSIVE SUMMARY FRAME ===== */
+
 @media (max-width: 768px) {
     .summaryResult {
         width: 100% !important;
@@ -2161,31 +2161,31 @@ tr:hover td {
     max-width: none !important;
     word-break: break-word;
 }
-/* ===== ปรับเฉพาะตารางจัดการกิจกรรม (#activityTable) ===== */
+
 #activityTable {
     table-layout: auto;
-    width: max-content; /* ตารางกว้างตามเนื้อหา */
-    min-width: 100%; /* แต่ไม่เล็กกว่า container */
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem); /* ย่อขนาดอักษรอัตโนมัติ */
+    width: max-content; 
+    min-width: 100%; 
+    font-size: clamp(0.7rem, 1.2vw, 0.8rem); 
 }
 
 #activityTable td,
 #activityTable th {
-    white-space: nowrap !important; /* แสดงเป็นแถวเดียว */
-    overflow: hidden !important;    /* ซ่อนส่วนที่เกิน */
-    text-overflow: ellipsis !important; /* แสดง ... ถ้ายาวเกิน */
-    max-width: 200px; /* จำกัดความกว้างของแต่ละช่อง */
+    white-space: nowrap !important; 
+    overflow: hidden !important;    
+    text-overflow: ellipsis !important; 
+    max-width: 200px; 
     padding: 6px 8px;
     line-height: 1.2;
 }
 
-/* เพิ่มการเลื่อนแนวนอนเฉพาะส่วนนี้ */
+
 .table-container {
     overflow-x: auto !important;
     width: 100%;
-    -webkit-overflow-scrolling: touch; /* รองรับการเลื่อนในมือถือ */
+    -webkit-overflow-scrolling: touch; 
 }
-/* ===== FOOTER STYLING ===== */
+
 footer {
     text-align: center;
     padding: 12px 15px;
@@ -2202,9 +2202,9 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    font-size: clamp(0.7rem, 2.5vw, 0.9rem); /* ปรับขนาดฟอนต์ให้ยืดหยุ่น */
-    line-height: 1.3; /* เพิ่มระยะบรรทัด */
-    white-space: normal; /* อนุญาตให้ข้อความขึ้นบรรทัดใหม่ */
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem); 
+    line-height: 1.3; 
+    white-space: normal; 
 }
 
 footer::before {
@@ -2223,7 +2223,7 @@ footer div {
     display: inline;
 }
 
-/* Responsive design for footer */
+
 @media (max-width: 768px) {
     footer {
         margin: 25px 10px 12px;
@@ -2253,7 +2253,7 @@ footer div {
     }
 }
 
-/* Dark mode support */
+
 @media (prefers-color-scheme: dark) {
     footer {
         background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -2264,7 +2264,7 @@ footer div {
         background: linear-gradient(90deg, #e74c3c, #1abc9c, #3498db, #2ecc71, #f1c40f);
     }
 }
-/* ===== TIME INPUTS STYLING - IMPROVED LAYOUT ===== */
+
 .time-inputs-container {
   display: flex;
   align-items: center;
@@ -2278,8 +2278,8 @@ footer div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1; /* ทำให้ทั้งสองกลุ่มมีความกว้างเท่ากัน */
-  min-width: 0; /* ป้องกันปัญหา overflow */
+  flex: 1; 
+  min-width: 0; 
 }
 
 .time-input-group input[type="time"] {
@@ -2303,10 +2303,10 @@ footer div {
   color: #333;
   margin: 0 5px;
   white-space: nowrap;
-  flex-shrink: 0; /* ป้องกันการหดตัว */
+  flex-shrink: 0; 
 }
 
-/* ปรับปรุงสำหรับมือถือ */
+
 @media (max-width: 768px) {
   .time-inputs-container {
     gap: 8px;
@@ -2314,7 +2314,7 @@ footer div {
   
   .time-input-group input[type="time"] {
     padding: 10px;
-    font-size: 16px; /* ป้องกัน zoom บน iOS */
+    font-size: 16px; 
   }
   
   .time-label {
@@ -2345,7 +2345,7 @@ footer div {
     margin: 0 2px;
   }
 }
-/* ===== MANAGEMENT ROW STYLING ===== */
+
 .management-row {
   display: flex;
   flex-direction: column;
@@ -2406,7 +2406,7 @@ footer div {
 .delete-btn { background-color: #dc3545; }
 .reset-btn { background-color: #17a2b8; }
 
-/* สำหรับเดสก์ท็อป */
+
 @media (min-width: 769px) {
   .management-row {
     flex-direction: row;
@@ -2418,17 +2418,17 @@ footer div {
   }
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-row {
-    flex-direction: row; /* เปลี่ยนเป็นแถวเดียวกันบนมือถือ */
-    flex-wrap: nowrap; /* อนุญาตให้ขึ้นบรรทัดใหม่ถ้าจอเล็กเกิน */
+    flex-direction: row; 
+    flex-wrap: nowrap; 
     gap: 8px;
   }
   
   .management-container {
-    flex: 1 1 48%; /* ให้แต่ละคอนเทนเนอร์มีความกว้างประมาณครึ่งหนึ่ง */
-    min-width: 0; /* ป้องกันปัญหา overflow */
+    flex: 1 1 48%; 
+    min-width: 0; 
   }
   
   .select-wrapper {
@@ -2497,7 +2497,7 @@ footer div {
     margin-bottom: 6px !important;
     gap: 4px !important;
 }
-/* ปรับปุ่มทำความสะอาดข้อมูลทั้งหมดให้พอดีกับเนื้อหา */
+
 .button-container .clean-data-btn {
     width: auto !important;
     flex: none !important;
@@ -2505,7 +2505,7 @@ footer div {
     white-space: nowrap !important;
     display: inline-block !important;
 }
-/* ===== MANAGEMENT ROW STYLING ===== */
+
 .management-row {
   display: flex;
   flex-direction: column;
@@ -2566,7 +2566,7 @@ footer div {
 .delete-btn { background-color: #dc3545; }
 .reset-btn { background-color: #17a2b8; }
 
-/* สำหรับเดสก์ท็อป */
+
 @media (min-width: 769px) {
   .management-row {
     flex-direction: row;
@@ -2578,17 +2578,17 @@ footer div {
   }
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-row {
-    flex-direction: row; /* เปลี่ยนเป็นแถวเดียวกันบนมือถือ */
-    flex-wrap: wrap; /* อนุญาตให้ขึ้นบรรทัดใหม่ถ้าจอเล็กเกิน */
+    flex-direction: row; 
+    flex-wrap: wrap; 
     gap: 8px;
   }
   
   .management-container {
-    flex: 1 1 48%; /* ให้แต่ละคอนเทนเนอร์มีความกว้างประมาณครึ่งหนึ่ง */
-    min-width: 0; /* ป้องกันปัญหา overflow */
+    flex: 1 1 48%; 
+    min-width: 0; 
   }
   
   .select-wrapper {
@@ -2629,7 +2629,7 @@ footer div {
     min-width: 50px;
   }
 }
-/* สไตล์เฉพาะสำหรับแถวผู้ทำกิจกรรมและประเภทกิจกรรม */
+
 .management-row.compact-layout {
   display: flex;
   align-items: center;
@@ -2656,7 +2656,7 @@ footer div {
   justify-content: center;
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-row.compact-layout {
     flex-direction: row;
@@ -2711,7 +2711,7 @@ footer div {
 .toast-notification.info {
     background-color: #17a2b8;
 }
-/* สไตล์สำหรับ Modal เลือกวันที่ใหม่ */
+
 .format-modal-content .entry-form {
     background-color: #f8f9fa;
     padding: 15px;
@@ -2745,7 +2745,7 @@ footer div {
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
 }
 
-/* ปรับปรุงปุ่มใน modal */
+
 .format-modal-buttons {
     display: flex;
     gap: 10px;
@@ -2796,17 +2796,17 @@ footer div {
   box-sizing: border-box;
 }
 
-  /* สไตล์เมื่อโฟกัสเพื่อการเข้าถึง */
+  
   #save-activity-button:focus {
     outline: 3px solid rgba(46,204,113,0.25);
     outline-offset: 2px;
   }
 
-  /* เอฟเฟกต์เล็กน้อยเมื่อชี้เมาส์ */
+  
   #save-activity-button:hover {
     transform: translateY(-1px);
   }
-/* เพิ่มในส่วนท้ายของ style.css */
+
 #add-data-section .entry-form {
     margin-top: 0;
 }
@@ -2815,9 +2815,9 @@ footer div {
     margin-top: 0;
     margin-bottom: 5px;
 }
-/* ===== ปรับขนาดปุ่มในส่วนจัดการกิจกรรม ===== */
 
-/* ปุ่มบันทึกชั่วคราวและบันทึกข้อมูล */
+
+
 #manage-activities-form .button-container:first-child {
   display: flex;
   gap: 10px;
@@ -2834,7 +2834,7 @@ footer div {
   text-align: center;
 }
 
-/* ปุ่มตั้งรหัสผ่านและลบรหัสผ่าน */
+
 #manage-activities-form .button-container:last-child {
   display: flex;
   gap: 10px;
@@ -2852,7 +2852,7 @@ footer div {
   text-align: center;
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   #manage-activities-form .button-container:first-child {
     flex-direction: row;
@@ -2895,7 +2895,7 @@ footer div {
     font-size: clamp(0.65rem, 1.8vw, 0.8rem);
   }
 }
-/* สไตล์สำหรับฟิลด์ระยะเวลา */
+
 .duration-inputs-container {
   display: flex;
   gap: 10px;
@@ -2923,12 +2923,12 @@ footer div {
   margin-top: 4px;
 }
 
-/* สไตล์สำหรับฟิลด์เวลาเริ่มต้นที่อ่านอย่างเดียว */
+
 #start-time {
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
-/* ===== TIME INPUTS ROW (START-END TIME IN ONE LINE) ===== */
+
 .time-inputs-row {
   display: flex;
   flex-wrap: wrap;
@@ -2948,7 +2948,7 @@ footer div {
   box-sizing: border-box;
 }
 
-/* สำหรับมือถือให้ซ้อนลงเป็น 2 แถวอย่างเหมาะสม */
+
 @media (max-width: 768px) {
   .time-inputs-row {
     flex-direction: column;
@@ -2958,7 +2958,7 @@ footer div {
     width: 100%;
   }
 }
-/* ===== TIME INPUTS (START / END ON SAME ROW) ===== */
+
 .time-inputs-section {
   display: flex;
   flex-direction: column;
@@ -2966,7 +2966,7 @@ footer div {
   margin-bottom: 8px;
 }
 
-/* แถบเวลาเริ่มต้น-สิ้นสุด */
+
 .time-row {
   display: flex;
   justify-content: space-between;
@@ -2974,7 +2974,7 @@ footer div {
   gap: 10px;
 }
 
-/* ช่องแต่ละอันให้กว้างเท่ากัน */
+
 .time-row .time-input-group {
   flex: 1;
   min-width: 150px;
@@ -2985,7 +2985,7 @@ footer div {
   box-sizing: border-box;
 }
 
-/* สำหรับมือถือให้ซ้อนลงเป็นแนวตั้ง */
+
 @media (max-width: 768px) {
   .time-row {
     flex-direction: column;
@@ -2996,7 +2996,7 @@ footer div {
     width: 100%;
   }
 }
-/* ===== FULL WIDTH MANAGEMENT CONTAINERS ===== */
+
 .management-row.compact-layout {
   display: flex;
   flex-direction: column;
@@ -3020,13 +3020,13 @@ footer div {
   box-sizing: border-box;
 }
 
-/* ทำให้แถบเลือกมีความกว้างเท่ากับแถบเวลา */
+
 .management-container.full-width .select-wrapper,
 .time-input-group {
   width: 100%;
 }
 
-/* สำหรับเดสก์ท็อป */
+
 @media (min-width: 769px) {
   .management-row.compact-layout {
     flex-direction: column;
@@ -3037,7 +3037,7 @@ footer div {
   }
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-row.compact-layout {
     flex-direction: column;
@@ -3057,12 +3057,12 @@ footer div {
   }
 }
 
-  /* สไตล์สำหรับฟิลด์ระยะเวลา */
+  
   .duration-inputs-container {
     display: flex;
     gap: 10px;
     margin-bottom: 5px;
-    margin-left: 100px; /* เพิ่มระยะห่างจากข้อความด้านซ้าย */
+    margin-left: 100px; 
   }
 
   .duration-input-group {
@@ -3087,13 +3087,13 @@ footer div {
     margin-top: 4px;
   }
 
-  /* สไตล์สำหรับฟิลด์เวลาเริ่มต้นที่อ่านอย่างเดียว */
+  
   #start-time {
     background-color: #f5f5f5;
     cursor: not-allowed;
   }
 
-  /* ปรับปรุงสไตล์ date-wrapper และ display-date สำหรับส่วนเวลา */
+  
   .time-inputs-section .date-wrapper {
     position: relative;
     display: flex;
@@ -3105,7 +3105,7 @@ footer div {
   .time-inputs-section .display-date {
     position: absolute;
     left: 0;
-    width: 100px; /* ความกว้างคงที่สำหรับข้อความ */
+    width: 100px; 
     text-align: left;
     color: #000;
     font-size: 14px;
@@ -3115,18 +3115,18 @@ footer div {
   .time-inputs-section input[type="time"] {
     width: 100%;
     max-width: 150px;
-    padding: 8px 8px 8px 100px; /* เผื่อพื้นที่ซ้ายสำหรับข้อความ */
+    padding: 8px 8px 8px 100px; 
     box-sizing: border-box;
     margin-left: auto;
   }
 
-  /* สไตล์สำหรับฟอร์มบนมือถือ */
+  
   @media (max-width: 768px) {
     .duration-inputs-container {
       flex-wrap: nowrap;
       overflow-x: auto;
       justify-content: space-between;
-      margin-left: 90px; /* ปรับระยะห่างสำหรับมือถือ */
+      margin-left: 90px; 
     }
     
     .duration-input-group {
@@ -3135,15 +3135,15 @@ footer div {
     }
     
     .time-inputs-section .display-date {
-      width: 85px; /* ปรับความกว้างสำหรับมือถือ */
+      width: 85px; 
       font-size: 13px;
     }
     
     .time-inputs-section input[type="time"] {
-      padding: 8px 8px 8px 85px; /* ปรับ padding สำหรับมือถือ */
+      padding: 8px 8px 8px 85px; 
     }
   }
-/* สไตล์สำหรับแสดงวันที่ในสรุปกิจกรรม */
+
 .summary-date-display {
   display: flex;
   align-items: center;
@@ -3170,39 +3170,39 @@ footer div {
   border-radius: 4px;
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .summary-date-display {
-    flex-direction: row; /* เปลี่ยนจาก column เป็น row */
-    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    flex-direction: row; 
+    align-items: center; 
   }
   
   .summary-date-display .date-label {
-    width: 90px; /* ลดความกว้างลงเล็กน้อยสำหรับมือถือ */
-    margin-bottom: 0; /* ลบ margin-bottom */
-    margin-right: 10px; /* เก็บ margin-right */
-    font-size: 13px; /* ปรับขนาดฟอนต์ให้เล็กกว่า */
+    width: 90px; 
+    margin-bottom: 0; 
+    margin-right: 10px; 
+    font-size: 13px; 
   }
   
   .summary-date-display input[type="date"] {
-    max-width: 150px; /* ลดความกว้างสูงสุด */
+    max-width: 150px; 
     flex: 1;
   }
 }
 
 @media (max-width: 480px) {
   .summary-date-display .date-label {
-    width: 85px; /* ลดความกว้างลงอีกสำหรับหน้าจอเล็ก */
-    font-size: 12px; /* ปรับขนาดฟอนต์ให้เล็กกว่า */
+    width: 85px; 
+    font-size: 12px; 
   }
   
   .summary-date-display input[type="date"] {
-    max-width: 130px; /* ลดความกว้างลงอีก */
-    padding: 6px; /* ลด padding */
-    font-size: 13px; /* ปรับขนาดฟอนต์ */
+    max-width: 130px; 
+    padding: 6px; 
+    font-size: 13px; 
   }
 }
-/* ===== SELECT WRAPPER STYLING (จากไฟล์ 001) ===== */
+
 .select-wrapper {
     display: flex;
     align-items: center;
@@ -3218,7 +3218,7 @@ footer div {
     margin: 0;
 }
 
-/* ปุ่มฟันเฟือง */
+
 .manage-btn-inline {
     flex-shrink: 0;
     width: 44px;
@@ -3242,7 +3242,7 @@ footer div {
     transform: rotate(45deg);
 }
 
-/* แถบปุ่มจัดการที่แสดงเมื่อกดฟันเฟือง */
+
 .management-actions {
     display: none;
     justify-content: center;
@@ -3250,8 +3250,8 @@ footer div {
     margin: 5px auto 15px;
     animation: fadeIn 0.3s;
     width: 80%;
-    align-items: center; /* ← จัดให้อยู่กลางแนวตั้ง */
-    height: 36px; /* ← กำหนดความสูงให้เท่ากับฟันเฟือง */
+    align-items: center; 
+    height: 36px; 
 }
 
 @keyframes fadeIn {
@@ -3259,7 +3259,7 @@ footer div {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* สไตล์ปุ่มต่างๆ ในแถบจัดการ */
+
 .management-actions button {
     width: auto;
     padding: 6px 12px;
@@ -3268,12 +3268,12 @@ footer div {
     border: none;
     color: white;
     transition: background-color 0.2s ease;
-    height: 36px; /* ← ความสูงเท่ากับฟันเฟือง */
+    height: 36px; 
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    white-space: nowrap; /* ← ป้องกันข้อความขึ้นบรรทัดใหม่ */
+    white-space: nowrap; 
 }
 
 .add-btn { background-color: #28a745; }
@@ -3288,19 +3288,19 @@ footer div {
 .reset-btn { background-color: #17a2b8; }
 .reset-btn:hover { background-color: #138496; }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .management-actions {
     flex-wrap: wrap;
     width: 90%;
-    height: auto; /* ← บนมือถือให้ความสูงอัตโนมัติ */
+    height: auto; 
     gap: 6px;
   }
   
   .management-actions button {
     flex: 1 1 40%;
     min-width: 60px;
-    height: 36px; /* ← บนมือถือลดความสูงลงเล็กน้อย */
+    height: 36px; 
     font-size: 12px;
     padding: 4px 8px;
   }
@@ -3315,11 +3315,11 @@ footer div {
     font-size: 18px;
   }
 }
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
   .select-wrapper {
     width: 80%;
-    flex-direction: row; /* ← สำคัญ! ให้อยู่แถวเดียวกัน */
+    flex-direction: row; 
     flex-wrap: nowrap;
     align-items: center;
     gap: 6px;
@@ -3327,7 +3327,7 @@ footer div {
   
   .select-wrapper select {
     flex: 1;
-    min-width: 120px; /* ← ความกว้างขั้นต่ำ */
+    min-width: 120px; 
   }
   
   .manage-btn-inline {
@@ -3335,7 +3335,7 @@ footer div {
     height: 36px;
     font-size: 18px;
     flex-shrink: 0;
-    margin: 0; /* ← ลบ margin ที่อาจมี */
+    margin: 0; 
   }
   
   .management-actions {
@@ -3361,14 +3361,14 @@ footer div {
     white-space: nowrap;
   }
   
-  /* สำหรับ input custom */
+  
   #customPersonInput,
   #customActivityTypeInput {
     width: 90%;
     margin: 5px auto;
   }
 }
-/* ===== FIX FOR OPERA MOBILE ALIGNMENT ===== */
+
 @media (max-width: 768px) {
   .select-wrapper {
     display: flex !important;
@@ -3416,7 +3416,7 @@ footer div {
   }
 }
 
-/* สำหรับหน้าจอขนาดเล็กมาก */
+
 @media (max-width: 480px) {
   .select-wrapper {
     gap: 6px !important;
@@ -3440,11 +3440,11 @@ footer div {
   }
 }
 
-/* ป้องกันการบีบอัดมากเกินไป */
+
 .select-wrapper {
-  min-height: 44px; /* ขนาดขั้นต่ำสำหรับการแตะบนมือถือ */
+  min-height: 44px; 
 }
-/* ===== NO BORDER STYLING ===== */
+
 .form-section.no-border {
     background: none !important;
     border: none !important;
@@ -3454,7 +3454,7 @@ footer div {
     border-radius: 0 !important;
 }
 
-/* สำหรับมือถือ */
+
 @media (max-width: 768px) {
     .form-section.no-border {
         padding: 0 !important;
@@ -3467,5 +3467,6 @@ footer div {
         padding: 0 !important;
         margin: 0 !important;
     }
+}
 }
 }
