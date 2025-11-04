@@ -31,7 +31,7 @@
         <li><b>สำหรับ Android:</b> เบราว์เซอร์ Chrome จะมีปุ่ม "ติดตั้งแอป" หรือ "เพิ่มไปยังหน้าจอหลัก" แสดงขึ้นมาให้กด</li>
         <li><b>สำหรับ iPhone (iOS):</b> เปิดใน Safari แล้วกดที่ปุ่ม "แชร์" (Share) จากนั้นเลือก "เพิ่มไปยังหน้าจอโฮม" (Add to Home Screen)</li>
       </ul>
-      <div style="text-align: center; margin-top: 10px;">
+      <div style="text-align: center; margin-top: 5px;">
         <button onclick="hideInstallPromptPermanently()" style="background-color: #6c757d; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">
           ไม่แสดงข้อความนี้อีก
         </button>
@@ -293,9 +293,9 @@
                   </p>
                 </div>
                 
-                <div class="entry-form" style="margin-bottom: 0;">
+                <div class="entry-form" style="margin-bottom: 5;">
                   <!-- ปุ่มบันทึกชั่วคราวและบันทึกข้อมูลอยู่ในแถวเดียวกัน -->
-                  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px;">
+                  <div class="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px;">
                     <button type="button" onclick="saveToLocal()" style="flex: 1; border-radius: 30px; background-color: #17a2b8;">💾 บันทึกชั่วคราว</button>
                     <button type="button" onclick="openExportOptionsModal()" style="flex: 1; border-radius: 30px; background-color: #0d47a1;">📘 บันทึกข้อมูล</button>
                   </div>
@@ -360,7 +360,7 @@
             <div class="form-section no-border">
               <form id="summary-form">
                 <!-- เมนูเลือกประเภทการสรุป -->
-                <div class="entry-form" style="margin-bottom: 0;">
+                <div class="entry-form" style="margin-bottom: 5;">
                   <div class="entry-group">
                     <label for="summary-type-select">ประเภทการสรุป:</label>
                     <select id="summary-type-select" onchange="loadSummaryData()">
@@ -375,7 +375,7 @@
                 <!-- ส่วนกรองผู้ทำกิจกรรม -->
                 <div class="summary-controls">
                   <!-- ส่วนแสดงผู้ทำกิจกรรมอัตโนมัติ (แสดงเมื่อมีแค่คนเดียว) -->
-                  <div class="auto-selected-person" id="autoSelectedPerson" style="display: none; background-color: #f8f9fa; padding: 8px 12px; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 10px;">
+                  <div class="auto-selected-person" id="autoSelectedPerson" style="display: none; background-color: #f8f9fa; padding: 8px 12px; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 5px;">
                     <label style="font-weight: bold; margin-right: 8px; color: #495057;">ผู้ทำกิจกรรม:</label>
                     <span id="selectedPersonName" style="color: #28a745; font-size: 1rem; font-weight: bold;"></span>
                   </div>
@@ -542,7 +542,7 @@
         <h3>เลือกช่วงวันที่ต้องการบันทึก</h3>
         <p>ข้อมูลจากบัญชี: <strong id="singleDateAccountName"></strong></p>
         
-        <div class="entry-form" style="margin-bottom: 20px;">
+        <div class="entry-form" style="margin-bottom: 5px;">
           <div class="entry-group">
             <label for="exportStartDate">จากวันที่:</label>
             <input type="date" id="exportStartDate" required>
@@ -569,7 +569,7 @@
     .duration-inputs-container {
       display: flex;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .duration-input-group {
