@@ -3202,6 +3202,119 @@ footer div {
     font-size: 13px; /* ปรับขนาดฟอนต์ */
   }
 }
+/* ===== SELECT WRAPPER STYLING (จากไฟล์ 001) ===== */
+.select-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.select-wrapper select {
+    flex-grow: 1;
+    width: auto;
+    margin: 0;
+}
+
+/* ปุ่มฟันเฟือง */
+.manage-btn-inline {
+    flex-shrink: 0;
+    width: 44px;
+    height: 36px;
+    padding: 0;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #009BD2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manage-btn-inline:hover {
+    background-color: #E97132;
+    transform: rotate(45deg);
+}
+
+/* แถบปุ่มจัดการที่แสดงเมื่อกดฟันเฟือง */
+.management-actions {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    margin: 5px auto 15px;
+    animation: fadeIn 0.3s;
+    width: 80%;
+    align-items: center; /* ← จัดให้อยู่กลางแนวตั้ง */
+    height: 36px; /* ← กำหนดความสูงให้เท่ากับฟันเฟือง */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* สไตล์ปุ่มต่างๆ ในแถบจัดการ */
+.management-actions button {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 14px;
+    margin: 0;
+    border: none;
+    color: white;
+    transition: background-color 0.2s ease;
+    height: 36px; /* ← ความสูงเท่ากับฟันเฟือง */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    white-space: nowrap; /* ← ป้องกันข้อความขึ้นบรรทัดใหม่ */
+}
+
+.add-btn { background-color: #28a745; }
+.add-btn:hover { background-color: #218838; }
+
+.edit-btn { background-color: #ffc107; color: #212529 !important; }
+.edit-btn:hover { background-color: #e0a800; }
+
+.delete-btn { background-color: #dc3545; }
+.delete-btn:hover { background-color: #c82333; }
+
+.reset-btn { background-color: #17a2b8; }
+.reset-btn:hover { background-color: #138496; }
+
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+  .management-actions {
+    flex-wrap: wrap;
+    width: 90%;
+    height: auto; /* ← บนมือถือให้ความสูงอัตโนมัติ */
+    gap: 6px;
+  }
+  
+  .management-actions button {
+    flex: 1 1 40%;
+    min-width: 60px;
+    height: 36px; /* ← บนมือถือลดความสูงลงเล็กน้อย */
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  
+  .select-wrapper {
+    width: 90%;
+  }
+  
+  .manage-btn-inline {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
 /* ===== NO BORDER STYLING ===== */
 .form-section.no-border {
     background: none !important;

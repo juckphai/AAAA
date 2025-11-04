@@ -98,120 +98,42 @@
 <div class="management-row compact-layout">
   <!-- ส่วนจัดการผู้ทำกิจกรรม -->
   <div class="management-container full-width">
-    <div class="select-wrapper" 
-         style="display: flex; align-items: center; gap: 6px; width: 100%;">
-
-      <button 
-        type="button" 
-        class="manage-btn-inline" 
-        onclick="toggleManagementActions('personActions')" 
-        title="จัดการผู้ทำกิจกรรม"
-        style="
-          font-size: 14px;
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          background: #fff;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        "
-      >
-        ⚙️
-      </button>
-
-      <select 
-        id="personSelect" 
-        onchange="checkCustomOption(this)" 
-        required 
-        style="
-          flex: 1;
-          font-size: 14px;
-          padding: 6px 10px;
-          border-radius: 6px;
-          height: 34px;
-        "
-      >
+    <div class="select-wrapper">
+      <select id="personSelect" onchange="checkCustomOption(this)" required>
         <option value="">เลือกผู้ทำกิจกรรม</option>
+        <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
+      <button class="manage-btn-inline" id="togglePersonControls" title="จัดการผู้บอก">⚙️</button>
     </div>
 
-    <!-- เมนูย่อย -->
-    <div class="management-actions" id="personActions" style="display: none;">
+    <div class="management-actions" id="personActions">
       <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
       <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
       <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
       <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
     </div>
 
-    <input 
-      type="text" 
-      id="customPersonInput" 
-      placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" 
-      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-    />
+    <input type="text" id="customPersonInput" placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง" style="display: none;" />
   </div>
 
   <!-- ส่วนจัดการประเภทกิจกรรม -->
   <div class="management-container full-width">
-    <div class="select-wrapper" 
-         style="display: flex; align-items: center; gap: 6px; width: 100%;">
-
-      <button 
-        type="button" 
-        class="manage-btn-inline" 
-        onclick="toggleManagementActions('activityTypeActions')" 
-        title="จัดการประเภทกิจกรรม"
-        style="
-          font-size: 14px;
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          background: #fff;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        "
-      >
-        ⚙️
-      </button>
-
-      <select 
-        id="activityTypeSelect" 
-        onchange="checkCustomActivityTypeOption(this)" 
-        required 
-        style="
-          flex: 1;
-          font-size: 14px;
-          padding: 6px 10px;
-          border-radius: 6px;
-          height: 34px;
-        "
-      >
+    <div class="select-wrapper">
+      <select id="activityTypeSelect" onchange="checkCustomActivityTypeOption(this)" required>
         <option value="">เลือกประเภทกิจกรรม</option>
+        <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
+      <button class="manage-btn-inline" id="toggleActivityTypeControls" title="จัดการหัวข้อ">⚙️</button>
     </div>
 
-    <!-- เมนูย่อย -->
-    <div class="management-actions" id="activityTypeActions" style="display: none;">
+    <div class="management-actions" id="activityTypeActions">
       <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
       <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
       <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
       <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
     </div>
 
-    <input 
-      type="text" 
-      id="customActivityTypeInput" 
-      placeholder="กรุณากรอกประเภทกิจกรรมเอง" 
-      style="display: none; width: 100%; margin: 5px 0; padding: 8px;" 
-    />
+    <input type="text" id="customActivityTypeInput" placeholder="กรุณากรอกประเภทกิจกรรมเอง" style="display: none;" />
   </div>
 </div>
             
@@ -248,29 +170,7 @@
   <input type="date" id="activity-date">
   <div class="display-date" id="display-date">(เลือกวันที่)</div>
 </div>
-
-<script>
-  const dateInput = document.getElementById('activity-date');
-  const display = document.getElementById('display-date');
-
-  function updateDisplay() {
-    if (dateInput.value) {
-      const date = new Date(dateInput.value);
-      const formatted = date.toLocaleDateString('th-TH'); // 30/10/2025
-      display.textContent = `(เลือกวันที่) ${formatted}`;
-      display.style.color = '#000'; // เปลี่ยนสีข้อความเมื่อมีวันที่
-    } else {
-      display.textContent = '(เลือกวันที่)';
-      display.style.color = '#999'; // สี placeholder
-    }
-  }
-
-  dateInput.addEventListener('input', updateDisplay);
-  updateDisplay();
-</script>
-
-
-                
+               
 <!-- ส่วนเวลาใหม่ -->
 <div class="time-inputs-section">
   <!-- ระยะเวลา -->
@@ -705,6 +605,24 @@
       }
     }
     
+    // ฟังก์ชันสำหรับการแสดง/ซ่อนเมนูจัดการ (เฉพาะส่วนฟันเฟือง)
+    function toggleManagementActions(actionsId) {
+      const actions = document.getElementById(actionsId);
+      if (actions.style.display === 'flex') {
+        actions.style.display = 'none';
+      } else {
+        // ซ่อนเมนูอื่นๆ ที่อาจเปิดอยู่
+        const allActions = document.querySelectorAll('.management-actions');
+        allActions.forEach(action => {
+          if (action.id !== actionsId) {
+            action.style.display = 'none';
+          }
+        });
+        
+        actions.style.display = 'flex';
+      }
+    }
+    
     // อัพเดทฟังก์ชัน checkCustomOption และ checkCustomActivityTypeOption
     function checkCustomOption(selectElement) {
       const customInput = document.getElementById('customPersonInput');
@@ -728,17 +646,6 @@
       }
     }
     
-    // อัพเดทฟังก์ชัน toggleManagementActions สำหรับเดสก์ท็อป
-    function toggleManagementActions(showId) {
-      const showElement = document.getElementById(showId);
-      
-      if (showElement.style.display === 'flex') {
-        showElement.style.display = 'none';
-      } else {
-        showElement.style.display = 'flex';
-      }
-    }
-    
     // ฟังก์ชันสำหรับแสดง/ซ่อนกิจกรรมทั้งหมด
     function toggleActivitiesVisibility() {
       const activitiesSection = document.getElementById('activitiesSection');
@@ -749,6 +656,31 @@
         activitiesSection.style.display = 'none';
       }
     }
+
+    // เพิ่ม Event Listeners สำหรับปุ่มฟันเฟืองเมื่อโหลดหน้าเว็บ
+    document.addEventListener('DOMContentLoaded', function() {
+      // สำหรับผู้ทำกิจกรรม
+      const togglePersonBtn = document.getElementById('togglePersonControls');
+      if (togglePersonBtn) {
+        togglePersonBtn.addEventListener('click', function() {
+          toggleManagementActions('personActions');
+        });
+      }
+      
+      // สำหรับประเภทกิจกรรม
+      const toggleActivityTypeBtn = document.getElementById('toggleActivityTypeControls');
+      if (toggleActivityTypeBtn) {
+        toggleActivityTypeBtn.addEventListener('click', function() {
+          toggleManagementActions('activityTypeActions');
+        });
+      }
+      
+      // ซ่อนเมนูจัดการทั้งหมดเมื่อเริ่มต้น
+      const allActions = document.querySelectorAll('.management-actions');
+      allActions.forEach(action => {
+        action.style.display = 'none';
+      });
+    });
   </script>
 </body>
 </html>

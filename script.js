@@ -213,15 +213,19 @@ function formatThaiTime(date) {
 }
 
 // === ฟังก์ชันตั้งค่าเวลาเริ่มต้นและระยะเวลาเริ่มต้น (ปรับปรุง) ===
+// === ฟังก์ชันตั้งค่าเวลาเริ่มต้นและระยะเวลาเริ่มต้น (แก้ไขใหม่) ===
 function setDefaultDateTime() {
-    // ใช้เวลาปัจจุบันของประเทศไทย
-    const thaiTime = getThaiTime();
-    const today = getThaiDateString();
+    // ใช้เวลาปัจจุบันปกติ (ไม่ต้องใช้เวลาไทย)
+    const now = new Date();
+    const today = now.toISOString().split('T')[0]; // ✅ ใช้ ISO string โดยตรง
     
     document.getElementById('activity-date').value = today;
     
-    // ตั้งค่าเวลาสิ้นสุดเป็นเวลาปัจจุบันของไทย
-    const endTime = formatThaiTime(thaiTime);
+    // ตั้งค่าเวลาสิ้นสุดเป็นเวลาปัจจุบัน
+    const endHours = now.getHours().toString().padStart(2, '0');
+    const endMinutes = now.getMinutes().toString().padStart(2, '0');
+    const endTime = `${endHours}:${endMinutes}`;
+    
     document.getElementById('end-time').value = endTime;
     
     // ตั้งค่าระยะเวลาเริ่มต้นเป็น 1 ชั่วโมง
@@ -231,8 +235,7 @@ function setDefaultDateTime() {
     // คำนวณเวลาเริ่มต้น
     calculateStartTime();
     
-    console.log(`⏰ ตั้งค่าเวลาสิ้นสุด (ไทย): ${endTime}, ระยะเวลา: 1 ชั่วโมง, วันที่: ${today}`);
-    console.log(`🌏 เวลาไทยปัจจุบัน: ${thaiTime.toLocaleString('th-TH')}`);
+    console.log(`⏰ ตั้งค่าเวลาสิ้นสุด: ${endTime}, ระยะเวลา: 1 ชั่วโมง, วันที่: ${today}`);
     
     // ✅ รีเซ็ตปุ่มแก้ไข
     document.getElementById('save-activity-button').classList.remove('hidden');
@@ -308,8 +311,6 @@ function handleActivityFormSubmit(event) {
             details
         };
         
-        document.getElementById('activity-message').textContent = 'อัปเดตกิจกรรมเรียบร้อยแล้ว';
-        document.getElementById('activity-message').style.color = 'green';
         editingActivityId = null;
         
         notifyActivitySaved(true);
@@ -328,8 +329,6 @@ function handleActivityFormSubmit(event) {
         };
 
         allActivities.push(newActivity);
-        document.getElementById('activity-message').textContent = 'บันทึกกิจกรรมเรียบร้อยแล้ว';
-        document.getElementById('activity-message').style.color = 'green';
         
         notifyActivitySaved(false);
     }
@@ -361,7 +360,7 @@ function resetActivityForm() {
     // ตั้งค่าวันที่และเวลาเริ่มต้นใหม่
     setDefaultDateTime();
     
-    // รีเซ็ตข้อความ
+    // ✅ รีเซ็ตข้อความให้เป็นค่าว่าง
     document.getElementById('activity-message').textContent = '';
     
     editingActivityId = null;
