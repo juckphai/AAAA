@@ -136,7 +136,7 @@
     <input type="text" id="customActivityTypeInput" placeholder="กรุณากรอกประเภทกิจกรรมเอง" style="display: none;" />
   </div>
 </div>
-            
+                
 <style>
   .date-wrapper {
     position: relative;
@@ -170,7 +170,7 @@
   <input type="date" id="activity-date">
   <div class="display-date" id="display-date">(เลือกวันที่)</div>
 </div>
-               
+                
 <!-- ส่วนเวลาใหม่ -->
 <div class="time-inputs-section">
   <!-- ระยะเวลา -->
@@ -214,9 +214,8 @@
     placeholder="เช่น การประชุมกับทีม, อ่านหนังสือบทที่ 5"
     style="width: 100%; max-width: 500px; margin: 0 auto; display: block;"
   ></textarea>
-</div>
-                
-                <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
+</div>                
+              <!-- ย้ายปุ่มแสดง/ซ่อนกิจกรรมทั้งหมดมาอยู่ที่นี่ -->
 <style>
   .button-container,
   .center {
@@ -410,40 +409,38 @@
   </div>
 </div>
                 
-                <!-- ปุ่มดูสรุป -->
-                <div class="summary-subsection">
-                  <div class="button-container" style="text-align: center; margin-top: 5px;">
-                    <button 
-                      type="button" 
-                      onclick="viewSummary()" 
-                      style="
-                        display: inline-block;
-                        background-color: #FF00FF;
-                        color: #fff;
-                        border: 2px solid #4527a0;
-                        border-radius: 30px;
-                        padding: 10px 15px;
-                        font-size: 16px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-                        transition: all 0.25s ease;
-                        width: auto;
-                        min-width: fit-content;
-                      "
-                      onmouseover="this.style.transform='scale(1.05)'"
-                      onmouseout="this.style.transform='scale(1)'"
-                    >
-                      ดูสรุป
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ปุ่มดูสรุป -->
+<div class="summary-subsection">
+  <div class="button-container" style="text-align: center; margin-top: 5px;">
+    <button 
+      type="button" 
+      onclick="viewSummary()" 
+      style="
+        display: inline-block;
+        background-color: #FF00FF;
+        color: #fff;
+        border: 2px solid #4527a0;
+        border-radius: 30px;
+        padding: 5px 15px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        transition: all 0.25s ease;
+        width: auto;
+        min-width: fit-content;
+      "
+      onmouseover="this.style.transform='scale(1.05)'"
+      onmouseout="this.style.transform='scale(1)'"
+    >
+      ดูสรุป
+    </button>
+  </div>
+</div>
+  </div>
+</div>
+</div>    
+</div>   
 
     <!-- ตารางกิจกรรม - ปรับปรุงให้เป็น Responsive -->
     <div id="activitiesSection" style="display: none; margin-top: 5px; width: 100%;">

@@ -34,7 +34,7 @@ body {
     background-color: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border: 1px solid #eee;
 }
 
@@ -751,7 +751,7 @@ tr:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     flex-wrap: wrap;
 }
 
@@ -809,7 +809,7 @@ tr:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .close-popup-btn {
@@ -836,7 +836,7 @@ tr:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .format-modal-buttons button {
@@ -904,7 +904,7 @@ tr:hover {
     border: 1px solid #b3d9ff;
     border-radius: 8px;
     padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -1010,7 +1010,7 @@ tr:hover {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     
     width: 100%;
     box-sizing: border-box;
@@ -1025,7 +1025,7 @@ tr:hover {
 
 .summaryResult h3 {
     color: #555;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
@@ -1909,7 +1909,7 @@ tr:hover td {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     flex-wrap: wrap;
 }
 
@@ -1965,7 +1965,7 @@ tr:hover td {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .close-popup-btn {
@@ -1992,7 +1992,7 @@ tr:hover td {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .format-modal-buttons button {
