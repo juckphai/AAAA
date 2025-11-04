@@ -3444,11 +3444,11 @@ footer div {
 .select-wrapper {
   min-height: 44px; 
 }
-/* ปรับปรุงโครงสร้างการจัดการ */
+/* ปรับปรุงโครงสร้างการจัดการใหม่ */
 .management-row.compact-layout {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 8px;
@@ -3458,32 +3458,56 @@ footer div {
 .management-container.full-width {
   flex: 1;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  position: relative;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .management-container.full-width .select-wrapper {
-  flex: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  width: 100%;
   margin-bottom: 0;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.management-container.full-width .select-wrapper select {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
 }
 
 .management-container.full-width .manage-btn-inline {
   flex-shrink: 0;
+  width: 36px;
+  height: 36px;
   margin: 0;
-  order: 2; /* ให้ปุ่มอยู่ด้านขวาของ dropdown */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .management-container.full-width .management-actions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  display: none;
+  width: 100%;
   margin-top: 5px;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.management-container.full-width .management-actions.active {
+  display: flex;
+}
+
+.management-container.full-width .management-actions button {
+  flex: 1;
+  min-width: 60px;
+  max-width: 100px;
+  height: 32px;
+  font-size: 12px;
+  padding: 4px 6px;
 }
 
 /* ปรับปรุงสำหรับมือถือ */
@@ -3495,17 +3519,61 @@ footer div {
   
   .management-container.full-width {
     width: 100%;
-    flex-direction: row;
-    align-items: center;
   }
   
   .management-container.full-width .select-wrapper {
     width: 100%;
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .management-container.full-width .select-wrapper select {
     flex: 1;
+    min-width: 120px;
   }
   
   .management-container.full-width .manage-btn-inline {
-    margin-left: 8px;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  
+  .management-container.full-width .management-actions {
+    width: 100%;
+    margin-top: 8px;
+    gap: 6px;
+  }
+  
+  .management-container.full-width .management-actions button {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 70px;
+    max-width: 100px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .management-container.full-width .select-wrapper {
+    gap: 6px;
+  }
+  
+  .management-container.full-width .select-wrapper select {
+    min-width: 100px;
+    font-size: 14px;
+  }
+  
+  .management-container.full-width .manage-btn-inline {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+  
+  .management-container.full-width .management-actions button {
+    flex: 1 1 calc(50% - 3px);
+    min-width: 65px;
+    font-size: 11px;
+    padding: 4px 6px;
   }
 }
 .form-section.no-border {
