@@ -2422,7 +2422,7 @@ footer div {
 @media (max-width: 768px) {
   .management-row {
     flex-direction: row; /* เปลี่ยนเป็นแถวเดียวกันบนมือถือ */
-    flex-wrap: wrap; /* อนุญาตให้ขึ้นบรรทัดใหม่ถ้าจอเล็กเกิน */
+    flex-wrap: nowrap; /* อนุญาตให้ขึ้นบรรทัดใหม่ถ้าจอเล็กเกิน */
     gap: 8px;
   }
   
@@ -3313,6 +3313,59 @@ footer div {
     width: 36px;
     height: 36px;
     font-size: 18px;
+  }
+}
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+  .select-wrapper {
+    width: 80%;
+    flex-direction: row; /* ← สำคัญ! ให้อยู่แถวเดียวกัน */
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .select-wrapper select {
+    flex: 1;
+    min-width: 120px; /* ← ความกว้างขั้นต่ำ */
+  }
+  
+  .manage-btn-inline {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin: 0; /* ← ลบ margin ที่อาจมี */
+  }
+  
+  .management-actions {
+    display: none;
+    justify-content: center;
+    gap: 6px;
+    margin: 5px auto 10px;
+    width: 90%;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  
+  .management-actions.active {
+    display: flex;
+  }
+  
+  .management-actions button {
+    flex: 1 1 40%;
+    min-width: 60px;
+    height: 36px;
+    font-size: 12px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+  
+  /* สำหรับ input custom */
+  #customPersonInput,
+  #customActivityTypeInput {
+    width: 90%;
+    margin: 5px auto;
   }
 }
 /* ===== NO BORDER STYLING ===== */
