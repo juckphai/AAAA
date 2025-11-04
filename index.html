@@ -103,8 +103,10 @@
         <option value="">เลือกผู้ทำกิจกรรม</option>
         <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
-      <button class="manage-btn-inline" id="togglePersonControls" title="จัดการผู้บอก">⚙️</button>
     </div>
+    
+    <!-- ย้ายปุ่มฟันเฟืองออกมาข้างนอก -->
+    <button class="manage-btn-inline" id="togglePersonControls" title="จัดการผู้บอก" type="button">⚙️</button>
 
     <div class="management-actions" id="personActions">
       <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
@@ -123,8 +125,10 @@
         <option value="">เลือกประเภทกิจกรรม</option>
         <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
-      <button class="manage-btn-inline" id="toggleActivityTypeControls" title="จัดการหัวข้อ">⚙️</button>
     </div>
+    
+    <!-- ย้ายปุ่มฟันเฟืองออกมาข้างนอก -->
+    <button class="manage-btn-inline" id="toggleActivityTypeControls" title="จัดการหัวข้อ" type="button">⚙️</button>
 
     <div class="management-actions" id="activityTypeActions">
       <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
@@ -643,7 +647,13 @@
     }
     
     // ฟังก์ชันสำหรับการแสดง/ซ่อนเมนูจัดการ (เฉพาะส่วนฟันเฟือง)
-    function toggleManagementActions(actionsId) {
+    function toggleManagementActions(event, actionsId) {
+      // ป้องกันไม่ให้ event ไปกระตุ้นฟอร์มหลัก
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
       const actions = document.getElementById(actionsId);
       if (actions.style.display === 'flex') {
         actions.style.display = 'none';
@@ -699,16 +709,16 @@
       // สำหรับผู้ทำกิจกรรม
       const togglePersonBtn = document.getElementById('togglePersonControls');
       if (togglePersonBtn) {
-        togglePersonBtn.addEventListener('click', function() {
-          toggleManagementActions('personActions');
+        togglePersonBtn.addEventListener('click', function(event) {
+          toggleManagementActions(event, 'personActions');
         });
       }
       
       // สำหรับประเภทกิจกรรม
       const toggleActivityTypeBtn = document.getElementById('toggleActivityTypeControls');
       if (toggleActivityTypeBtn) {
-        toggleActivityTypeBtn.addEventListener('click', function() {
-          toggleManagementActions('activityTypeActions');
+        toggleActivityTypeBtn.addEventListener('click', function(event) {
+          toggleManagementActions(event, 'activityTypeActions');
         });
       }
       
@@ -716,6 +726,25 @@
       const allActions = document.querySelectorAll('.management-actions');
       allActions.forEach(action => {
         action.style.display = 'none';
+      });
+
+      // เพิ่ม event listener เพื่อซ่อนเมนูเมื่อคลิกนอกพื้นที่
+      document.addEventListener('click', function(event) {
+        const allActions = document.querySelectorAll('.management-actions');
+        const isClickInsidePersonActions = document.getElementById('personActions')?.contains(event.target);
+        const isClickInsideActivityTypeActions = document.getElementById('activityTypeActions')?.contains(event.target);
+        const isClickOnPersonToggle = event.target.closest('#togglePersonControls');
+        const isClickOnActivityTypeToggle = event.target.closest('#toggleActivityTypeControls');
+        
+        if (!isClickInsidePersonActions && !isClickOnPersonToggle) {
+          const personActions = document.getElementById('personActions');
+          if (personActions) personActions.style.display = 'none';
+        }
+        
+        if (!isClickInsideActivityTypeActions && !isClickOnActivityTypeToggle) {
+          const activityTypeActions = document.getElementById('activityTypeActions');
+          if (activityTypeActions) activityTypeActions.style.display = 'none';
+        }
       });
     });
   </script>
