@@ -42,22 +42,7 @@
     <div style="text-align: center; margin-top: 2px;">
       <div class="container">
         <div style="width: 100%; max-width: 600px; margin: 10px auto;">
-<h1 style="
-  text-align: center;
-  color: white;
-  font-size: clamp(0.8rem, 3vw, 1.2rem);
-  background: linear-gradient(135deg, #4a90e2, #005bea);
-  padding: 5px 10px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: inline-block;
-  margin: 5px auto;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-">
-  บันทึกกิจกรรมประจำวัน
-</h1>
-
-          
+       
           <!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
           <div style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
             <div class="button-container" 
@@ -85,7 +70,7 @@
                 onmouseout="this.style.backgroundColor='#196B24'"
                 ontouchstart="this.style.backgroundColor='#145a1d'"
                 ontouchend="this.style.backgroundColor='#196B24'">
-                📂 โหลดข้อมูลที่บันทึกไว้
+                📂 โหลดข้อมูลกิจกรรมที่บันทึกไว้
               </button>
 
               <input 
@@ -112,10 +97,9 @@
   <!-- ส่วนจัดการผู้ทำกิจกรรม -->
   <div class="management-container full-width" style="margin-bottom: 2px;">
     <div class="select-wrapper" style="margin-bottom: 2px;">
-      <select id="personSelect" onchange="checkCustomOption(this)" required 
+      <select id="personSelect" required 
               style="width: 100%; font-size: clamp(0.5rem, 2.5vw, 1rem);">
         <option value="">เลือกผู้ทำกิจกรรม</option>
-        <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
       <button class="manage-btn-inline" id="togglePersonControls" title="จัดการผู้บอก" type="button"
               style="font-size: clamp(0.5rem, 2.5vw, 1rem);">⚙️</button>
@@ -127,18 +111,14 @@
       <button type="button" id="deletePersonBtn" class="delete-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">ลบ</button>
       <button type="button" id="resetPersonBtn" class="reset-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">คืนค่า</button>
     </div>
-
-    <input type="text" id="customPersonInput" placeholder="กรุณากรอกชื่อผู้ทำกิจกรรมเอง"
-           style="display: none; margin-top: 2px; font-size: clamp(0.5rem, 2.5vw, 1rem);" />
   </div>
 
   <!-- ส่วนจัดการประเภทกิจกรรม -->
   <div class="management-container full-width" style="margin-bottom: 2px;">
     <div class="select-wrapper" style="margin-bottom: 2px;">
-      <select id="activityTypeSelect" onchange="checkCustomActivityTypeOption(this)" required
+      <select id="activityTypeSelect" required
               style="width: 100%; font-size: clamp(0.5rem, 2.5vw, 1rem);">
         <option value="">เลือกประเภทกิจกรรม</option>
-        <option value="custom">อื่นๆ (พิมพ์เอง)</option>
       </select>
       <button class="manage-btn-inline" id="toggleActivityTypeControls" title="จัดการหัวข้อ" type="button"
               style="font-size: clamp(0.5rem, 2.5vw, 1rem);">⚙️</button>
@@ -150,9 +130,6 @@
       <button type="button" id="deleteActivityTypeBtn" class="delete-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">ลบ</button>
       <button type="button" id="resetActivityTypeBtn" class="reset-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">คืนค่า</button>
     </div>
-
-    <input type="text" id="customActivityTypeInput" placeholder="กรุณากรอกประเภทกิจกรรมเอง"
-           style="display: none; margin-top: 2px; font-size: clamp(0.5rem, 2.5vw, 1rem);" />
   </div>
 </div>
       
@@ -642,29 +619,6 @@
         });
         
         actions.style.display = 'flex';
-      }
-    }
-    
-    // อัพเดทฟังก์ชัน checkCustomOption และ checkCustomActivityTypeOption
-    function checkCustomOption(selectElement) {
-      const customInput = document.getElementById('customPersonInput');
-        
-      if (selectElement.value === 'custom') {
-        customInput.style.display = 'block';
-        customInput.focus();
-      } else {
-        customInput.style.display = 'none';
-      }
-    }
-    
-    function checkCustomActivityTypeOption(selectElement) {
-      const customInput = document.getElementById('customActivityTypeInput');
-        
-      if (selectElement.value === 'custom') {
-        customInput.style.display = 'block';
-        customInput.focus();
-      } else {
-        customInput.style.display = 'none';
       }
     }
     

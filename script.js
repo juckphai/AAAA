@@ -213,7 +213,6 @@ function formatThaiTime(date) {
 }
 
 // === ฟังก์ชันตั้งค่าเวลาเริ่มต้นและระยะเวลาเริ่มต้น (ปรับปรุง) ===
-// === ฟังก์ชันตั้งค่าเวลาเริ่มต้นและระยะเวลาเริ่มต้น (แก้ไขใหม่) ===
 function setDefaultDateTime() {
     // ใช้เวลาปัจจุบันปกติ (ไม่ต้องใช้เวลาไทย)
     const now = new Date();
@@ -380,7 +379,7 @@ function autoSelectIfSingle() {
     const personDropdown = document.getElementById('personSelect');
     
     const realPersonOptions = Array.from(personDropdown.options).filter(opt => 
-        opt.value !== '' && opt.value !== 'custom'
+        opt.value !== '' // ✅ ลบการตรวจสอบ 'custom'
     );
     
     if (realPersonOptions.length === 1) {
@@ -395,7 +394,7 @@ function autoSelectIfSingle() {
     const activityTypeDropdown = document.getElementById('activityTypeSelect');
     
     const realActivityTypeOptions = Array.from(activityTypeDropdown.options).filter(opt => 
-        opt.value !== '' && opt.value !== 'custom'
+        opt.value !== '' // ✅ ลบการตรวจสอบ 'custom'
     );
     
     if (realActivityTypeOptions.length === 1) {
@@ -508,20 +507,12 @@ function populatePersonDropdown(dropdownId) {
         dropdown.appendChild(option);
     });
     
-    // เพิ่มตัวเลือก "อื่นๆ" เฉพาะเมื่อมีตัวเลือกมากกว่า 1
-    if (allPersons.length > 1) {
-        const customOption = document.createElement('option');
-        customOption.value = 'custom';
-        customOption.textContent = 'อื่นๆ (กรุณากรอกเอง)';
-        dropdown.appendChild(customOption);
-    }
+    // ✅ ไม่ต้องเพิ่มตัวเลือก "อื่นๆ" อีกต่อไป
     
-    // ✅ เรียกใช้ฟังก์ชันเลือกอัตโนมัติหลังจากโหลดข้อมูลเสร็จ
     setTimeout(() => {
         autoSelectIfSingle();
     }, 0);
     
-    // ✅ อัปเดตการแสดงผลผู้ทำกิจกรรมปัจจุบัน
     updateCurrentPersonDisplay();
     
     // คืนค่าที่เลือกไว้เดิม (ถ้ายังมีอยู่)
@@ -557,15 +548,8 @@ function populateActivityTypeDropdowns(dropdownId) {
         dropdown.appendChild(option);
     });
     
-    // เพิ่มตัวเลือก "อื่นๆ" เฉพาะเมื่อมีตัวเลือกมากกว่า 1
-    if (allActivityTypes.length > 1) {
-        const customOption = document.createElement('option');
-        customOption.value = 'custom';
-        customOption.textContent = 'อื่นๆ (กรุณากรอกเอง)';
-        dropdown.appendChild(customOption);
-    }
+    // ✅ ไม่ต้องเพิ่มตัวเลือก "อื่นๆ" อีกต่อไป
     
-    // ✅ เรียกใช้ฟังก์ชันเลือกอัตโนมัติหลังจากโหลดข้อมูลเสร็จ
     setTimeout(() => {
         autoSelectIfSingle();
     }, 0);
@@ -588,7 +572,7 @@ function editPerson() {
     const dropdown = document.getElementById('personSelect');
     const selectedValue = dropdown.value;
     
-    if (!selectedValue || selectedValue === 'custom') {
+    if (!selectedValue) {
         alert('กรุณาเลือกผู้ทำกิจกรรมที่ต้องการแก้ไข');
         return;
     }
@@ -603,7 +587,7 @@ function deletePerson() {
     const dropdown = document.getElementById('personSelect');
     const selectedValue = dropdown.value;
     
-    if (!selectedValue || selectedValue === 'custom') {
+    if (!selectedValue) {
         alert('กรุณาเลือกผู้ทำกิจกรรมที่ต้องการลบ');
         return;
     }
@@ -744,7 +728,7 @@ function editActivityType() {
     const dropdown = document.getElementById('activityTypeSelect');
     const selectedValue = dropdown.value;
     
-    if (!selectedValue || selectedValue === 'custom') {
+    if (!selectedValue) {
         alert('กรุณาเลือกประเภทกิจกรรมที่ต้องการแก้ไข');
         return;
     }
@@ -759,7 +743,7 @@ function deleteActivityType() {
     const dropdown = document.getElementById('activityTypeSelect');
     const selectedValue = dropdown.value;
     
-    if (!selectedValue || selectedValue === 'custom') {
+    if (!selectedValue) {
         alert('กรุณาเลือกประเภทกิจกรรมที่ต้องการลบ');
         return;
     }
@@ -910,24 +894,6 @@ function toggleManagementActions(actionsId, otherActionsId) {
     }
     
     console.log(`🔄 สลับการแสดงผล ${actionsId}: ${actions.style.display}`);
-}
-
-// === ฟังก์ชันจัดการประเภทกิจกรรม (รูปแบบฟันเฟือง) ===
-function checkCustomActivityTypeOption(select) {
-    if (select.value === 'custom') {
-        document.getElementById('customActivityTypeInput').style.display = 'block';
-    } else {
-        document.getElementById('customActivityTypeInput').style.display = 'none';
-    }
-}
-
-// === ฟังก์ชันจัดการผู้ทำกิจกรรม (รูปแบบฟันเฟือง) ===
-function checkCustomOption(select) {
-    if (select.value === 'custom') {
-        document.getElementById('customPersonInput').style.display = 'block';
-    } else {
-        document.getElementById('customPersonInput').style.display = 'none';
-    }
 }
 
 // === ฟังก์ชันจัดการกิจกรรม ===
@@ -2358,7 +2324,8 @@ function exportSummaryToXLSX() {
     notifyDataManagement('export');
 }
 
-// === ฟังก์ชันสำหรับการพิมพ์ PDF ที่ปรับปรุงแล้ว ===
+
+// === ฟังก์ชันสำหรับการพิมพ์ PDF ที่ปรับปรุงแล้ว (ไม่ใช้ popup) ===
 function exportSummaryToPDF() {
     const { type, activities, startDate, endDate, personFilter } = summaryContext;
     
@@ -2480,7 +2447,7 @@ function exportSummaryToPDF() {
                     font-family: Arial, sans-serif; 
                     margin: 10mm 3mm 5mm 8mm;
                     padding: 0;
-                    color: #000;
+                    color: blue;
                     line-height: 1.0;
                     font-size: 7px;
                     text-align: center;
@@ -2541,11 +2508,12 @@ function exportSummaryToPDF() {
                     margin: 2px 0;
                     font-size: 0.6rem;
                     table-layout: fixed;
+                    color: blue;
                 }
                 
                 th { 
                     background-color: #007bff;
-                    color: white;
+                    color: blue;
                     padding: 1px;
                     border: 0.5px solid #ddd;
                     text-align: center;
@@ -2561,6 +2529,7 @@ function exportSummaryToPDF() {
                     font-size: 0.55rem;
                     line-height: 1.0;
                     height: 7px;
+                    color: blue;
                 }
 
                 /* ตั้งค่าหน้ากระดาษ */
@@ -2572,6 +2541,7 @@ function exportSummaryToPDF() {
                 /* ตารางแบบกะทัดรัดมากสำหรับกิจกรรมทั้งหมด */
                 .super-compact-table {
                     font-size: 0.5rem;
+                    color: blue;
                 }
                 
                 .super-compact-table th,
@@ -2579,6 +2549,7 @@ function exportSummaryToPDF() {
                     padding: 0.5px;
                     font-size: 0.5rem;
                     height: 6px;
+                    color: blue;
                 }
 
                 /* ปรับความกว้างคอลัมน์ให้พอดี */
@@ -2620,7 +2591,7 @@ function exportSummaryToPDF() {
 
                 <!-- ส่วนสรุปตามประเภทกิจกรรม -->
                 <div class="no-break">
-                    <h4 style="color: #0056b3; margin: 1px 0; font-size: 0.7rem;">
+                    <h4 style="color: blue; margin: 1px 0; font-size: 0.7rem;">
                         สรุปตามประเภทกิจกรรม
                     </h4>
                     <table>
@@ -2653,7 +2624,7 @@ function exportSummaryToPDF() {
     if (type === 'brief-summary') {
         printHTML += `
             <div class="no-break">
-                <h4 style="color: #0056b3; margin: 1px 0; font-size: 0.7rem;">
+                <h4 style="color: blue; margin: 1px 0; font-size: 0.7rem;">
                     กิจกรรมล่าสุด (15 รายการ)
                 </h4>
                 <table>
@@ -2699,7 +2670,7 @@ function exportSummaryToPDF() {
         // สำหรับสรุปแบบเต็ม - ใช้ตารางแบบกะทัดรัดมาก
         printHTML += `
             <div class="no-break">
-                <h4 style="color: #0056b3; margin: 1px 0; font-size: 0.7rem;">
+                <h4 style="color: blue; margin: 1px 0; font-size: 0.7rem;">
                     รายการกิจกรรมทั้งหมด (${activities.length} รายการ)
                 </h4>
                 <table class="super-compact-table">
@@ -2748,36 +2719,77 @@ function exportSummaryToPDF() {
     
     printHTML += `
             </div>
-            <div style="font-size: 5px; margin-top: 1px; text-align: center;">
+            <div style="font-size: 5px; margin-top: 1px; text-align: center; color: blue;">
                 สร้างเมื่อ: ${new Date().toLocaleDateString('th-TH')} - ระบบบันทึกกิจกรรม
             </div>
         </body>
         </html>
     `;
     
-    // สร้างหน้าต่างใหม่สำหรับพิมพ์
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-        alert('กรุณาอนุญาตป๊อปอัพสำหรับการพิมพ์ PDF');
-        return;
-    }
-    
-    // ตั้งชื่อ title ให้กับหน้าต่าง (ช่วยในการตั้งชื่อไฟล์เมื่อบันทึก)
-    printWindow.document.title = fileName;
-    
-    // เขียน HTML ไปยังหน้าต่างใหม่
-    printWindow.document.open();
-    printWindow.document.write(printHTML);
-    printWindow.document.close();
-    
-    // พิมพ์อัตโนมัติเมื่อโหลดหน้าเสร็จ
-    printWindow.onload = function() {
-        setTimeout(function() {
-            printWindow.print();
+    // วิธีที่ 1: พิมพ์โดยตรงในหน้าเดิม (ไม่ใช้ popup)
+    try {
+        // สร้าง iframe แทนการใช้ window.open
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(printHTML);
+        iframeDoc.close();
+        
+        // พิมพ์หลังจากโหลดเนื้อหาเสร็จ
+        setTimeout(() => {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+            
+            // ลบ iframe หลังจากพิมพ์เสร็จ
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 1000);
+            
         }, 500);
-    };
-    
-    showToast('กำลังเปิดหน้าต่างพิมพ์ PDF...', 'success');
+        
+        showToast('กำลังเตรียมพิมพ์ PDF...', 'success');
+        
+    } catch (error) {
+        console.error('Error printing PDF:', error);
+        
+        // วิธีที่ 2: ใช้วิธีพิมพ์ธรรมดาในกรณีที่วิธีแรกไม่ทำงาน
+        try {
+            const printWindow = window.open('', '_blank');
+            if (printWindow) {
+                printWindow.document.open();
+                printWindow.document.write(printHTML);
+                printWindow.document.close();
+                printWindow.print();
+            } else {
+                // วิธีที่ 3: แสดง HTML ในหน้าเดิมและพิมพ์
+                const printSection = document.createElement('div');
+                printSection.innerHTML = printHTML;
+                printSection.style.position = 'fixed';
+                printSection.style.top = '0';
+                printSection.style.left = '0';
+                printSection.style.width = '100%';
+                printSection.style.height = '100%';
+                printSection.style.zIndex = '9999';
+                printSection.style.backgroundColor = 'white';
+                printSection.style.overflow = 'auto';
+                
+                document.body.appendChild(printSection);
+                
+                setTimeout(() => {
+                    window.print();
+                    setTimeout(() => {
+                        document.body.removeChild(printSection);
+                    }, 100);
+                }, 500);
+            }
+        } catch (fallbackError) {
+            console.error('Fallback printing also failed:', fallbackError);
+            alert('ไม่สามารถพิมพ์ PDF ได้ กรุณาตรวจสอบการตั้งค่าป้องกันป๊อปอัพของเบราว์เซอร์');
+        }
+    }
 }
 // ฟังก์ชันเสริมสำหรับการพิมพ์ PDF
 function getCurrentDateTimeThai() {
