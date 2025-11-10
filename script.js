@@ -2116,41 +2116,41 @@ function displaySummary() {
     let personSummaryText = '';
     if (allPersonsInSystem.length === 1) {
         // ✅ กรณีมีผู้ทำกิจกรรมแค่คนเดียวในระบบ: แสดงชื่อคนนั้นเลย
-        personSummaryText = `สรุปกิจกรรมของ: ${allPersonsInSystem[0].name}`;
+        personSummaryText = `สรุปกิจกรรมของ : ${allPersonsInSystem[0].name}`;
     } else if (allPersons.length > 0) {
         // กรณีมีหลายคน: แสดงตามที่เลือก
-        personSummaryText = `สรุปกิจกรรมของ: ${personFilter === 'all' ? 'ทุกคน' : allPersons.join(', ')}`;
+        personSummaryText = `สรุปกิจกรรมของ : ${personFilter === 'all' ? 'ทุกคน' : allPersons.join(', ')}`;
     } else {
         personSummaryText = 'ไม่มีข้อมูลผู้ทำกิจกรรม';
     }
 
     // สร้าง HTML หลัก
     let summaryHTML = `
-        <div class="summaryResult" style="font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 8px; border: 1.5px solid #F660EB; border-radius: 15px; background-color: #FAFAD2; text-align: center; line-height: 1.0; width: 100%; box-sizing: border-box;">
+        <div class="summaryResult" style="font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 8px; border: 1.5px solid #F660EB; border-radius: 10px; background-color: #FAFAD2; text-align: center; line-height: 1.0; width: 100%; box-sizing: border-box;">
             <div style="text-align: center; margin: 2px 0;">
-                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.0; margin: 2px 0;">
+                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.2; margin: 2px 0;">
                     ${personSummaryText}
                 </h3>
             </div>
             <div style="text-align: center; margin: 2px 0;">
-                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.0; margin: 2px 0;">
+                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.2; margin: 2px 0;">
                     สรุปวันที่ ${getCurrentDateTimeThai().replace(/(\d{2}\/\d{2}\/\d{4}) (\d{2}:\d{2})/, '$1 เวลา $2 น.')}
                 </h3>
             </div>
             <div style="text-align: center; margin: 2px 0;">
-                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.0; margin: 2px 0;">
+                <h3 style="color: blue; font-size: 0.9rem; line-height: 1.2; margin: 2px 0;">
                     ${dateRangeText}
                 </h3>
             </div>
 
             <!-- ส่วนสรุปจำนวนวัน - แก้ไขให้แสดงในทุกกรณี -->
             <div style="background-color: #FAFAD2; padding: 5px; margin: 5px 0; text-align: center; color: blue;">
-                <h4 style="margin: 5px 0; font-size: 0.9rem; line-height: 1.0;">สรุปจำนวนวัน</h4>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.2;">• จำนวนวันทั้งหมด: ${totalDays} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.2;">• จำนวนวันที่มีกิจกรรม: ${daysWithActivities} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.2;">• วันที่ไม่มีกิจกรรม: ${daysWithoutActivities} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.2;">• เวลาเฉลี่ยต่อวัน: ${formatDuration(avgDurationPerDay)}</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.2;">• รวมเวลาทั้งหมด: ${formatDuration(totalDurationAll)}</p>
+                <h4 style="margin: 5px 0; font-size: 0.9rem; line-height: 1.2;">สรุปจำนวนวัน</h4>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันทั้งหมด: ${totalDays} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันที่มีกิจกรรม: ${daysWithActivities} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• วันที่ไม่มีกิจกรรม: ${daysWithoutActivities} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• เวลาเฉลี่ยต่อวัน: ${formatDuration(avgDurationPerDay)}</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• รวมเวลาทั้งหมด: ${formatDuration(totalDurationAll)}</p>
             </div>
 
             <h4 style="color: #0056b3; margin: 5px 0; font-size: 0.9rem;">
