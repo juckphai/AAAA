@@ -2365,11 +2365,11 @@ function displaySummary() {
             <!-- ส่วนสรุปจำนวนวัน - แก้ไขให้แสดงในทุกกรณี -->
             <div style="background-color: #FAFAD2; padding: 5px; margin: 5px 0; text-align: center; color: blue;">
                 <h4 style="margin: 5px 0; font-size: 0.9rem; line-height: 1.2;">สรุปจำนวนวัน</h4>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันทั้งหมด: ${totalDays} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันที่มีกิจกรรม: ${daysWithActivities} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• วันที่ไม่มีกิจกรรม: ${daysWithoutActivities} วัน</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• เวลาเฉลี่ยต่อวัน: ${formatDuration(avgDurationPerDay)}</p>
-                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• รวมเวลาทั้งหมด: ${formatDuration(totalDurationAll)}</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันทั้งหมด : ${totalDays} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• จำนวนวันที่มีกิจกรรม : ${daysWithActivities} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• วันที่ไม่มีกิจกรรม : ${daysWithoutActivities} วัน</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• เวลาเฉลี่ยต่อวัน : ${formatDuration(avgDurationPerDay)}</p>
+                <p style="margin: 3px 0; font-size: 0.9rem; line-height: 1.0;">• รวมเวลาทั้งหมด : ${formatDuration(totalDurationAll)}</p>
             </div>
 
             <h4 style="color: #0056b3; margin: 5px 0; font-size: 0.9rem;">
