@@ -143,15 +143,15 @@
   </label>
   
   <input type="date" id="activity-date" 
-         style="font-size: clamp(0.8rem, 2.5vw, 1rem); padding: 4px; max-width: 250px; width: 70%;">
+         style="font-size: clamp(0.8rem, 2.5vw, 1rem); padding: 4px; max-width: 250px; width: 60%;">
 </div>
-
 
 <!-- ส่วนเวลา -->
 <div class="time-inputs-section">
   <div class="time-input-group duration-block">
-    <div class="date-wrapper">
-      <div class="display-date">ระยะเวลา</div>
+    <div class="date-wrapper duration-wrapper">
+      <label class="display-date">ระยะเวลา :</label>
+
       <div class="duration-inputs-container">
         <div class="duration-input-group">
           <input type="number" id="duration-hours" min="0" max="23" value="1" placeholder="ชม." required>
@@ -165,55 +165,52 @@
     </div>
   </div>
 
-<style>
-  /* จัดให้อยู่กึ่งกลางแนวนอนเท่านั้น */
-  body {
-    margin: 0;
-  }
 
-  /* กล่องหลักกินเต็มหน้าจอและจัดกึ่งกลางแนวนอน */
-  .time-inputs-section {
+<style>
+  /* ---------------------------
+     ปรับให้ "ระยะเวลา" เหมือน "เลือกวันที่"
+  --------------------------- */
+  .duration-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px; /* ระยะห่างเล็กน้อยระหว่าง label กับช่องกรอก */
     width: 100%;
-    text-align: center;
-    margin-top: 2px; /* ระยะจากขอบบน */
+    margin-bottom: 2px;
   }
 
   .display-date {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    margin-bottom: 2px;
-    font-weight: 600;
+    font-size: clamp(0.8rem, 2.5vw, 1rem); /* ✅ ขนาดเท่ากับ "เลือกวันที่" */
+    white-space: nowrap;
+    font-weight: normal;
+    color: #000;
   }
 
-  /* จัดให้ช่องอินพุตอยู่กลางแนวนอน */
   .duration-inputs-container {
-    display: inline-flex; /* ใช้ inline-flex เพื่อให้ text-align ทำงานได้ */
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
   }
 
   .duration-input-group {
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex: 1 1 150px; /* ให้ขยาย/ย่อได้อัตโนมัติ */
-    max-width: 300px; /* จำกัดไม่ให้กว้างเกินไป */
-    min-width: 100px; /* ไม่ให้เล็กเกินไป */
-    box-sizing: border-box;
+    gap: 2px;
   }
 
   .duration-input-group input {
-    width: 100%;
-    padding: 8px;
+    width: 90px;
+    padding: 10px;
     text-align: center;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
     border-radius: 6px;
     border: 1px solid #ccc;
     box-sizing: border-box;
   }
 
   .duration-label {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
     white-space: nowrap;
   }
 </style>
