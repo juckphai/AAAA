@@ -583,6 +583,7 @@ function editPerson() {
     document.getElementById('personModal').style.display = 'flex';
 }
 
+// === ฟังก์ชันจัดการผู้ทำกิจกรรม ===
 function deletePerson() {
     const dropdown = document.getElementById('personSelect');
     const selectedValue = dropdown.value;
@@ -593,11 +594,14 @@ function deletePerson() {
     }
     
     // ตรวจสอบว่ามีกิจกรรมที่ใช้ผู้ทำกิจกรรมนี้อยู่หรือไม่
-    const isUsed = checkPersonUsage(selectedValue);
+    const activityCount = getActivityCountByPerson(selectedValue);
     
     let confirmMessage = `คุณแน่ใจว่าต้องการลบ "${selectedValue}" ใช่หรือไม่?`;
-    if (isUsed) {
-        confirmMessage += `\n\n⚠️  คำเตือน: มีกิจกรรมที่ใช้ผู้ทำกิจกรรมนี้อยู่ ${getActivityCountByPerson(selectedValue)} รายการ กิจกรรมเหล่านี้จะยังคงแสดงชื่อ "${selectedValue}" แต่อาจไม่สามารถกรองหรือสรุปได้อย่างถูกต้อง`;
+    
+    if (activityCount > 0) {
+        confirmMessage += `\n\n⚠️  คำเตือน: มีกิจกรรมที่ใช้ผู้ทำกิจกรรมนี้อยู่ ${activityCount} รายการ\n`;
+        confirmMessage += `กิจกรรมเหล่านี้จะถูกลบออกทั้งหมด!\n\n`;
+        confirmMessage += `ถ้าต้องการเก็บกิจกรรมไว้ กรุณาเปลี่ยนผู้ทำกิจกรรมก่อนลบ`;
     }
     
     if (!confirm(confirmMessage)) {
@@ -605,8 +609,24 @@ function deletePerson() {
     }
     
     let allPersons = getFromLocalStorage('persons') || [];
+    
+    // ลบผู้ทำกิจกรรมออกจากฐานข้อมูล
     allPersons = allPersons.filter(person => person.name !== selectedValue);
     saveToLocalStorage('persons', allPersons);
+    
+    // ⭐⭐ ปรับปรุงส่วนนี้: ลบกิจกรรมทั้งหมดที่ใช้ผู้ทำกิจกรรมนี้ ⭐⭐
+    if (activityCount > 0) {
+        let allActivities = getFromLocalStorage('activities') || [];
+        const initialActivityCount = allActivities.length;
+        
+        // กรองเอาเฉพาะกิจกรรมที่ไม่ได้ใช้ผู้ทำกิจกรรมนี้
+        allActivities = allActivities.filter(activity => activity.person !== selectedValue);
+        
+        saveToLocalStorage('activities', allActivities);
+        
+        const deletedActivityCount = initialActivityCount - allActivities.length;
+        console.log(`🗑️ ลบกิจกรรมที่เกี่ยวข้อง: ${deletedActivityCount} รายการ`);
+    }
     
     populatePersonDropdown('personSelect');
     
@@ -617,6 +637,16 @@ function deletePerson() {
     
     // ✅ รีเซ็ตการแสดงผลอัตโนมัติ
     resetAutoSelectionDisplay('person');
+    
+    // ✅ โหลดกิจกรรมใหม่เพื่อแสดงข้อมูลที่อัปเดต
+    loadUserActivities();
+    
+    // ✅ แสดงข้อความสรุป
+    if (activityCount > 0) {
+        showToast(`ลบผู้ทำกิจกรรม "${selectedValue}" และกิจกรรมที่เกี่ยวข้อง ${activityCount} รายการเรียบร้อยแล้ว`, 'success');
+    } else {
+        showToast(`ลบผู้ทำกิจกรรม "${selectedValue}" เรียบร้อยแล้ว`, 'success');
+    }
 }
 
 function savePerson(e) {
