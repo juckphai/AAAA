@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>บันทึกกิจกรรมประจำวัน</title>
 
-  <!-- PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4a90e2"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,17 +12,14 @@
   <meta name="apple-mobile-web-app-title" content="บันทึกกิจกรรมประจำวัน">
   <link rel="apple-touch-icon" href="./192.png">
 
-  <!-- External Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container" style="padding:0; border:none; background:none;">
     
-    <!-- ส่วนแนะนำการติดตั้งแอป -->
     <div id="install-guide" class="install-prompt">
       <span class="close-prompt" onclick="hideInstallPromptPermanently()">&times;</span>
       <h4>📱 ติดตั้งแอปนี้ลงในเครื่องของคุณ!</h4>
@@ -38,12 +34,10 @@
       </div>
     </div>
 
-    <!-- ส่วนหัวแอปพลิเคชัน -->
     <div style="text-align: center; margin-top: 2px;">
       <div class="container">
         <div style="width: 100%; max-width: 600px; margin: 10px auto;">
        
-          <!-- ปุ่มกู้คืนข้อมูลที่ย้ายมาอยู่ด้านบน -->
           <div style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
             <div class="button-container" 
                  style="display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; padding: 0 10px;">
@@ -82,7 +76,6 @@
             </div>
           </div>
           
-<!-- เมนูใหญ่ 1: เพิ่มกิจกรรม -->
 <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
   <span>➕ เพิ่มกิจกรรม</span>
   <span class="menu-icon">▼</span>
@@ -92,9 +85,7 @@
   <div class="form-section no-border">
     <form id="activity-form">
       
-<!-- ส่วนจัดการผู้ทำกิจกรรมและประเภทกิจกรรม -->
 <div class="management-row compact-layout" style="margin-bottom: 2px; font-size: clamp(0.5rem, 2vw, 1rem);">
-  <!-- ส่วนจัดการผู้ทำกิจกรรม -->
   <div class="management-container full-width" style="margin-bottom: 2px;">
     <div class="select-wrapper" style="margin-bottom: 2px;">
       <select id="personSelect" required 
@@ -113,7 +104,6 @@
     </div>
   </div>
 
-  <!-- ส่วนจัดการประเภทกิจกรรม -->
   <div class="management-container full-width" style="margin-bottom: 2px;">
     <div class="select-wrapper" style="margin-bottom: 2px;">
       <select id="activityTypeSelect" required
@@ -133,7 +123,6 @@
   </div>
 </div>
       
-<!-- ส่วนวันที่ -->
 <div class="date-wrapper" 
      style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px; width: 100%;">
   
@@ -146,7 +135,6 @@
          style="font-size: clamp(0.8rem, 2.5vw, 1rem); padding: 4px; max-width: 250px; width: 60%;">
 </div>
 
-<!-- ส่วนเวลา -->
 <div class="time-inputs-section">
   <div class="time-input-group duration-block">
     <div class="date-wrapper duration-wrapper">
@@ -231,7 +219,6 @@
         </div>
       </div>
 
-      <!-- รายละเอียดกิจกรรม -->
       <div style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2px;">
         <label for="activity-details" style="text-align: center; width: 100%; margin-bottom: 2px;">📄 รายละเอียดกิจกรรม (ไม่บังคับ):</label>
         <textarea 
@@ -241,12 +228,10 @@
         ></textarea>
       </div>
       
-      <!-- ปุ่มบันทึกกิจกรรม -->
       <div class="center" style="margin-top: 2px;">
         <button id="save-activity-button" class="main-button">💾 บันทึกกิจกรรม</button>
       </div>
 
-      <!-- ปุ่มแสดง/ซ่อนกิจกรรมทั้งหมด -->
       <div class="button-container" style="margin-top: 2px;">
         <button type="button" class="main-button" onclick="toggleActivitiesVisibility()">👁️ แสดง/ซ่อนกิจกรรมทั้งหมด</button>
       </div>
@@ -260,7 +245,6 @@
 </div>
 
         
-<!-- เมนูใหญ่ 2: จัดการกิจกรรม -->
 <div class="section-header main-section-header header-actions" onclick="toggleMainSection('manage-activities-section')">
   <span>⚙️ จัดการกิจกรรม</span>
   <span class="menu-icon">▼</span>
@@ -270,7 +254,6 @@
   <div class="form-section no-border">
     <form id="manage-activities-form">
 
-      <!-- สถานะรหัสผ่าน (เต็มแถว) -->
       <div style="text-align: center; margin: 2px 0;">
         <p id="password-status"
            style="margin: 2px 0; font-size: clamp(0.7rem, 1.5vw, 1rem); color: #f5a623;">
@@ -278,7 +261,6 @@
         </p>
       </div>
 
-      <!-- แถวปุ่ม: บันทึกชั่วคราว + บันทึกข้อมูล -->
       <div style="display: flex; justify-content: center; gap: 8px; margin: 4px 0;">
         <button type="button" onclick="saveToLocal()" 
                 style="width: 160px; border-radius: 30px; background-color: #17a2b8; padding: 8px;">
@@ -290,7 +272,6 @@
         </button>
       </div>
 
-      <!-- ช่องรหัสผ่าน -->
       <div class="entry-group" style="font-size: clamp(0.8rem, 2.5vw, 1rem); margin-top: 2px;">
         <label for="backup-password">🔐 รหัสผ่านสำรองข้อมูล (ไม่บังคับ):</label>
         <div style="position: relative; margin-top: 2px;">
@@ -307,7 +288,6 @@
         </div>
       </div>
 
-      <!-- ช่องยืนยันรหัสผ่าน -->
       <div class="entry-group" style="margin-top: 2px;">
         <label for="backup-password-confirm">🔐 ยืนยันรหัสผ่าน:</label>
         <div style="position: relative; margin-top: 2px;">
@@ -320,7 +300,6 @@
         </div>
       </div>
 
-      <!-- แถวปุ่ม: ตั้งรหัสผ่าน + ลบรหัสผ่าน -->
       <div style="display: flex; justify-content: center; gap: 8px; margin-top: 2px;">
         <button type="button" onclick="saveBackupPassword(event)"
                 style="width: 160px; border-radius: 30px; background-color: #28a745; padding: 8px;">
@@ -332,7 +311,6 @@
         </button>
       </div>
 
-      <!-- ส่วนจัดการข้อมูลและทำความสะอาด -->
       <div class="summary-subsection" style="margin-top: 2px;">
         <div style="display: flex; justify-content: center; margin-bottom: 2px;">
           <button type="button" onclick="cleanAllData()"
@@ -352,7 +330,6 @@
 
 
           
-          <!-- เมนูใหญ่ 3: สรุปกิจกรรม -->
           <div class="section-header main-section-header header-summary" onclick="toggleMainSection('summary-section')">
             <span>📊 สรุปกิจกรรม</span>
             <span class="menu-icon">▼</span>
@@ -360,7 +337,6 @@
           <div id="summary-section" class="section-content main-section-content">
             <div class="form-section no-border">
               <form id="summary-form">
-                <!-- เมนูเลือกประเภทการสรุป -->
                 <div class="entry-form" style="margin-bottom: 2;">
                   <div class="entry-group">
                     <label for="summary-type-select">📈 ประเภทการสรุป:</label>
@@ -373,15 +349,12 @@
                   </div>
                 </div>
 
-                <!-- ส่วนกรองผู้ทำกิจกรรม -->
                 <div class="summary-controls">
-                  <!-- ส่วนแสดงผู้ทำกิจกรรมอัตโนมัติ (แสดงเมื่อมีแค่คนเดียว) -->
                   <div class="auto-selected-person" id="autoSelectedPerson" style="display: none; background-color: #f8f9fa; padding: 8px 12px; border-radius: 15px; border: 1px solid #dee2e6; margin-bottom: 2px;">
                     <label style="font-weight: bold; margin-right: 8px; color: #495057;">👤 ผู้ทำกิจกรรม:</label>
                     <span id="selectedPersonName" style="color: #28a745; font-size: 1rem; font-weight: bold;"></span>
                   </div>
 
-                  <!-- Dropdown กรองผู้ทำกิจกรรม (แสดงเมื่อมีหลายคน) -->
                   <div class="person-filter-container" id="personFilterContainer">
                     <label for="personFilter">👤 ผู้ทำกิจกรรม:</label>
                     <select id="personFilter" onchange="loadSummaryData()">
@@ -390,7 +363,6 @@
                   </div>
                 </div>
                 
-                <!-- ฟิลด์วันที่ (จะแสดง/ซ่อนตามประเภทที่เลือก) -->
                 <div id="summary-date-picker" class="summary-subsection hidden">
                   <label class="summary-subsection-header">📅 เลือกวันที่</label>
                   <div class="summary-date-display">
@@ -411,7 +383,6 @@
                   </div>
                 </div>
                 
-                <!-- ปุ่มดูสรุป -->
                 <div class="summary-subsection">
                   <div class="button-container" style="text-align: center; margin-top: 2px;">
                     <button 
@@ -446,7 +417,6 @@
       </div>   
     </div>
 
-    <!-- ตารางกิจกรรม - ปรับปรุงให้เป็น Responsive -->
     <div id="activitiesSection" style="display: none; margin-top: 2px; width: 100%;">
       <div class="table-container">
         <table id="activityTable">
@@ -466,12 +436,10 @@
       </div>
     </div>
 
-    <!-- โครงสร้าง Popup สำหรับแสดงผลสรุป -->
     <div id="summaryModal" class="modal-overlay">
       <div class="modal-content-container">
         <div id="modalBodyContent" class="summaryResult">
-          <!-- เนื้อหาการสรุปจะถูกใส่ที่นี่โดย JavaScript -->
-        </div>
+          </div>
         <div class="modal-controls">
           <button id="saveSummaryAsImageBtn" class="modal-control-btn">🖼️ บันทึกเป็นรูปภาพ</button>
           <button type="button" onclick="closeSummaryModal()" class="modal-close-btn modal-control-btn">❌ ปิดหน้าต่างนี้</button>
@@ -479,7 +447,6 @@
       </div>
     </div>
 
-    <!-- Modal สำหรับเลือกรูปแบบการแสดงผลสรุป -->
     <div id="summaryOutputModal" class="modal-overlay">
       <div class="format-modal-content">
         <h3>📊 เลือกรูปแบบการแสดงผลสรุป</h3>
@@ -492,7 +459,6 @@
       </div>
     </div>
 
-    <!-- Modal สำหรับจัดการผู้ทำกิจกรรม -->
     <div id="personModal" class="popup-overlay">
       <div class="popup-content" style="max-width: 400px; background-color: #f0f8ff;">
         <h2 id="personModalTitle" style="color: #0056b3; text-align: center;"></h2>
@@ -505,7 +471,6 @@
       </div>
     </div>
 
-    <!-- Modal สำหรับจัดการประเภทกิจกรรม -->
     <div id="activityTypeModal" class="popup-overlay">
       <div class="popup-content" style="max-width: 400px; background-color: #f0f8ff;">
         <h2 id="activityTypeModalTitle" style="color: #0056b3; text-align: center;"></h2>
@@ -518,13 +483,10 @@
       </div>
     </div>
 
-    <!-- Container สำหรับพิมพ์ PDF -->
     <div id="print-container" style="display: none;"></div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="toast-notification" style="display: none;"></div>
 
-    <!-- Modal สำหรับเลือกประเภทการบันทึกข้อมูล -->
     <div id="exportOptionsModal" class="modal-overlay">
       <div class="format-modal-content">
         <h3>💾 เลือกประเภทการบันทึกข้อมูล</h3>
@@ -537,7 +499,6 @@
       </div>
     </div>
 
-    <!-- Modal เลือกวันที่ (สำหรับบันทึกรายวัน) - แบบใหม่ -->
     <div id="singleDateExportModal" class="modal-overlay">
       <div class="format-modal-content">
         <h3>📆 เลือกช่วงวันที่ต้องการบันทึก</h3>
@@ -562,7 +523,6 @@
     </div>
   </div>
 
-  <!-- JavaScript -->
   <script src="script.js"></script>
   
   <script>

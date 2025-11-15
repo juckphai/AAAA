@@ -2675,12 +2675,24 @@ function getCurrentDateTimeThai() {
     return thaiDate;
 }
 
-// === ฟังก์ชันส่งออกสรุปเป็น PDF (ปรับปรุงให้มีช่องว่างและจัดกึ่งกลาง) ===
+// === ฟังก์ชันส่งออกสรุปเป็น PDF (ปรับปรุงให้มีช่องว่างและจัดกึ่งกลางและแก้ไข Popup Blocker) ===
 function exportSummaryToPDF() {
     const { type, activities, startDate, endDate, personFilter } = summaryContext;
     
     if (!activities || activities.length === 0) {
         alert('ไม่มีข้อมูลกิจกรรมสำหรับสร้าง PDF');
+        return;
+    }
+    
+    // ⭐⭐⭐ จุดที่แก้ไขสำหรับ Popup Blocker ⭐⭐⭐
+    // เปิดหน้าต่างใหม่ทันทีที่ฟังก์ชันเริ่มทำงาน (ภายใต้บริบทของการคลิก)
+    const printWindow = window.open('', '_blank');
+    
+    // ตรวจสอบว่าเปิดหน้าต่างใหม่ได้หรือไม่
+    if (!printWindow) {
+        // หากเปิดไม่ได้ แสดงว่าถูก Popup Blocker บล็อก
+        alert('ไม่สามารถเปิดหน้าต่างใหม่ได้ กรุณาปิด Popup Blocker แล้วลองอีกครั้ง');
+        notifyDataManagement('export');
         return;
     }
     
@@ -2767,7 +2779,7 @@ function exportSummaryToPDF() {
             <meta charset="UTF-8">
             <style>
                 @page {
-                    margin: 10mm 5mm 10mm 10mm;
+                    margin: 10mm 5mm 8mm 3mm;
                     size: A4;
                     @top-right {
                         content: "หน้า " counter(page) " จาก " counter(pages);
@@ -2923,25 +2935,19 @@ function exportSummaryToPDF() {
         </html>
     `;
 
-    try {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(printHTML);
-        printWindow.document.close();
-        
-        printWindow.onload = () => {
-            setTimeout(() => {
-                printWindow.focus();
-                printWindow.print();
-            }, 500);
-        };
-        
-        notifyDataManagement('export');
-        showToast('กำลังเตรียมพิมพ์ PDF...', 'success');
-
-    } catch (error) {
-        console.error('Error during PDF printing:', error);
-        alert('ไม่สามารถพิมพ์ PDF ได้');
-    }
+    // ⭐⭐⭐ ใช้ printWindow ที่ถูกเปิดแล้วทันที ⭐⭐⭐
+    printWindow.document.write(printHTML);
+    printWindow.document.close();
+    
+    printWindow.onload = () => {
+        setTimeout(() => {
+            printWindow.focus();
+            printWindow.print();
+        }, 300); // ลด delay ลงเหลือ 300ms เพื่อความรวดเร็ว
+    };
+    
+    notifyDataManagement('export');
+    showToast('กำลังเตรียมพิมพ์ PDF...', 'success');
 }
 function formatDurationForPrint(minutes) {
     if (isNaN(minutes) || minutes < 0) return "0 นาที";
