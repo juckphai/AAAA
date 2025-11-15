@@ -2832,7 +2832,7 @@ function exportSummaryToPDF() {
                 }
                 th,td { 
                     border:0.5px solid #000; 
-                    padding:4px; 
+                    padding:2px; 
                     font-size:0.7rem; 
                     word-wrap: break-word; 
                     text-align: center; /* เนื้อหาตารางจัดกึ่งกลาง */
