@@ -19,7 +19,7 @@ body {
 /* --- 2. Layout & Main Containers --- */
 .container {
   background-color: #FAFAD2;
-  border: 3px solid #ED01ED;
+  border: 1.5px solid #ED01ED;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 5px auto;
