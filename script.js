@@ -1487,7 +1487,7 @@ function saveToFile() {
     } 
     
     // ถามชื่อไฟล์
-    const fileName = prompt("กรุณากรอกชื่อไฟล์สำหรับสำรองข้อมูล (ไม่ต้องใส่นามสกุล):", "สำรองกิจกรรม");
+    const fileName = prompt("กรุณากรอกชื่อไฟล์สำหรับสำรองข้อมูล (ไม่ต้องใส่นามสกุล):", "บันทึกกิจกรรม");
     if (!fileName) return;
     
     // บันทึกเป็น JSON โดยตรง
@@ -1805,7 +1805,7 @@ function exportActivities() {
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `สำรองกิจกรรม${timestamp}.json`;
+    link.download = `ข้อมูลกิจกรรม${timestamp}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
