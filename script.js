@@ -2779,7 +2779,7 @@ function exportSummaryToPDF() {
             <meta charset="UTF-8">
             <style>
                 @page {
-                    margin: 10mm 5mm 3mm 10mm;
+                    margin: 15mm 5mm 3mm 8mm;
                     size: A4;
                     @top-right {
                         content: "หน้า " counter(page) " จาก " counter(pages);
