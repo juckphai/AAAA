@@ -351,13 +351,13 @@ label {
   display: flex;
   flex-shrink: 0;
   font-size: 18px;
-  height: 36px;
+  height: 38px;
   justify-content: center;
   margin-right: 10px;
   padding: 0;
   position: static;
   transition: all 0.2s ease;
-  width: 36px;
+  width: 38px;
   z-index: 10;
 }
 
@@ -612,9 +612,9 @@ label {
   }
   .manage-btn-inline {
     font-size: 16px;
-    height: 32px;
+    height: 38px;
     margin-right: 5px;
-    width: 32px;
+    width: 38px;
   }
 }
 
@@ -2283,17 +2283,17 @@ footer div {
   align-items: center;
   background-color: #6c757d;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   color: white;
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
   font-size: 16px;
-  height: 36px;
+  height: 38px;
   justify-content: center;
   padding: 0;
   transition: all 0.2s ease;
-  width: 36px;
+  width: 38px;
 }
 
 .management-actions {
@@ -2359,8 +2359,8 @@ footer div {
   }
   .manage-btn-inline {
     font-size: 14px;
-    height: 32px;
-    width: 32px;
+    height: 34px;
+    width: 34px;
   }
   .management-actions {
     gap: 4px;
@@ -2463,11 +2463,11 @@ footer div {
   display: flex;
   flex-shrink: 0;
   font-size: 16px;
-  height: 36px;
+  height: 38px;
   justify-content: center;
   padding: 0;
   transition: all 0.2s ease;
-  width: 36px;
+  width: 38px;
 }
 
 .management-actions {
@@ -2533,8 +2533,8 @@ footer div {
   }
   .manage-btn-inline {
     font-size: 14px;
-    height: 32px;
-    width: 32px;
+    height: 34px;
+    width: 34px;
   }
   .management-actions {
     gap: 4px;
@@ -2652,8 +2652,8 @@ footer div {
   }
   .management-container.full-width .manage-btn-inline {
     flex-shrink: 0;
-    height: 36px;
-    width: 36px;
+    height: 34px;
+    width: 34px;
   }
   .management-container.full-width .management-actions {
     gap: 6px;
@@ -3240,7 +3240,7 @@ footer div {
   display: flex;
   flex-shrink: 0;
   font-size: 20px;
-  height: 36px;
+  height: 38px;
   justify-content: center;
   line-height: 42px;
   padding: 0;
@@ -3332,8 +3332,8 @@ footer div {
   }
   .manage-btn-inline {
     font-size: 18px;
-    height: 36px;
-    width: 36px;
+    height: 38px;
+    width: 38px;
   }
 }
 
@@ -3352,9 +3352,9 @@ footer div {
   .manage-btn-inline {
     flex-shrink: 0;
     font-size: 18px;
-    height: 36px;
+    height: 38px;
     margin: 0;
-    width: 36px;
+    width: 38px;
   }
   .management-actions {
     display: none;
@@ -3400,9 +3400,9 @@ footer div {
   }
   .manage-btn-inline {
     flex: 0 0 auto !important;
-    height: 36px !important;
+    height: 38px !important;
     margin: 0 !important;
-    width: 36px !important;
+    width: 38px !important;
   }
   .management-actions {
     align-items: center !important;
@@ -3434,8 +3434,8 @@ footer div {
   }
   .manage-btn-inline {
     font-size: 16px !important;
-    height: 34px !important;
-    width: 34px !important;
+    height: 38px !important;
+    width: 38px !important;
   }
   .management-actions button {
     flex: 1 1 calc(50% - 3px) !important;
@@ -3487,10 +3487,10 @@ footer div {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: 36px;
+  height: 38px;
   justify-content: center;
   margin: 0;
-  width: 36px;
+  width: 38px;
 }
 
 .management-container.full-width .management-actions {
@@ -3539,8 +3539,8 @@ footer div {
   }
   .management-container.full-width .manage-btn-inline {
     flex-shrink: 0;
-    height: 36px;
-    width: 36px;
+    height: 38px;
+    width: 38px;
   }
   .management-container.full-width .management-actions {
     gap: 6px;
@@ -3566,8 +3566,8 @@ footer div {
   }
   .management-container.full-width .manage-btn-inline {
     font-size: 16px;
-    height: 34px;
-    width: 34px;
+    height: 38px;
+    width: 38px;
   }
   .management-container.full-width .management-actions button {
     flex: 1 1 calc(50% - 3px);
