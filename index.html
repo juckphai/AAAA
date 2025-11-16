@@ -76,53 +76,113 @@
             </div>
           </div>
           
-<div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
-  <span>➕ เพิ่มกิจกรรม</span>
-  <span class="menu-icon">▼</span>
-</div>
+          <div class="section-header main-section-header header-add-data" onclick="toggleMainSection('add-activity-section')">
+            <span>➕ เพิ่มกิจกรรม</span>
+            <span class="menu-icon">▼</span>
+          </div>
+          <div id="add-activity-section" class="section-content main-section-content">
+            <div class="form-section no-border">
+              <form id="activity-form">
+                
+ <div class="management-row compact-layout">
+  <div class="management-container full-width">
+    <div class="select-wrapper" 
+         style="display: flex; align-items: center; gap: 6px; width: 100%;">
+      <button 
+        type="button" 
+        class="manage-btn-inline" 
+        id="togglePersonControls" title="จัดการผู้ทำกิจกรรม"
+        style="
+          font-size: 14px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        "
+      >
+        ⚙️
+      </button>
 
-<div id="add-activity-section" class="section-content main-section-content">
-  <div class="form-section no-border">
-    <form id="activity-form">
-      
-<div class="management-row compact-layout" style="margin-bottom: 2px; font-size: clamp(0.5rem, 2vw, 1rem);">
-  <div class="management-container full-width" style="margin-bottom: 2px;">
-    <div class="select-wrapper" style="margin-bottom: 2px;">
-      <select id="personSelect" required 
-              style="width: 100%; font-size: clamp(0.5rem, 2.5vw, 1rem);">
-        <option value="">👤 เลือกผู้ทำกิจกรรม</option>
+      <select 
+        id="personSelect" 
+        required 
+        style="
+          flex: 1;
+          font-size: 14px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          height: 34px;
+        "
+      >
+        <option value="">เลือกผู้ทำกิจกรรม</option>
       </select>
-      <button class="manage-btn-inline" id="togglePersonControls" title="จัดการผู้บอก" type="button"
-              style="font-size: clamp(0.5rem, 2.5vw, 1rem);">⚙️</button>
     </div>
 
-    <div class="management-actions" id="personActions" style="gap: 4px; margin-bottom: 2px;">
-      <button type="button" id="addPersonBtn" class="add-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">➕ เพิ่ม</button>
-      <button type="button" id="editPersonBtn" class="edit-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">✏️ แก้ไข</button>
-      <button type="button" id="deletePersonBtn" class="delete-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">🗑️ ลบ</button>
-      <button type="button" id="resetPersonBtn" class="reset-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">🔄 คืนค่า</button>
+    <div class="management-actions" id="personActions" style="display: none;">
+      <button type="button" id="addPersonBtn" class="add-btn">เพิ่ม</button>
+      <button type="button" id="editPersonBtn" class="edit-btn">แก้ไข</button>
+      <button type="button" id="deletePersonBtn" class="delete-btn">ลบ</button>
+      <button type="button" id="resetPersonBtn" class="reset-btn">คืนค่า</button>
     </div>
-  </div>
 
-  <div class="management-container full-width" style="margin-bottom: 2px;">
-    <div class="select-wrapper" style="margin-bottom: 2px;">
-      <select id="activityTypeSelect" required
-              style="width: 100%; font-size: clamp(0.5rem, 2.5vw, 1rem);">
-        <option value="">📊 เลือกประเภทกิจกรรม</option>
+    </div>
+
+  <div class="management-container full-width">
+    <div class="select-wrapper" 
+         style="display: flex; align-items: center; gap: 6px; width: 100%;">
+
+      <button 
+        type="button" 
+        class="manage-btn-inline" 
+        id="toggleActivityTypeControls" title="จัดการประเภทกิจกรรม"
+        style="
+          font-size: 14px;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        "
+      >
+        ⚙️
+      </button>
+
+      <select 
+        id="activityTypeSelect" 
+        required 
+        style="
+          flex: 1;
+          font-size: 14px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          height: 34px;
+        "
+      >
+        <option value="">เลือกประเภทกิจกรรม</option>
       </select>
-      <button class="manage-btn-inline" id="toggleActivityTypeControls" title="จัดการหัวข้อ" type="button"
-              style="font-size: clamp(0.5rem, 2.5vw, 1rem);">⚙️</button>
     </div>
 
-    <div class="management-actions" id="activityTypeActions" style="gap: 4px; margin-bottom: 2px;">
-      <button type="button" id="addActivityTypeBtn" class="add-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">➕ เพิ่ม</button>
-      <button type="button" id="editActivityTypeBtn" class="edit-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">✏️ แก้ไข</button>
-      <button type="button" id="deleteActivityTypeBtn" class="delete-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">🗑️ ลบ</button>
-      <button type="button" id="resetActivityTypeBtn" class="reset-btn" style="font-size: clamp(0.5rem, 2.5vw, 1rem);">🔄 คืนค่า</button>
+    <div class="management-actions" id="activityTypeActions" style="display: none;">
+      <button type="button" id="addActivityTypeBtn" class="add-btn">เพิ่ม</button>
+      <button type="button" id="editActivityTypeBtn" class="edit-btn">แก้ไข</button>
+      <button type="button" id="deleteActivityTypeBtn" class="delete-btn">ลบ</button>
+      <button type="button" id="resetActivityTypeBtn" class="reset-btn">คืนค่า</button>
     </div>
-  </div>
+
+    </div>
 </div>
-      
+                
 <div class="date-wrapper" 
      style="display: flex; justify-content: center; align-items: center; margin-bottom: 2px; width: 100%;">
   
