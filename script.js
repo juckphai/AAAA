@@ -2344,8 +2344,8 @@ function displaySummary() {
     }
 
     // สร้าง HTML หลัก
-    let summaryHTML = `
-        <div class="summaryResult" style="font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 2px; border: 1.5px solid #F660EB; border-radius: 5px; background-color: #FAFAD2; text-align: center; line-height: 1.0; width: 100%; box-sizing: border-box;">
+let summaryHTML = `
+    <div class="summaryResult" style="font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 10px 0.5px 5px 0.5px; border: 1.5px solid #F660EB; border-radius: 5px; background-color: #FAFAD2; text-align: center; line-height: 1.0; width: 100%; box-sizing: border-box;">
             <div style="text-align: center; margin: 2px 0;">
                 <h3 style="color: blue; font-size: 0.9rem; line-height: 1.2; margin: 2px 0;">
                     ${personSummaryText}

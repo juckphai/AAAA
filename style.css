@@ -1697,7 +1697,7 @@ tr:hover td {
     font-size: 0.85rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 10px 12px;
+    padding: 10px 0.5px 5px 0.5px !important; /* บน 10, ขวา 2, ล่าง 5, ซ้าย 2 */
     white-space: nowrap;
   }
   table {
@@ -1821,7 +1821,7 @@ tr:hover td {
   max-height: 90vh;
   max-width: 900px;
   overflow-y: auto;
-  padding: 5px;
+  padding: 10px 0.5px 5px 0.5px !important; /* บน 10, ขวา 2, ล่าง 5, ซ้าย 2 */
   width: 100%;
 }
 
@@ -1829,15 +1829,17 @@ tr:hover td {
   .summaryResult {
     box-sizing: border-box !important;
     margin: 0 !important;
-    padding: 15px !important;
+    padding: 10px 0.5px 5px 0.5px !important; /* บน 10, ขวา 2, ล่าง 5, ซ้าย 2 */
     width: 100% !important;
   }
+
   .modal-content-container {
     margin: 10px;
     max-height: 95vh;
     width: calc(100% - 20px);
   }
 }
+
 
 .modal-controls {
   display: flex;
@@ -2046,13 +2048,13 @@ tr:hover td {
     box-sizing: border-box !important;
     margin: 0 !important;
     max-width: 100% !important;
-    padding: 10px !important;
+    padding: 10px 0.5px 5px 0.5px !important; 
     width: 100% !important;
   }
   .modal-content-container {
-    margin: 4px !important;
-    max-width: calc(100% - 8px) !important;
-    padding: 5px !important;
+    margin: 2px !important;
+    max-width: calc(100% - 4px) !important;
+    padding: 10px 0.5px 5px 0.5px !important; 
     width: calc(100% - 10px) !important;
   }
   #modalBodyContent {
@@ -2064,12 +2066,12 @@ tr:hover td {
 @media (max-width: 480px) {
   .summaryResult {
     border-width: 1px !important;
-    padding: 8px !important;
+    padding: 10px 0.5px 5px 0.5px !important; 
   }
   .modal-content-container {
     margin: 5px !important;
     max-width: calc(100% - 10px) !important;
-    padding: 5px !important;
+    padding: 10px 0.5px 5px 0.5px !important; 
     width: calc(100% - 10px) !important;
   }
 }
